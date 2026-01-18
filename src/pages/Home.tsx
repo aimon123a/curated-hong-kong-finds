@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ArticleCard from "@/components/ui/ArticleCard";
-import { articles, categories } from "@/data/sampleData";
+import SelectorCard from "@/components/ui/SelectorCard";
+import { articles, categories, selectors } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
-
 const Home = () => {
   const featuredArticles = articles.slice(0, 4);
 
@@ -96,6 +96,33 @@ const Home = () => {
               className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
             >
               查看更多文章
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SELECTor Section */}
+      <section className="py-12 md:py-16 bg-background-warm">
+        <div className="container-editorial">
+          <SectionHeader
+            englishTitle="MEET OUR SELECTORS"
+            chineseTitle="SELECTor"
+            description="由各領域專家為您精選推薦"
+          />
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {selectors.map((selector) => (
+              <SelectorCard key={selector.id} selector={selector} />
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              to="/selectors"
+              className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
+            >
+              查看所有 SELECTor
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
