@@ -12,7 +12,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-tight">
-              your<span className="text-primary">SELECT</span>
+              jaag<span className="text-primary">SELECT</span>
             </span>
             <span className="text-xs text-muted-foreground font-medium">HK</span>
           </Link>
