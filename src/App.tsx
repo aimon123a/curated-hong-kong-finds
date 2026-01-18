@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Article from "./pages/Article";
+import FeatureArticle from "./pages/FeatureArticle";
 import Product from "./pages/Product";
 import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/category/:categorySlug/article/:articleId" element={<Article />} />
+          <Route path="/category/:categorySlug/review/:articleId" element={<FeatureArticle />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/selectors" element={<Selectors />} />
           <Route path="/selector/:selectorId" element={<Selector />} />
