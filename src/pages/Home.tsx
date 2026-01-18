@@ -109,10 +109,10 @@ const Home = () => {
             <div>
               <SectionHeader
                 englishTitle="ABOUT US"
-                chineseTitle="關於 yourSELECT"
+                chineseTitle="關於 jaagSELECT"
               />
               <p className="text-muted-foreground leading-relaxed mb-6">
-                yourSELECT HK 是一個專注於產品評測和推薦的平台。我們的編輯團隊由各領域的專家組成，致力於為香港消費者提供最可靠的購物指南。
+                jaagSELECT HK 是一個專注於產品評測和推薦的平台。我們的編輯團隊由各領域的專家組成，致力於為香港消費者提供最可靠的購物指南。
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 每一篇評測都經過嚴謹的測試和分析，確保為您呈現最真實的產品表現。我們相信，好的選擇能讓生活更美好。

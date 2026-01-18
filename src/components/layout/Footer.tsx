@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <Link to="/" className="inline-block mb-4">
               <span className="text-xl font-bold tracking-tight">
-                your<span className="text-primary-light">SELECT</span>
+                jaag<span className="text-primary-light">SELECT</span>
               </span>
               <span className="text-xs text-background/60 font-medium ml-2">HK</span>
             </Link>
@@ -89,7 +89,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-background/20 mt-10 pt-6">
           <p className="text-xs text-background/50 text-center">
-            © 2024 yourSELECT HK. All rights reserved.
+            © 2024 jaagSELECT HK. All rights reserved.
           </p>
         </div>
       </div>
