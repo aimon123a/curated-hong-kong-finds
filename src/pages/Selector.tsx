@@ -151,6 +151,7 @@ const Selector = () => {
                   imageUrl={article.imageUrl}
                   date={article.date}
                   isPR={article.isPR}
+                  isFeatureReview={(article as any).isFeatureReview}
                 />
               ))}
             </div>

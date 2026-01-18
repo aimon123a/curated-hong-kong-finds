@@ -8,6 +8,7 @@ interface ArticleCardProps {
   imageUrl: string;
   date: string;
   isPR?: boolean;
+  isFeatureReview?: boolean;
 }
 
 const ArticleCard = ({
@@ -18,10 +19,15 @@ const ArticleCard = ({
   imageUrl,
   date,
   isPR = false,
+  isFeatureReview = false,
 }: ArticleCardProps) => {
+  const linkPath = isFeatureReview
+    ? `/category/${categorySlug}/review/${id}`
+    : `/category/${categorySlug}/article/${id}`;
+
   return (
     <Link
-      to={`/category/${categorySlug}/article/${id}`}
+      to={linkPath}
       className="article-card block bg-card rounded-sm overflow-hidden group"
     >
       {/* Image */}
@@ -33,6 +39,11 @@ const ArticleCard = ({
           loading="lazy"
         />
         {isPR && <span className="pr-label">PR</span>}
+        {isFeatureReview && (
+          <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-medium bg-accent text-accent-foreground">
+            深度評測
+          </span>
+        )}
       </div>
 
       {/* Content */}
