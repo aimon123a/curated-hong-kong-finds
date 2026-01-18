@@ -1,5 +1,10 @@
 // Sample data for the jaagSELECT HK website
 
+import keiImage from "@/assets/selectors/kei.jpg";
+import vicImage from "@/assets/selectors/vic.jpg";
+import gilImage from "@/assets/selectors/gil.jpg";
+import jacImage from "@/assets/selectors/jac.jpg";
+
 export interface Selector {
   id: string;
   name: string;
@@ -48,7 +53,7 @@ export const selectors: Selector[] = [
     title: "身體護理專家",
     specialty: "身體暗瘡控制",
     bio: "擁有超過8年美容行業經驗，專注於身體肌膚護理研究。曾在多間皮膚科診所擔任顧問，對暗瘡成因及護理有深入了解。相信每個人都值得擁有健康自信的肌膚。",
-    imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
+    imageUrl: keiImage,
     articleCount: 12,
     expertise: ["身體暗瘡", "背部護理", "去角質", "身體乳液"],
     socialLinks: {
@@ -62,7 +67,7 @@ export const selectors: Selector[] = [
     title: "男士穿搭顧問",
     specialty: "男士服飾穿搭",
     bio: "時裝設計系畢業，曾於多個國際品牌擔任造型師。熱衷於幫助男士找到屬於自己的風格，認為好的穿搭不在於價格，而在於懂得搭配。",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+    imageUrl: vicImage,
     articleCount: 18,
     expertise: ["男士西裝", "休閒穿搭", "配飾選擇", "季節穿搭"],
     socialLinks: {
@@ -77,7 +82,7 @@ export const selectors: Selector[] = [
     title: "健身器材專家",
     specialty: "健身產品評測",
     bio: "前職業健身教練，國際認證體適能專家。10年健身經驗，親身測試過無數健身器材和補充品。致力於為大家找出性價比最高的健身好物。",
-    imageUrl: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop",
+    imageUrl: gilImage,
     articleCount: 24,
     expertise: ["家用健身器材", "蛋白粉", "運動服飾", "智能手錶"],
     socialLinks: {
@@ -91,7 +96,7 @@ export const selectors: Selector[] = [
     title: "營養保健顧問",
     specialty: "口服保健品",
     bio: "註冊營養師，擁有公共衛生碩士學位。專注於功能性保健品研究，以科學角度分析各類營養補充品的功效與安全性，幫助大家做出明智的健康選擇。",
-    imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
+    imageUrl: jacImage,
     articleCount: 15,
     expertise: ["維他命", "益生菌", "膠原蛋白", "魚油補充"],
     socialLinks: {
@@ -259,7 +264,7 @@ export const articles = [
     author: {
       name: "Kei",
       title: "身體護理專家",
-      imageUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop",
+      imageUrl: keiImage,
     },
     content: `
       <p>背部暗瘡是很多人的困擾，尤其在夏天想穿露背裝時更加尷尬。作為專注身體護理多年的編輯，我深入測試了多款背部護理產品。</p>
@@ -346,7 +351,7 @@ export const articles = [
     author: {
       name: "Vic",
       title: "男士穿搭顧問",
-      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      imageUrl: vicImage,
     },
     content: `
       <p>休閒西裝是現代男士衣櫃中不可或缺的單品。它既能展現專業形象，又不失輕鬆隨性。今天我要為大家推薦幾款值得入手的休閒西裝和搭配建議。</p>
@@ -429,7 +434,7 @@ export const articles = [
     author: {
       name: "Gil",
       title: "健身器材專家",
-      imageUrl: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&h=100&fit=crop",
+      imageUrl: gilImage,
     },
     content: `
       <p>居家健身已成為很多人的選擇。但市面上健身器材琳瑯滿目，到底哪些值得買？作為資深健身教練，我為大家精選了10款高性價比的居家訓練器材。</p>
@@ -512,7 +517,7 @@ export const articles = [
     author: {
       name: "Jac",
       title: "營養保健顧問",
-      imageUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop",
+      imageUrl: jacImage,
     },
     content: `
       <p>益生菌是現代人維持腸道健康的重要補充品。但市面上產品眾多，菌株種類各異，該如何選擇？</p>
