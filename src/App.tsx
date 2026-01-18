@@ -18,7 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/curated-hong-kong-finds">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:slug" element={<Category />} />
