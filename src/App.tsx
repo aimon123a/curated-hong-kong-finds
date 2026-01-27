@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Article from "./pages/Article";
 import FeatureArticle from "./pages/FeatureArticle";
+import FeatureArticleV2 from "./pages/FeatureArticleV2";
 import Product from "./pages/Product";
 import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/category/:categorySlug/article/:articleId" element={<Article />} />
           <Route path="/category/:categorySlug/review/:articleId" element={<FeatureArticle />} />
+          <Route path="/category/:categorySlug/share/:articleId" element={<FeatureArticleV2 />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/selectors" element={<Selectors />} />
           <Route path="/selector/:selectorId" element={<Selector />} />
