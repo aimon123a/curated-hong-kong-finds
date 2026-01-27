@@ -9,6 +9,7 @@ interface ArticleCardProps {
   date: string;
   isPR?: boolean;
   isFeatureReview?: boolean;
+  isShareArticle?: boolean;
 }
 
 const ArticleCard = ({
@@ -20,10 +21,15 @@ const ArticleCard = ({
   date,
   isPR = false,
   isFeatureReview = false,
+  isShareArticle = false,
 }: ArticleCardProps) => {
-  const linkPath = isFeatureReview
-    ? `/category/${categorySlug}/review/${id}`
-    : `/category/${categorySlug}/article/${id}`;
+  // Determine link path based on article type
+  let linkPath = `/category/${categorySlug}/article/${id}`;
+  if (isShareArticle) {
+    linkPath = `/category/${categorySlug}/share/${id}`;
+  } else if (isFeatureReview) {
+    linkPath = `/category/${categorySlug}/review/${id}`;
+  }
 
   return (
     <Link
@@ -39,7 +45,12 @@ const ArticleCard = ({
           loading="lazy"
         />
         {isPR && <span className="pr-label">PR</span>}
-        {isFeatureReview && (
+        {isShareArticle && (
+          <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-medium bg-secondary text-secondary-foreground">
+            個人分享
+          </span>
+        )}
+        {isFeatureReview && !isShareArticle && (
           <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-medium bg-accent text-accent-foreground">
             深度評測
           </span>

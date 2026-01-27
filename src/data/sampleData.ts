@@ -6,6 +6,15 @@ import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
 
+// Clearex Wi article images
+import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
+import clearexWiStoreImage from "@/assets/articles/clearex-wi-store.jpg";
+import clearexWiBeforeAfterImage from "@/assets/articles/clearex-wi-before-after.jpg";
+import clearexWiComboImage from "@/assets/articles/clearex-wi-combo.jpg";
+import clearexWiSizesImage from "@/assets/articles/clearex-wi-sizes.jpg";
+import backAcneInfo1Image from "@/assets/articles/back-acne-info-1.jpg";
+import backAcneInfo2Image from "@/assets/articles/back-acne-info-2.jpg";
+
 export interface Selector {
   id: string;
   name: string;
@@ -389,6 +398,191 @@ export const articles = [
       verdict: {
         title: "編輯評語",
         content: "作為一個曾經飽受背痘困擾的人，我可以負責任地說：Clearex Wi 是我用過最有效的身體暗瘡護理產品之一。它不是那種誇大其詞的「神器」，而是真正以科學配方解決問題的日本製藥級產品。如果你也在尋找背痘的解決方案，這款沐浴露絕對值得一試。"
+      }
+    },
+  },
+  // Kei's Feature Article 2 - Back Acne Solution (from Word doc)
+  {
+    id: "kei-clearex-wi-v2",
+    categorySlug: "beauty",
+    selectorId: "kei",
+    title: "Clearex-Wi 藥用沐浴露，去痘計劃，正式啟動！",
+    excerpt: "日本製藥大廠「第一三共」研發低刺激藥用沐浴露，專治身體暗瘡。旅遊日本時偶遇的背痘救星！",
+    imageUrl: clearexWiProductImage,
+    date: "2024.01.28",
+    isPR: false,
+    isFeatureReview: true,
+    isShareArticle: true,
+    author: {
+      name: "Kei",
+      title: "身體護理專家",
+      imageUrl: keiImage,
+    },
+    content: `
+      <div class="lead-text">
+        <p>油脂性皮膚跟咗我29年，之前喺網上面見到啲人話呢隻予防ニキビ（暗瘡）嘅沐浴露好用就買黎試吓。</p>
+      </div>
+    `,
+    featureProduct: {
+      id: "clearex-wi-v2",
+      productId: "prod-clearex-wi-v2",
+      name: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
+      brand: "第一三共 DAIICHI SANKYO",
+      price: "100-180",
+      imageUrl: clearexWiProductImage,
+      rating: 4.9,
+      productType: "醫藥部外品",
+      subtitle: "クリアレックスWi",
+      tagline: "去痘計劃，正式啟動！",
+      // Custom article content from Word doc
+      articleContent: {
+        heroImages: [clearexWiProductImage, clearexWiStoreImage],
+        intro: {
+          title: "前言：與背痘戰鬥的日子",
+          content: "油脂性皮膚跟咗我29年，之前喺網上面見到啲人話呢隻予防ニキビ（暗瘡）嘅沐浴露好用就買黎試吓。"
+        },
+        trialResults: {
+          title: "小弟本人試用30日的效果",
+          subtitle: "Clearex-WI + 背粒消",
+          image: clearexWiBeforeAfterImage,
+          content: "個人感受背脊平滑咗，發炎都少咗。參考日本人使用心得 CLEAREX-Wi 低刺激抗菌藥用沐浴乳搭配屈臣氏買嘅背粒消，雙管齊下，就算有新痘都好快俾我消炎，係幾舒服。",
+          recommendation: "對於因夏季即將來臨而為背部痘痘煩惱的人，特別推薦這兩個即使在藥妝店也能買到的產品組合使用。兩者皆為低刺激性且弱酸性，能同時殺菌引發背部痘的源頭並抑制發炎。",
+          usage: "只需將 CLEAREX Wi 作為沐浴乳使用，並在沐浴後將 背粒消 噴在背部即可。"
+        },
+        comboImage: clearexWiComboImage,
+        productSizes: {
+          image: clearexWiSizesImage,
+          title: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
+          description: "含有殺菌成分和消炎成分，能夠有效殺菌清潔，解決引起體臭、痘痘等肌膚問題的細菌。",
+          variants: [
+            { size: "200ml", price: "100 元（~1,900 円）" },
+            { size: "450ml", price: "180 元（~3,500 円）" },
+            { size: "補充用 380ml", price: "150 元（~2,950 円）" }
+          ]
+        },
+        knowledge: {
+          title: "知道更多背痘認識，對症下藥",
+          sections: [
+            {
+              question: "原來背部痘痘大部分係毛囊炎？",
+              image: backAcneInfo1Image,
+              content: ""
+            },
+            {
+              question: "背部痘的成因",
+              image: backAcneInfo2Image,
+              content: "汗水積聚、皮脂，紫外線照射和壓力都可能導致金黃色葡萄球菌和馬拉色菌繁殖，引起炎症，最終導致背部痤瘡，正正就係香港天氣濕熱同 OT 地獄全餐"
+            }
+          ]
+        },
+        features: {
+          title: "Clearex-wi 特徵",
+          subtitle: "對付背痘 殺菌消炎",
+          list: [
+            {
+              point: "含有殺菌成分異丙基甲基苯酚",
+              detail: "殺菌和淨化導致皮膚問題（如異味和痤瘡）的細菌。"
+            },
+            {
+              point: "含有甘草酸二鉀作為抗發炎成分",
+              detail: "創造清潔的皮膚環境，預防皮膚問題。"
+            },
+            {
+              point: "低過敏配方，弱酸性，無香料",
+              detail: "經過敏測試※。我們考慮了它對皮膚的溫和程度。※無法保證所有人都不會過敏。"
+            }
+          ]
+        },
+        hashtags: ["#ClearexWi", "#背痘救星"]
+      },
+      keyPoints: [
+        {
+          title: "殺菌成分異丙基甲基苯酚 (IPMP)",
+          icon: "shield",
+          description: "殺菌和淨化導致皮膚問題（如異味和痤瘡）的細菌。",
+          details: [
+            {
+              label: "功效",
+              value: "深層滲透毛孔，根除導致痘痘的細菌"
+            },
+            {
+              label: "額外好處",
+              value: "同時消除體臭來源的雜菌"
+            }
+          ]
+        },
+        {
+          title: "甘草酸二鉀抗發炎成分",
+          icon: "heart",
+          description: "創造清潔的皮膚環境，預防皮膚問題。",
+          details: [
+            {
+              label: "功效",
+              value: "鎮定發炎紅腫的皮膚"
+            },
+            {
+              label: "額外好處",
+              value: "防止痘痘進一步惡化"
+            }
+          ]
+        },
+        {
+          title: "低過敏配方",
+          icon: "sparkles",
+          description: "弱酸性、無香料，經過敏測試。我們考慮了它對皮膚的溫和程度。",
+          details: [
+            {
+              label: "弱酸性",
+              value: "貼近皮膚天然 pH 值"
+            },
+            {
+              label: "無香料",
+              value: "減少對敏感皮膚的刺激"
+            }
+          ]
+        }
+      ],
+      specs: [
+        { label: "品牌", value: "第一三共 (DAIICHI SANKYO)" },
+        { label: "產品名稱", value: "CLEAREX-Wi (クリアレックスWi)" },
+        { label: "產品類別", value: "醫藥部外品" },
+        { label: "容量選擇", value: "200ml / 450ml / 380ml 補充用" },
+        { label: "主要成分", value: "異丙基甲基苯酚、甘草酸二鉀" },
+        { label: "pH值", value: "弱酸性" },
+        { label: "產地", value: "日本" },
+        { label: "適用對象", value: "背部暗瘡、敏感肌、運動愛好者" },
+      ],
+      pros: [
+        "雙重藥用成分：殺菌同時抗炎",
+        "弱酸性配方，溫和不刺激",
+        "無香料，敏感肌適用",
+        "同時解決體臭問題",
+        "日本製藥大廠出品，品質保證",
+        "30日試用明顯見效",
+      ],
+      cons: [
+        "香港較難購買，需代購或日本藥妝店購入",
+        "價格比一般沐浴露稍高",
+      ],
+      buyLinks: [
+        { name: "日本亞馬遜", url: "#", price: "180" },
+        { name: "樂天市場", url: "#", price: "175" },
+      ],
+      usageGuide: {
+        title: "建議使用方法",
+        steps: [
+          "運動後或大量出汗後盡快洗澡",
+          "取適量 CLEAREX Wi 於掌心或沐浴球",
+          "著重清洗背部、胸口等易出油部位",
+          "輕柔按摩讓有效成分滲透",
+          "以清水徹底沖洗乾淨",
+          "沐浴後將 背粒消 噴在背部（可選）"
+        ],
+        tips: "雙管齊下效果更佳！配合背粒消使用，就算有新痘都好快消炎。"
+      },
+      verdict: {
+        title: "Kei 的真實感受",
+        content: "個人感受背脊平滑咗，發炎都少咗。用咗30日，真係見到分別。對於香港呢種濕熱天氣同埋成日 OT 嘅打工仔，呢隻真係救星！推薦俾同樣受背痘困擾嘅你。"
       }
     },
   },
