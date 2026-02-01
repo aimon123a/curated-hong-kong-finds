@@ -73,16 +73,6 @@ const TwitterEmbed = ({
               {content}
             </p>
 
-            {/* Image */}
-            {imageUrl && (
-              <div className="rounded-xl overflow-hidden mb-4 border border-border">
-                <img
-                  src={imageUrl}
-                  alt="Tweet image"
-                  className="w-full h-auto"
-                />
-              </div>
-            )}
 
             {/* Footer */}
             <div className="flex items-center gap-4 text-sm text-muted-foreground pt-3 border-t border-border">
