@@ -441,12 +441,36 @@ export const articles = [
           title: "前言：與背痘奮鬥的日子",
           content: "油性肌膚伴隨了我29年，之前在網上看到有人推薦這款專門預防暗瘡的沐浴露，便決定購入試用。"
         },
-        // New: Japanese recommendation section
+        // New: Japanese recommendation section with Twitter embed data
         japaneseRecommendation: {
-          title: "日本網友推薦",
-          twitterImage: clearexWiComboImage,
-          translation: "對於因夏季即將來臨而為背部痘痘煩惱的人，特別推薦這兩個即使在藥妝店也能買到的產品組合使用。兩者皆為低刺激性且弱酸性，能同時殺菌引發背部痘的源頭並抑制發炎。",
-          summary: "💡 只需將 CLEAREX Wi 作為沐浴乳使用，並在沐浴後將 背粒消 噴在背部即可。"
+          title: "SNS 也人氣！CLEAREX 的口碑",
+          intro: "其實我知道 CLEAREX 的契機也是 SNS（Twitter），很多人報告說實際上有效果！",
+          mainTweet: {
+            tweetUrl: "https://x.com/curage_yuyu/status/1413406216072568835",
+            username: "くらげゆゆちゃん",
+            handle: "curage_yuyu",
+            date: "午後3:54 · 2021年7月9日",
+            content: "夏に向けて背中ニキビで悩んでる人には、ドラストとかでも買えるこの2つのダブル使いが特におすすめ。どっちも低刺激で弱酸性なのに、ニキビの元を殺菌しつつ炎症も抑えてくれる。ボディーソープとしてクリアレックスを使って、お風呂上がりにセナキュアを背中にスプレーするだけでOK。",
+            translation: "對於因夏季即將來臨而為背部痘痘煩惱的人，特別推薦這兩個即使在藥妝店也能買到的產品組合使用。兩者皆為低刺激性且弱酸性，能同時殺菌引發背部痘的源頭並抑制發炎。只需將 CLEAREX Wi 作為沐浴乳使用，並在沐浴後將背粒消噴在背部即可。",
+            imageUrl: clearexWiComboImage,
+            likes: 7294,
+          },
+          replies: [
+            {
+              username: "ray",
+              handle: "vt6q_7",
+              date: "Jul 10, 2021",
+              content: "全く同じケアをしています！まだすべすべ！ってほどではないですが、ニキビだらけで悲惨だった背中がだいぶマシになりたした☺",
+              translation: "我也在做完全一樣的護理！雖然還沒到完全光滑的程度，但之前滿是痘痘慘不忍睹的背部已經好很多了☺",
+            },
+            {
+              username: "くらげゆゆちゃん",
+              handle: "curage_yuyu",
+              date: "Jul 10, 2021",
+              content: "このコンビいいですよね！おそろい嬉しいです🥰🥰\n背中ニキビは本当に毎日のケアが大切だと思うので使い続けたいですね！",
+              translation: "這個組合真的很棒對吧！有人跟我一樣好開心🥰🥰\n背部痘痘真的很需要每天的護理，所以會繼續使用下去！",
+            },
+          ],
         },
         trialResults: {
           title: "試用30日的效果",
