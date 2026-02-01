@@ -120,6 +120,9 @@ const FeatureArticleV2 = () => {
                 {article.excerpt}
               </p>
 
+              {/* Badge before meta */}
+              <VeryGoodBadge rating="背痘救星 ✓" className="mb-4" />
+
               {/* Meta Info */}
               <div className="flex items-center justify-between flex-wrap gap-4 pb-6 border-b border-border">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -128,7 +131,7 @@ const FeatureArticleV2 = () => {
                     <time>{article.date}</time>
                   </div>
                   <span>•</span>
-                  <span>閱讀時間約 5 分鐘</span>
+                  <span>閱讀時間約 30 秒</span>
                 </div>
                 
                 <div className="flex items-center gap-2">
@@ -142,18 +145,16 @@ const FeatureArticleV2 = () => {
               </div>
             </header>
 
-            {/* Hero Images */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-              {articleContent?.heroImages?.map((img: string, index: number) => (
-                <div key={index} className="bg-card border border-border rounded-sm overflow-hidden">
-                  <img
-                    src={img}
-                    alt={`${product.name} ${index + 1}`}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Hero Image - First image only */}
+            {articleContent?.heroImages?.[0] && (
+              <div className="bg-card border border-border rounded-sm overflow-hidden mb-10">
+                <img
+                  src={articleContent.heroImages[0]}
+                  alt={`${product.name}`}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            )}
 
             {/* Article Content */}
             <div className="prose prose-lg max-w-none">
@@ -167,8 +168,17 @@ const FeatureArticleV2 = () => {
                 <p className="text-foreground leading-relaxed mb-4 text-lg">
                   {articleContent?.intro?.content}
                 </p>
-                
-                <VeryGoodBadge rating="背痘救星 ✓" className="mb-4" />
+
+                {/* Second hero image placed after intro text */}
+                {articleContent?.heroImages?.[1] && (
+                  <div className="bg-card border border-border rounded-sm overflow-hidden mt-6">
+                    <img
+                      src={articleContent.heroImages[1]}
+                      alt={`${product.name} 商店實拍`}
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                )}
               </section>
 
               {/* Trial Results - 30 Day Experience */}

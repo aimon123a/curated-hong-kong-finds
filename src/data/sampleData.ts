@@ -41,9 +41,9 @@ export const categories = {
   },
   kitchen: {
     slug: "kitchen",
-    englishTitle: "KITCHEN APPLIANCES",
-    chineseTitle: "廚房家電",
-    description: "優質廚房電器推薦，讓烹飪變得更輕鬆、更有樂趣。",
+    englishTitle: "HOME LIVING",
+    chineseTitle: "家居生活",
+    description: "打造理想居家空間，精選實用家品、收納好物與生活質感提升的推薦。",
     imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop",
   },
   lifestyle: {
@@ -406,10 +406,10 @@ export const articles = [
     id: "kei-clearex-wi-v2",
     categorySlug: "beauty",
     selectorId: "kei",
-    title: "Clearex-Wi 藥用沐浴露，去痘計劃，正式啟動！",
+    title: "Clearex-WI 真的有用嗎？親自產品評測",
     excerpt: "日本製藥大廠「第一三共」研發低刺激藥用沐浴露，專治身體暗瘡。旅遊日本時偶遇的背痘救星！",
     imageUrl: clearexWiProductImage,
-    date: "2024.01.28",
+    date: "2026.02.01",
     isPR: false,
     isFeatureReview: true,
     isShareArticle: true,
@@ -676,7 +676,7 @@ export const articles = [
   // Vic's articles - Men's Fashion
   {
     id: "vic-001",
-    categorySlug: "lifestyle",
+    categorySlug: "lifestyle-hidden",
     selectorId: "vic",
     title: "2024男士休閒西裝穿搭指南：8款百搭單品推薦",
     excerpt: "想要穿出質感但又不想太正式？休閒西裝是最佳選擇。教你如何選擇和搭配，從辦公室到約會都適用。",
@@ -759,7 +759,7 @@ export const articles = [
   // Gil's articles - Fitness
   {
     id: "gil-001",
-    categorySlug: "lifestyle",
+    categorySlug: "lifestyle-hidden",
     selectorId: "gil",
     title: "家用健身器材推薦：10款高CP值居家訓練好物",
     excerpt: "不想去健身房？這些居家健身器材讓你在家也能練出好身材。從入門到進階，全部親測推薦。",
@@ -842,7 +842,7 @@ export const articles = [
   // Jac's articles - Supplements
   {
     id: "jac-001",
-    categorySlug: "lifestyle",
+    categorySlug: "lifestyle-hidden",
     selectorId: "jac",
     title: "益生菌完整指南：6款腸道健康補充品評測",
     excerpt: "腸道健康影響全身。作為營養師，我為你評測市面上熱門的益生菌產品，教你如何選擇適合自己的。",
