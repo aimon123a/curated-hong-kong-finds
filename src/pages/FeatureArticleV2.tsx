@@ -6,7 +6,6 @@ import ReviewerProfile from "@/components/article/ReviewerProfile";
 import ArticleTableOfContents from "@/components/article/ArticleTableOfContents";
 import HighlightedHeading from "@/components/article/HighlightedHeading";
 import VeryGoodBadge from "@/components/article/VeryGoodBadge";
-import ProductCTABox from "@/components/article/ProductCTABox";
 import FeedbackSection from "@/components/article/FeedbackSection";
 import TwitterEmbed from "@/components/article/TwitterEmbed";
 
@@ -446,15 +445,35 @@ const FeatureArticleV2 = () => {
                 </section>
               )}
 
-              {/* Product CTA Box */}
-              <ProductCTABox
-                productName={product.name}
-                brand={product.brand}
-                imageUrl={product.imageUrl}
-                price={product.price}
-                buyLinks={product.buyLinks}
-                note="如果你想嘗試這款產品，可以透過以下渠道購買。我個人是在日本藥妝店直接購入，但網購也是不錯的選擇。"
-              />
+              {/* Product Purchase CTA */}
+              <div className="bg-card border border-primary/30 rounded-sm p-5 my-8">
+                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">前往產品購入</p>
+                    <p className="text-xl font-bold text-primary">HKD {product.price}</p>
+                  </div>
+                  <div className="flex flex-col gap-2 w-full sm:w-auto">
+                    {product.buyLinks?.map((link: { name: string; url: string; price: string }, index: number) => (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`
+                          px-5 py-3 rounded-sm font-medium text-sm inline-flex items-center justify-center gap-2 transition-all
+                          ${index === 0 
+                            ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+                            : 'border border-border text-foreground hover:border-primary hover:text-primary'
+                          }
+                        `}
+                      >
+                        <span className="inline-flex items-center gap-1">↗</span>
+                        {link.name}で購入 - HKD {link.price}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               {/* 9. Verdict */}
               <section id="verdict" className="mb-12">
