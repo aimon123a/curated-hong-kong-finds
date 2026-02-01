@@ -20,6 +20,12 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
+              to="/products"
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors link-underline py-1"
+            >
+              產品
+            </Link>
+            <Link
               to="/category/beauty"
               className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors link-underline py-1"
             >
@@ -29,7 +35,7 @@ const Header = () => {
               to="/category/kitchen"
               className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors link-underline py-1"
             >
-              廚房家電
+              家居生活
             </Link>
             <Link
               to="/category/lifestyle"
@@ -60,6 +66,13 @@ const Header = () => {
           <nav className="md:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
               <Link
+                to="/products"
+                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-2 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                產品
+              </Link>
+              <Link
                 to="/category/beauty"
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-2 py-2"
                 onClick={() => setMobileMenuOpen(false)}
@@ -71,7 +84,7 @@ const Header = () => {
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-2 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                廚房家電
+                家居生活
               </Link>
               <Link
                 to="/category/lifestyle"
