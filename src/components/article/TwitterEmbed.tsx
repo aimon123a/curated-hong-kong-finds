@@ -49,14 +49,12 @@ const TwitterEmbed = ({
             {/* Header */}
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-muted overflow-hidden">
-                  {avatarUrl ? (
-                    <img src={avatarUrl} alt={username} className="w-full h-full object-cover" />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center text-foreground font-bold">
-                      {username.charAt(0)}
-                    </div>
-                  )}
+                <div className="w-12 h-12 rounded-full bg-[#1a1a1a] overflow-hidden">
+                  <img 
+                    src="https://pbs.twimg.com/profile_images/1413410156927270913/zXhkD7jS_400x400.jpg" 
+                    alt={username} 
+                    className="w-full h-full object-cover" 
+                  />
                 </div>
                 <div>
                   <p className="font-bold text-foreground">{username}</p>

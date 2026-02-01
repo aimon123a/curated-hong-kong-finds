@@ -460,6 +460,13 @@ export const articles = [
           },
           replies: [
             {
+              username: "くらげゆゆちゃん",
+              handle: "curage_yuyu",
+              date: "Jul 9, 2021",
+              content: "ちなみにうちは使い始めて二週間くらいで目に見えて赤みが減りました。今も使い続けてますがすべすべです。背中ニキビ跡も目立ちにくくなってきたので、引き続き使っていきます☺",
+              translation: "順帶一提，我用了大約兩週後紅腫明顯減少了。現在還在持續使用，皮膚超光滑！背痘痕跡也越來越不明顯，會繼續用下去☺",
+            },
+            {
               username: "ray",
               handle: "vt6q_7",
               date: "Jul 10, 2021",
@@ -490,11 +497,6 @@ export const articles = [
         knowledge: {
           title: "背痘知識：對症下藥",
           sections: [
-            {
-              question: "為什麼會長背痘？",
-              image: backAcneCausesImage,
-              content: "背部肌膚跟臉部肌膚一樣，若皮脂腺分泌過多，容易使肌膚造成發炎反應，導致痘痘的生成。\n\n主要成因包括：\n• 皮脂腺分泌過多：夏天氣候潮濕悶熱，皮脂腺分泌更旺盛\n• 皮膚角化異常：未完全代謝的皮脂堆積形成粉刺\n• 毛囊周圍發炎：背部長時間受衣服覆蓋，處於悶熱環境\n• 痤瘡桿菌感染：毛孔封閉環境容易滋生細菌"
-            },
             {
               question: "改善背痘的六大方法",
               image: backAcneTipsImage,
