@@ -102,12 +102,12 @@ const TwitterEmbed = ({
         </a>
 
         {/* Translation - Right (2 cols) - Fits content */}
-        <div className="lg:col-span-2 bg-primary/5 border border-primary/20 rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg">🇭🇰</span>
-            <h4 className="font-bold text-foreground">翻譯重點</h4>
+        <div className="lg:col-span-2 bg-primary/5 border border-primary/20 rounded-lg p-4 h-fit">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-base">🇭🇰</span>
+            <h4 className="text-sm font-bold text-foreground">翻譯重點</h4>
           </div>
-          <p className="text-foreground leading-relaxed whitespace-pre-line">
+          <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">
             {translation}
           </p>
         </div>
@@ -152,12 +152,12 @@ const TwitterEmbed = ({
               </div>
 
               {/* Reply Translation - Right */}
-              <div className="lg:col-span-2 bg-secondary/10 border border-secondary/30 rounded-lg p-4 flex flex-col">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-sm">🇭🇰</span>
-                  <h5 className="text-sm font-medium text-muted-foreground">翻譯</h5>
+              <div className="lg:col-span-2 bg-secondary/10 border border-secondary/30 rounded-lg p-3 h-fit">
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <span className="text-xs">🇭🇰</span>
+                  <h5 className="text-xs font-medium text-muted-foreground">翻譯</h5>
                 </div>
-                <p className="text-foreground text-sm leading-relaxed whitespace-pre-line">
+                <p className="text-foreground text-xs leading-relaxed whitespace-pre-line">
                   {reply.translation}
                 </p>
               </div>
