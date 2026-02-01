@@ -9,6 +9,8 @@ import Article from "./pages/Article";
 import FeatureArticle from "./pages/FeatureArticle";
 import FeatureArticleV2 from "./pages/FeatureArticleV2";
 import Product from "./pages/Product";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
 import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
 import NotFound from "./pages/NotFound";
@@ -23,6 +25,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/category/:categorySlug/article/:articleId" element={<Article />} />
           <Route path="/category/:categorySlug/review/:articleId" element={<FeatureArticle />} />

@@ -16,6 +16,41 @@ const iconMap = {
   badge: Check,
 };
 
+// Helper component to render text with CLEAREX Wi links
+const TextWithProductLinks = ({ text, productId = "clearex-wi" }: { text: string; productId?: string }) => {
+  const patterns = [/CLEAREX[- ]?Wi/gi, /Clearex[- ]?Wi/gi, /clearex[- ]?wi/gi];
+  let result = text;
+  
+  // Replace all variations with a placeholder
+  patterns.forEach(pattern => {
+    result = result.replace(pattern, '{{CLEAREX_LINK}}');
+  });
+  
+  const parts = result.split('{{CLEAREX_LINK}}');
+  
+  if (parts.length === 1) {
+    return <>{text}</>;
+  }
+  
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index}>
+          {part}
+          {index < parts.length - 1 && (
+            <Link 
+              to={`/products/${productId}`}
+              className="text-primary hover:underline font-medium"
+            >
+              CLEAREX-Wi
+            </Link>
+          )}
+        </span>
+      ))}
+    </>
+  );
+};
+
 const FeatureArticleV2 = () => {
   const { categorySlug, articleId } = useParams<{
     categorySlug: string;
@@ -58,10 +93,11 @@ const FeatureArticleV2 = () => {
   const product = article.featureProduct;
   const articleContent = product.articleContent;
 
-  // Table of Contents items
+  // Table of Contents items - reordered
   const tocItems = [
     { id: "intro", title: "前言", level: 2 },
-    { id: "trial-results", title: "30日試用效果", level: 2 },
+    { id: "japanese-recommendation", title: "日本網友推薦", level: 2 },
+    { id: "trial-results", title: "試用30日效果", level: 2 },
     { id: "product-info", title: "產品規格", level: 2 },
     { id: "knowledge", title: "背痘知識", level: 2 },
     { id: "features", title: "產品特徵", level: 2 },
@@ -72,8 +108,8 @@ const FeatureArticleV2 = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb */}
-      <div className="bg-muted/50 border-b border-border">
+      {/* Breadcrumb - Sticky (Freeze Pane) */}
+      <div className="sticky top-16 z-40 bg-muted/95 backdrop-blur-sm border-b border-border">
         <div className="container-editorial py-3">
           <nav className="flex items-center gap-2 text-sm flex-wrap">
             <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -112,7 +148,7 @@ const FeatureArticleV2 = () => {
 
               {/* Title */}
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
-                {article.title}
+                <TextWithProductLinks text={article.title} />
               </h1>
 
               {/* Subtitle */}
@@ -156,17 +192,17 @@ const FeatureArticleV2 = () => {
               </div>
             )}
 
-            {/* Article Content */}
+            {/* Article Content - Reordered */}
             <div className="prose prose-lg max-w-none">
               
-              {/* Introduction */}
+              {/* 1. Introduction */}
               <section id="intro" className="mb-12">
                 <HighlightedHeading id="intro" variant="primary">
                   {articleContent?.intro?.title || "前言"}
                 </HighlightedHeading>
                 
                 <p className="text-foreground leading-relaxed mb-4 text-lg">
-                  {articleContent?.intro?.content}
+                  <TextWithProductLinks text={articleContent?.intro?.content || ""} />
                 </p>
 
                 {/* Second hero image placed after intro text */}
@@ -181,7 +217,43 @@ const FeatureArticleV2 = () => {
                 )}
               </section>
 
-              {/* Trial Results - 30 Day Experience */}
+              {/* 2. Japanese Recommendation - NEW SECTION */}
+              {articleContent?.japaneseRecommendation && (
+                <section id="japanese-recommendation" className="mb-12">
+                  <HighlightedHeading id="japanese-recommendation" variant="secondary">
+                    {articleContent.japaneseRecommendation.title}
+                  </HighlightedHeading>
+                  
+                  {/* Twitter Screenshot (4th image - combo image) */}
+                  {articleContent.japaneseRecommendation.twitterImage && (
+                    <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
+                      <img
+                        src={articleContent.japaneseRecommendation.twitterImage}
+                        alt="日本推文截圖"
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  )}
+
+                  {/* Translation */}
+                  <div className="bg-secondary/10 border border-secondary/30 rounded-sm p-5 mb-6">
+                    <p className="text-sm text-muted-foreground mb-2 font-medium">📝 翻譯：</p>
+                    <p className="text-foreground leading-relaxed">
+                      <TextWithProductLinks text={articleContent.japaneseRecommendation.translation} />
+                    </p>
+                  </div>
+
+                  {/* Summary */}
+                  <div className="bg-primary/5 border border-primary/20 rounded-sm p-5">
+                    <p className="text-sm text-muted-foreground mb-2 font-medium">💡 總結：</p>
+                    <p className="text-foreground leading-relaxed font-medium">
+                      <TextWithProductLinks text={articleContent.japaneseRecommendation.summary} />
+                    </p>
+                  </div>
+                </section>
+              )}
+
+              {/* 3. Trial Results - 30 Day Experience */}
               <section id="trial-results" className="mb-12">
                 <HighlightedHeading id="trial-results" variant="secondary">
                   {articleContent?.trialResults?.title}
@@ -189,7 +261,7 @@ const FeatureArticleV2 = () => {
                 
                 <div className="bg-primary/5 border border-primary/20 rounded-sm p-4 mb-6">
                   <p className="text-sm font-medium text-primary mb-2">
-                    {articleContent?.trialResults?.subtitle}
+                    <TextWithProductLinks text={articleContent?.trialResults?.subtitle || ""} />
                   </p>
                 </div>
 
@@ -204,31 +276,11 @@ const FeatureArticleV2 = () => {
                 )}
                 
                 <p className="text-foreground leading-relaxed mb-4">
-                  {articleContent?.trialResults?.content}
+                  <TextWithProductLinks text={articleContent?.trialResults?.content || ""} />
                 </p>
-                
-                <div className="bg-muted/50 border-l-4 border-primary p-4 my-6">
-                  <p className="text-muted-foreground text-sm">
-                    {articleContent?.trialResults?.recommendation}
-                  </p>
-                </div>
-
-                <p className="text-foreground leading-relaxed font-medium">
-                  💡 {articleContent?.trialResults?.usage}
-                </p>
-
-                {articleContent?.comboImage && (
-                  <div className="bg-card border border-border rounded-sm overflow-hidden mt-6">
-                    <img
-                      src={articleContent.comboImage}
-                      alt="產品組合"
-                      className="w-full h-auto"
-                    />
-                  </div>
-                )}
               </section>
 
-              {/* Product Sizes & Pricing */}
+              {/* 4. Product Sizes & Pricing */}
               <section id="product-info" className="mb-12">
                 <HighlightedHeading id="product-info" variant="primary">
                   產品規格與價格
@@ -245,7 +297,7 @@ const FeatureArticleV2 = () => {
                 )}
                 
                 <h3 className="text-lg font-bold text-foreground mb-3">
-                  {articleContent?.productSizes?.title}
+                  <TextWithProductLinks text={articleContent?.productSizes?.title || ""} />
                 </h3>
                 
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -272,7 +324,7 @@ const FeatureArticleV2 = () => {
                 </div>
               </section>
 
-              {/* Knowledge Section */}
+              {/* 5. Knowledge Section */}
               <section id="knowledge" className="mb-12">
                 <HighlightedHeading id="knowledge" variant="secondary">
                   {articleContent?.knowledge?.title}
@@ -305,7 +357,7 @@ const FeatureArticleV2 = () => {
                 </div>
               </section>
 
-              {/* Features */}
+              {/* 6. Features */}
               <section id="features" className="mb-12">
                 <HighlightedHeading id="features" variant="primary">
                   {articleContent?.features?.title}
@@ -345,7 +397,7 @@ const FeatureArticleV2 = () => {
                 )}
               </section>
 
-              {/* Pros & Cons */}
+              {/* 7. Pros & Cons */}
               <section id="pros-cons" className="mb-12">
                 <HighlightedHeading id="pros-cons" variant="primary">
                   優點與需注意的地方
@@ -390,7 +442,7 @@ const FeatureArticleV2 = () => {
                 </div>
               </section>
 
-              {/* How to Use */}
+              {/* 8. How to Use */}
               {product.usageGuide && (
                 <section id="how-to-use" className="mb-12">
                   <HighlightedHeading id="how-to-use" variant="secondary">
@@ -404,7 +456,9 @@ const FeatureArticleV2 = () => {
                           <span className="w-7 h-7 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center font-bold text-sm shrink-0">
                             {index + 1}
                           </span>
-                          <p className="text-foreground pt-0.5">{step}</p>
+                          <p className="text-foreground pt-0.5">
+                            <TextWithProductLinks text={step} />
+                          </p>
                         </li>
                       ))}
                     </ol>
@@ -431,7 +485,7 @@ const FeatureArticleV2 = () => {
                 note="如果你想嘗試這款產品，可以透過以下渠道購買。我個人是在日本藥妝店直接購入，但網購也是不錯的選擇。"
               />
 
-              {/* Verdict */}
+              {/* 9. Verdict */}
               <section id="verdict" className="mb-12">
                 <HighlightedHeading id="verdict" variant="accent">
                   總結與建議
@@ -440,7 +494,7 @@ const FeatureArticleV2 = () => {
                 {product.verdict && (
                   <div className="bg-muted border border-border rounded-sm p-6">
                     <p className="text-foreground leading-relaxed mb-4">
-                      {product.verdict.content}
+                      <TextWithProductLinks text={product.verdict.content} />
                     </p>
                     
                     <div className="flex items-center gap-3 pt-4 border-t border-border">
@@ -478,7 +532,7 @@ const FeatureArticleV2 = () => {
                             {spec.label}
                           </td>
                           <td className="px-4 py-3 text-muted-foreground">
-                            {spec.value}
+                            <TextWithProductLinks text={spec.value} />
                           </td>
                         </tr>
                       ))}
@@ -492,10 +546,13 @@ const FeatureArticleV2 = () => {
             </div>
           </article>
 
-          {/* Sidebar */}
+          {/* Sidebar - Reordered: TOC -> Selector -> Related Articles */}
           <aside className="lg:col-span-4">
-            <div className="lg:sticky lg:top-6 space-y-6">
-              {/* Reviewer Profile */}
+            <div className="lg:sticky lg:top-24 space-y-6">
+              {/* 1. Table of Contents - FIRST */}
+              <ArticleTableOfContents items={tocItems} />
+
+              {/* 2. Reviewer Profile - SECOND */}
               {selector && (
                 <ReviewerProfile
                   id={selector.id}
@@ -508,10 +565,7 @@ const FeatureArticleV2 = () => {
                 />
               )}
 
-              {/* Table of Contents */}
-              <ArticleTableOfContents items={tocItems} />
-
-              {/* Related Articles Placeholder */}
+              {/* 3. Related Articles - THIRD */}
               <div className="bg-card border border-border rounded-sm p-5">
                 <h4 className="font-bold text-foreground mb-4">相關文章</h4>
                 <ul className="space-y-3">
