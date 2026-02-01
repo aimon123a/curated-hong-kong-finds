@@ -40,7 +40,7 @@ const TextWithProductLinks = ({ text, productId = "clearex-wi" }: { text: string
           {index < parts.length - 1 && (
             <Link 
               to={`/products/${productId}`}
-              className="text-primary hover:underline font-medium"
+              className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
             >
               CLEAREX-Wi
             </Link>
@@ -240,6 +240,7 @@ const FeatureArticleV2 = () => {
                       translation={articleContent.japaneseRecommendation.mainTweet.translation}
                       imageUrl={articleContent.japaneseRecommendation.mainTweet.imageUrl}
                       likes={articleContent.japaneseRecommendation.mainTweet.likes}
+                      avatarUrl={articleContent.japaneseRecommendation.mainTweet.avatarUrl}
                       replies={articleContent.japaneseRecommendation.replies}
                     />
                   )}
@@ -300,7 +301,8 @@ const FeatureArticleV2 = () => {
                   {articleContent?.productSizes?.description}
                 </p>
                 
-                <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
+                {/* Price table and Buy Button wrapped together */}
+                <div className="bg-card border-2 border-primary/30 rounded-sm overflow-hidden">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-muted/50 border-b border-border">
@@ -317,16 +319,18 @@ const FeatureArticleV2 = () => {
                       ))}
                     </tbody>
                   </table>
+                  
+                  {/* Buy Button inside the box */}
+                  <div className="p-4 bg-muted/30 border-t border-border">
+                    <Link
+                      to={`/products/${product.productId || "clearex-wi"}`}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-sm font-bold text-base hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
+                    >
+                      <span className="inline-flex items-center gap-1">↗</span>
+                      前往產品購入
+                    </Link>
+                  </div>
                 </div>
-
-                {/* Buy Button - Prominent style */}
-                <Link
-                  to={`/products/${product.productId || "clearex-wi"}`}
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-sm font-bold text-base hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
-                >
-                  <span className="inline-flex items-center gap-1">↗</span>
-                  前往產品購入
-                </Link>
               </section>
 
               {/* Knowledge Section - Moved to after verdict */}
