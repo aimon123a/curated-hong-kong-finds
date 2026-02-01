@@ -268,13 +268,20 @@ const FeatureArticleV2 = () => {
                   </div>
                 )}
                 
-                <p className="text-foreground leading-relaxed mb-4">
-                  <TextWithProductLinks text={articleContent?.trialResults?.content || ""} />
-                </p>
+                {/* Trial results content with same style as verdict */}
+                <div className="bg-muted border border-border rounded-sm p-6">
+                  <p className="text-foreground leading-relaxed">
+                    <TextWithProductLinks text={articleContent?.trialResults?.content || ""} />
+                  </p>
+                </div>
               </section>
 
               {/* 4. Product Specifications (商品概要) - Moved up */}
               <section id="product-specs" className="mb-12">
+                <HighlightedHeading id="product-specs" variant="primary">
+                  商品概要
+                </HighlightedHeading>
+
                 {articleContent?.productSizes?.image && (
                   <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
                     <img
@@ -312,11 +319,12 @@ const FeatureArticleV2 = () => {
                   </table>
                 </div>
 
-                {/* Buy Button */}
+                {/* Buy Button - Prominent style */}
                 <Link
                   to={`/products/${product.productId || "clearex-wi"}`}
-                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-sm font-bold text-base hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
                 >
+                  <span className="inline-flex items-center gap-1">↗</span>
                   前往產品購入
                 </Link>
               </section>
