@@ -4,6 +4,7 @@ import keiImage from "@/assets/selectors/kei.jpg";
 import vicImage from "@/assets/selectors/vic.jpg";
 import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
+import kurageYuyuImage from "@/assets/selectors/kurage-yuyu.png";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
 
 // Clearex Wi article images
@@ -457,15 +458,9 @@ export const articles = [
             translation: "夏天快到了，背痘令你困擾嗎？這兩款產品在藥妝店就能買到，組合使用效果超讚！\n\n✨ 兩者都是低刺激弱酸性配方\n🎯 殺菌消炎雙管齊下\n\n用法超簡單：沐浴時使用 CLEAREX Wi，洗澡後把背粒消噴在背部，搞定！",
             imageUrl: clearexWiComboImage,
             likes: 7294,
+            avatarUrl: kurageYuyuImage,
           },
           replies: [
-            {
-              username: "くらげゆゆちゃん",
-              handle: "curage_yuyu",
-              date: "Jul 9, 2021",
-              content: "ちなみにうちは使い始めて二週間くらいで目に見えて赤みが減りました。今も使い続けてますがすべすべです。背中ニキビ跡も目立ちにくくなってきたので、引き続き使っていきます☺",
-              translation: "順帶一提，我用了大約兩週後紅腫明顯減少了。現在還在持續使用，皮膚超光滑！背痘痕跡也越來越不明顯，會繼續用下去☺",
-            },
             {
               username: "ray",
               handle: "vt6q_7",
@@ -473,10 +468,18 @@ export const articles = [
               content: "全く同じケアをしています！まだすべすべ！ってほどではないですが、ニキビだらけで悲惨だった背中がだいぶマシになりたした☺",
               translation: "我也用同一套方法！雖然還沒完全光滑，但以前滿背都是痘真的超慘，現在已經好很多了☺",
             },
+            {
+              username: "くらげゆゆちゃん",
+              handle: "curage_yuyu",
+              date: "Jul 9, 2021",
+              content: "ちなみにうちは使い始めて二週間くらいで目に見えて赤みが減りました。今も使い続けてますがすべすべです。背中ニキビ跡も目立ちにくくなってきたので、引き続き使っていきます☺",
+              translation: "順帶一提，我用了大約兩週後紅腫明顯減少了。現在還在持續使用，皮膚超光滑！背痘痕跡也越來越不明顯，會繼續用下去☺",
+              avatarUrl: kurageYuyuImage,
+            },
           ],
         },
         trialResults: {
-          title: "試用30日的效果",
+          title: "個人試用30日的效果",
           subtitle: "CLEAREX-Wi + 背粒消",
           image: clearexWiBeforeAfterImage,
           content: "個人感受背部明顯平滑了，發炎情況也減少了。參考日本用家的使用心得，CLEAREX-Wi 低刺激抗菌藥用沐浴乳搭配在屈臣氏購買的背粒消，雙管齊下，即使長出新痘痘也能很快消炎，非常舒適。",
@@ -498,16 +501,6 @@ export const articles = [
           title: "背痘知識：對症下藥",
           sections: [
             {
-              question: "改善背痘的六大方法",
-              image: backAcneTipsImage,
-              content: "1. 丟掉沐浴球：沐浴球使用後很難徹底沖洗乾淨，容易細菌黴菌滋生，建議用手洗澡最安全\n\n2. 使用低敏抗菌沐浴乳：選擇無香料、不含過多油脂的沐浴乳，如 CLEAREX-Wi\n\n3. 護髮完再洗身體：避免護髮乳中的致痘成分殘留在身體上\n\n4. 定期換床單：身體的皮屑、油脂容易殘留在床單，建議每周更換\n\n5. 運動後立刻洗澡：汗水和油脂是細菌的溫床，運動完盡快清潔\n\n6. 多喝水、少吃刺激食物：身體長痘代表處於微發炎狀態，多喝水有助加速代謝"
-            },
-            {
-              question: "容易冒痘的五大禁忌飲食",
-              image: backAcneDietImage,
-              content: "痘痘的產生其實和體內發炎、免疫力下降也有高度關聯：\n\n1. 精緻碳水及高糖食物：麵包、蛋糕、手搖杯等，是導致身體長期發炎的元凶\n\n2. 油炸燒烤食物：高油燥熱，刺激皮脂腺促使粉刺、痘痘生成\n\n3. 酒類：酒精含糖分偏高，攝取過量可能導致臉部泛紅、破壞膠原蛋白\n\n4. 乳製品：哈佛研究顯示，乳製品吃較多的人長痘機率增加 22%\n\n5. 麩質食物：麵條、麵包等麵粉製品，部分人對麩質不耐受容易引起發炎"
-            },
-            {
               question: "原來背部痘痘大部分是毛囊炎？",
               image: backAcneInfo1Image,
               content: ""
@@ -516,6 +509,14 @@ export const articles = [
               question: "背部痘的成因",
               image: backAcneInfo2Image,
               content: "汗水積聚、皮脂分泌、紫外線照射和壓力都可能導致金黃色葡萄球菌和馬拉色菌繁殖，引起炎症，最終導致背部痤瘡。這正是香港濕熱天氣和加班地獄的完美組合。"
+            },
+            {
+              question: "改善背痘的六大方法",
+              content: "1. 丟掉沐浴球：沐浴球使用後很難徹底沖洗乾淨，容易細菌黴菌滋生，建議用手洗澡最安全\n\n2. 使用低敏抗菌沐浴乳：選擇無香料、不含過多油脂的沐浴乳，如 CLEAREX-Wi\n\n3. 護髮完再洗身體：避免護髮乳中的致痘成分殘留在身體上\n\n4. 定期換床單：身體的皮屑、油脂容易殘留在床單，建議每周更換\n\n5. 運動後立刻洗澡：汗水和油脂是細菌的溫床，運動完盡快清潔\n\n6. 多喝水、少吃刺激食物：身體長痘代表處於微發炎狀態，多喝水有助加速代謝"
+            },
+            {
+              question: "容易冒痘的五大禁忌飲食",
+              content: "痘痘的產生其實和體內發炎、免疫力下降也有高度關聯：\n\n1. 精緻碳水及高糖食物：麵包、蛋糕、手搖杯等，是導致身體長期發炎的元凶\n\n2. 油炸燒烤食物：高油燥熱，刺激皮脂腺促使粉刺、痘痘生成\n\n3. 酒類：酒精含糖分偏高，攝取過量可能導致臉部泛紅、破壞膠原蛋白\n\n4. 乳製品：哈佛研究顯示，乳製品吃較多的人長痘機率增加 22%\n\n5. 麩質食物：麵條、麵包等麵粉製品，部分人對麩質不耐受容易引起發炎"
             }
           ]
         },
