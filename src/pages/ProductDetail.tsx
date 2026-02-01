@@ -64,9 +64,12 @@ const ProductDetail = () => {
             </div>
             
             {/* Wishlist prompt */}
-            <p className="text-sm text-primary text-center">
+            <Link 
+              to="/product-request"
+              className="text-sm text-primary text-center block hover:underline"
+            >
               有想要的商品？可以申請上架哦！
-            </p>
+            </Link>
           </div>
 
           {/* Right: Product Info */}
@@ -156,10 +159,13 @@ const ProductDetail = () => {
                 </button>
               </div>
               
-              <button className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+              <Link 
+                to="/cart"
+                className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
+              >
                 <ShoppingCart className="w-4 h-4" />
                 加入購物車
-              </button>
+              </Link>
             </div>
 
             {/* Added count */}

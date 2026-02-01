@@ -11,6 +11,8 @@ import FeatureArticleV2 from "./pages/FeatureArticleV2";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
+import ProductRequest from "./pages/ProductRequest";
 import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
 import NotFound from "./pages/NotFound";
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product-request" element={<ProductRequest />} />
           <Route path="/category/:slug" element={<Category />} />
           <Route path="/category/:categorySlug/article/:articleId" element={<Article />} />
           <Route path="/category/:categorySlug/review/:articleId" element={<FeatureArticle />} />

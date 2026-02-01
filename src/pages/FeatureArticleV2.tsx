@@ -1,13 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { getArticleById, getCategoryBySlug, getSelectorById } from "@/data/sampleData";
-import { ChevronRight, Clock, Check, AlertCircle, Lightbulb, Star, Share2, Bookmark, ExternalLink } from "lucide-react";
+import { ChevronRight, Clock, Check, AlertCircle, Lightbulb, Star, Share2, Bookmark } from "lucide-react";
 import ReviewerProfile from "@/components/article/ReviewerProfile";
 import ArticleTableOfContents from "@/components/article/ArticleTableOfContents";
 import HighlightedHeading from "@/components/article/HighlightedHeading";
 import VeryGoodBadge from "@/components/article/VeryGoodBadge";
 import ProductCTABox from "@/components/article/ProductCTABox";
 import FeedbackSection from "@/components/article/FeedbackSection";
+import TwitterEmbed from "@/components/article/TwitterEmbed";
 
 const iconMap = {
   shield: AlertCircle,
@@ -217,39 +218,32 @@ const FeatureArticleV2 = () => {
                 )}
               </section>
 
-              {/* 2. Japanese Recommendation - NEW SECTION */}
+              {/* 2. Japanese Recommendation - Twitter Embed Section */}
               {articleContent?.japaneseRecommendation && (
                 <section id="japanese-recommendation" className="mb-12">
                   <HighlightedHeading id="japanese-recommendation" variant="secondary">
                     {articleContent.japaneseRecommendation.title}
                   </HighlightedHeading>
                   
-                  {/* Twitter Screenshot (4th image - combo image) */}
-                  {articleContent.japaneseRecommendation.twitterImage && (
-                    <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
-                      <img
-                        src={articleContent.japaneseRecommendation.twitterImage}
-                        alt="日本推文截圖"
-                        className="w-full h-auto"
-                      />
-                    </div>
+                  {/* Intro text */}
+                  <p className="text-foreground leading-relaxed mb-6">
+                    {articleContent.japaneseRecommendation.intro}
+                  </p>
+
+                  {/* Twitter Embed with Translation */}
+                  {articleContent.japaneseRecommendation.mainTweet && (
+                    <TwitterEmbed
+                      tweetUrl={articleContent.japaneseRecommendation.mainTweet.tweetUrl}
+                      username={articleContent.japaneseRecommendation.mainTweet.username}
+                      handle={articleContent.japaneseRecommendation.mainTweet.handle}
+                      date={articleContent.japaneseRecommendation.mainTweet.date}
+                      content={articleContent.japaneseRecommendation.mainTweet.content}
+                      translation={articleContent.japaneseRecommendation.mainTweet.translation}
+                      imageUrl={articleContent.japaneseRecommendation.mainTweet.imageUrl}
+                      likes={articleContent.japaneseRecommendation.mainTweet.likes}
+                      replies={articleContent.japaneseRecommendation.replies}
+                    />
                   )}
-
-                  {/* Translation */}
-                  <div className="bg-secondary/10 border border-secondary/30 rounded-sm p-5 mb-6">
-                    <p className="text-sm text-muted-foreground mb-2 font-medium">📝 翻譯：</p>
-                    <p className="text-foreground leading-relaxed">
-                      <TextWithProductLinks text={articleContent.japaneseRecommendation.translation} />
-                    </p>
-                  </div>
-
-                  {/* Summary */}
-                  <div className="bg-primary/5 border border-primary/20 rounded-sm p-5">
-                    <p className="text-sm text-muted-foreground mb-2 font-medium">💡 總結：</p>
-                    <p className="text-foreground leading-relaxed font-medium">
-                      <TextWithProductLinks text={articleContent.japaneseRecommendation.summary} />
-                    </p>
-                  </div>
                 </section>
               )}
 
