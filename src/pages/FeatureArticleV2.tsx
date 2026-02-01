@@ -97,8 +97,8 @@ const FeatureArticleV2 = () => {
   const tocItems = [
     { id: "intro", title: "前言", level: 2 },
     { id: "japanese-recommendation", title: "日本網友推薦", level: 2 },
-    { id: "trial-results", title: "試用30日效果", level: 2 },
-    { id: "product-info", title: "產品概要", level: 2 },
+    { id: "trial-results", title: "個人試用30日效果", level: 2 },
+    { id: "product-specs", title: "商品概要", level: 2 },
     { id: "features", title: "產品特徵", level: 2 },
     { id: "pros-cons", title: "優點與注意事項", level: 2 },
     { id: "how-to-use", title: "使用方法", level: 2 },
@@ -249,7 +249,7 @@ const FeatureArticleV2 = () => {
               {/* 3. Trial Results - 30 Day Experience */}
               <section id="trial-results" className="mb-12">
                 <HighlightedHeading id="trial-results" variant="secondary">
-                  {articleContent?.trialResults?.title}
+                  個人試用30日的效果
                 </HighlightedHeading>
                 
                 <div className="bg-primary/5 border border-primary/20 rounded-sm p-4 mb-6">
@@ -273,12 +273,8 @@ const FeatureArticleV2 = () => {
                 </p>
               </section>
 
-              {/* 4. Product Overview (formerly Product Sizes & Pricing) */}
-              <section id="product-info" className="mb-12">
-                <HighlightedHeading id="product-info" variant="primary">
-                  產品概要
-                </HighlightedHeading>
-                
+              {/* 4. Product Specifications (商品概要) - Moved up */}
+              <section id="product-specs" className="mb-12">
                 {articleContent?.productSizes?.image && (
                   <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
                     <img
@@ -289,7 +285,7 @@ const FeatureArticleV2 = () => {
                   </div>
                 )}
                 
-                <h3 className="text-lg font-bold text-foreground mb-3">
+                <h3 className="text-lg font-bold text-primary mb-3">
                   <TextWithProductLinks text={articleContent?.productSizes?.title || ""} />
                 </h3>
                 
@@ -445,35 +441,6 @@ const FeatureArticleV2 = () => {
                 </section>
               )}
 
-              {/* Product Purchase CTA */}
-              <div className="bg-card border border-primary/30 rounded-sm p-5 my-8">
-                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">前往產品購入</p>
-                    <p className="text-xl font-bold text-primary">HKD {product.price}</p>
-                  </div>
-                  <div className="flex flex-col gap-2 w-full sm:w-auto">
-                    {product.buyLinks?.map((link: { name: string; url: string; price: string }, index: number) => (
-                      <a
-                        key={index}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`
-                          px-5 py-3 rounded-sm font-medium text-sm inline-flex items-center justify-center gap-2 transition-all
-                          ${index === 0 
-                            ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
-                            : 'border border-border text-foreground hover:border-primary hover:text-primary'
-                          }
-                        `}
-                      >
-                        <span className="inline-flex items-center gap-1">↗</span>
-                        {link.name}で購入 - HKD {link.price}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
 
               {/* 9. Verdict */}
               <section id="verdict" className="mb-12">
@@ -507,29 +474,6 @@ const FeatureArticleV2 = () => {
                 )}
               </section>
 
-              {/* Specifications - Now called 商品概要 */}
-              <section className="mb-12">
-                <HighlightedHeading variant="secondary" as="h3">
-                  商品概要
-                </HighlightedHeading>
-                
-                <div className="bg-card border border-border rounded-sm overflow-hidden">
-                  <table className="w-full text-sm">
-                    <tbody>
-                      {product.specs?.map((spec: { label: string; value: string }, index: number) => (
-                        <tr key={index} className="border-b border-border last:border-b-0">
-                          <td className="px-4 py-3 bg-muted/50 font-medium text-foreground w-1/3">
-                            {spec.label}
-                          </td>
-                          <td className="px-4 py-3 text-muted-foreground">
-                            <TextWithProductLinks text={spec.value} />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </section>
 
               {/* Knowledge Section - Moved to end */}
               <section id="knowledge" className="mb-12">
