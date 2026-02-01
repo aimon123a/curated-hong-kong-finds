@@ -94,17 +94,17 @@ const FeatureArticleV2 = () => {
   const product = article.featureProduct;
   const articleContent = product.articleContent;
 
-  // Table of Contents items - reordered
+  // Table of Contents items - reordered (knowledge moved to end)
   const tocItems = [
     { id: "intro", title: "前言", level: 2 },
     { id: "japanese-recommendation", title: "日本網友推薦", level: 2 },
     { id: "trial-results", title: "試用30日效果", level: 2 },
-    { id: "product-info", title: "產品規格", level: 2 },
-    { id: "knowledge", title: "背痘知識", level: 2 },
+    { id: "product-info", title: "產品概要", level: 2 },
     { id: "features", title: "產品特徵", level: 2 },
     { id: "pros-cons", title: "優點與注意事項", level: 2 },
     { id: "how-to-use", title: "使用方法", level: 2 },
     { id: "verdict", title: "總結", level: 2 },
+    { id: "knowledge", title: "背痘知識", level: 2 },
   ];
 
   return (
@@ -274,10 +274,10 @@ const FeatureArticleV2 = () => {
                 </p>
               </section>
 
-              {/* 4. Product Sizes & Pricing */}
+              {/* 4. Product Overview (formerly Product Sizes & Pricing) */}
               <section id="product-info" className="mb-12">
                 <HighlightedHeading id="product-info" variant="primary">
-                  產品規格與價格
+                  產品概要
                 </HighlightedHeading>
                 
                 {articleContent?.productSizes?.image && (
@@ -298,7 +298,7 @@ const FeatureArticleV2 = () => {
                   {articleContent?.productSizes?.description}
                 </p>
                 
-                <div className="bg-card border border-border rounded-sm overflow-hidden">
+                <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-muted/50 border-b border-border">
@@ -316,40 +316,17 @@ const FeatureArticleV2 = () => {
                     </tbody>
                   </table>
                 </div>
+
+                {/* Buy Button */}
+                <Link
+                  to={`/products/${product.productId || "clearex-wi"}`}
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:bg-primary/90 transition-colors"
+                >
+                  前往產品購入
+                </Link>
               </section>
 
-              {/* 5. Knowledge Section */}
-              <section id="knowledge" className="mb-12">
-                <HighlightedHeading id="knowledge" variant="secondary">
-                  {articleContent?.knowledge?.title}
-                </HighlightedHeading>
-                
-                <div className="space-y-8">
-                  {articleContent?.knowledge?.sections?.map((section: { question: string; image: string; content: string }, index: number) => (
-                    <div key={index} className="bg-card border border-border rounded-sm overflow-hidden">
-                      <div className="bg-secondary/5 px-5 py-3 border-b border-border">
-                        <h3 className="font-bold text-foreground">{section.question}</h3>
-                      </div>
-                      {section.image && (
-                        <div className="p-4">
-                          <img
-                            src={section.image}
-                            alt={section.question}
-                            className="w-full h-auto rounded-sm"
-                          />
-                        </div>
-                      )}
-                      {section.content && (
-                        <div className="px-5 pb-5">
-                          <p className="text-muted-foreground leading-relaxed">
-                            {section.content}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </section>
+              {/* Knowledge Section - Moved to after verdict */}
 
               {/* 6. Features */}
               <section id="features" className="mb-12">
@@ -511,10 +488,10 @@ const FeatureArticleV2 = () => {
                 )}
               </section>
 
-              {/* Specifications */}
+              {/* Specifications - Now called 商品概要 */}
               <section className="mb-12">
                 <HighlightedHeading variant="secondary" as="h3">
-                  產品規格
+                  商品概要
                 </HighlightedHeading>
                 
                 <div className="bg-card border border-border rounded-sm overflow-hidden">
@@ -532,6 +509,39 @@ const FeatureArticleV2 = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </section>
+
+              {/* Knowledge Section - Moved to end */}
+              <section id="knowledge" className="mb-12">
+                <HighlightedHeading id="knowledge" variant="secondary">
+                  {articleContent?.knowledge?.title}
+                </HighlightedHeading>
+                
+                <div className="space-y-8">
+                  {articleContent?.knowledge?.sections?.map((section: { question: string; image: string; content: string }, index: number) => (
+                    <div key={index} className="bg-card border border-border rounded-sm overflow-hidden">
+                      <div className="bg-secondary/5 px-5 py-3 border-b border-border">
+                        <h3 className="font-bold text-foreground">{section.question}</h3>
+                      </div>
+                      {section.image && (
+                        <div className="p-4">
+                          <img
+                            src={section.image}
+                            alt={section.question}
+                            className="w-full h-auto rounded-sm"
+                          />
+                        </div>
+                      )}
+                      {section.content && (
+                        <div className="px-5 pb-5">
+                          <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                            {section.content}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </section>
 

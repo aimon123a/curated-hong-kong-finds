@@ -14,6 +14,9 @@ import clearexWiComboImage from "@/assets/articles/clearex-wi-combo.jpg";
 import clearexWiSizesImage from "@/assets/articles/clearex-wi-sizes.jpg";
 import backAcneInfo1Image from "@/assets/articles/back-acne-info-1.jpg";
 import backAcneInfo2Image from "@/assets/articles/back-acne-info-2.jpg";
+import backAcneCausesImage from "@/assets/articles/back-acne-causes.jpg";
+import backAcneTipsImage from "@/assets/articles/back-acne-tips.jpg";
+import backAcneDietImage from "@/assets/articles/back-acne-diet.jpg";
 
 export interface Selector {
   id: string;
@@ -485,8 +488,23 @@ export const articles = [
           ]
         },
         knowledge: {
-          title: "深入了解背痘，對症下藥",
+          title: "背痘知識：對症下藥",
           sections: [
+            {
+              question: "為什麼會長背痘？",
+              image: backAcneCausesImage,
+              content: "背部肌膚跟臉部肌膚一樣，若皮脂腺分泌過多，容易使肌膚造成發炎反應，導致痘痘的生成。\n\n主要成因包括：\n• 皮脂腺分泌過多：夏天氣候潮濕悶熱，皮脂腺分泌更旺盛\n• 皮膚角化異常：未完全代謝的皮脂堆積形成粉刺\n• 毛囊周圍發炎：背部長時間受衣服覆蓋，處於悶熱環境\n• 痤瘡桿菌感染：毛孔封閉環境容易滋生細菌"
+            },
+            {
+              question: "改善背痘的六大方法",
+              image: backAcneTipsImage,
+              content: "1. 丟掉沐浴球：沐浴球使用後很難徹底沖洗乾淨，容易細菌黴菌滋生，建議用手洗澡最安全\n\n2. 使用低敏抗菌沐浴乳：選擇無香料、不含過多油脂的沐浴乳，如 CLEAREX-Wi\n\n3. 護髮完再洗身體：避免護髮乳中的致痘成分殘留在身體上\n\n4. 定期換床單：身體的皮屑、油脂容易殘留在床單，建議每周更換\n\n5. 運動後立刻洗澡：汗水和油脂是細菌的溫床，運動完盡快清潔\n\n6. 多喝水、少吃刺激食物：身體長痘代表處於微發炎狀態，多喝水有助加速代謝"
+            },
+            {
+              question: "容易冒痘的五大禁忌飲食",
+              image: backAcneDietImage,
+              content: "痘痘的產生其實和體內發炎、免疫力下降也有高度關聯：\n\n1. 精緻碳水及高糖食物：麵包、蛋糕、手搖杯等，是導致身體長期發炎的元凶\n\n2. 油炸燒烤食物：高油燥熱，刺激皮脂腺促使粉刺、痘痘生成\n\n3. 酒類：酒精含糖分偏高，攝取過量可能導致臉部泛紅、破壞膠原蛋白\n\n4. 乳製品：哈佛研究顯示，乳製品吃較多的人長痘機率增加 22%\n\n5. 麩質食物：麵條、麵包等麵粉製品，部分人對麩質不耐受容易引起發炎"
+            },
             {
               question: "原來背部痘痘大部分是毛囊炎？",
               image: backAcneInfo1Image,
