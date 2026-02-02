@@ -183,7 +183,7 @@ const FeatureArticleV2 = () => {
 
             {/* Hero Image - First image only */}
             {articleContent?.heroImages?.[0] && (
-              <div className="bg-card border border-border rounded-sm overflow-hidden mb-10">
+              <div className="bg-background-warm border border-border rounded-sm overflow-hidden mb-10">
                 <img
                   src={articleContent.heroImages[0]}
                   alt={`${product.name}`}
@@ -207,7 +207,7 @@ const FeatureArticleV2 = () => {
 
                 {/* Second hero image placed after intro text */}
                 {articleContent?.heroImages?.[1] && (
-                  <div className="bg-card border border-border rounded-sm overflow-hidden mt-6">
+                  <div className="bg-background-warm border border-border rounded-sm overflow-hidden mt-6">
                     <img
                       src={articleContent.heroImages[1]}
                       alt={`${product.name} 商店實拍`}
@@ -284,7 +284,7 @@ const FeatureArticleV2 = () => {
                 </HighlightedHeading>
 
                 {articleContent?.productSizes?.image && (
-                  <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
+                  <div className="bg-background-warm border border-border rounded-sm overflow-hidden mb-6">
                     <img
                       src={articleContent.productSizes.image}
                       alt={articleContent.productSizes.title}

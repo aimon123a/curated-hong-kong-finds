@@ -48,7 +48,7 @@ const Products = () => {
                 className="group bg-card border border-border rounded-sm overflow-hidden hover:border-primary transition-colors"
               >
                 {/* Image */}
-                <div className="aspect-square bg-muted p-4">
+                <div className="aspect-square bg-background-warm p-4">
                   <img
                     src={product.imageUrl}
                     alt={product.name}
