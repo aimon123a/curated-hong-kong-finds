@@ -53,7 +53,7 @@ const ProductSection = ({
           <img
             src={imageUrl}
             alt={name}
-            className="max-w-full max-h-full object-contain img-warm"
+            className="max-w-full max-h-full object-contain"
           />
         </div>
 
