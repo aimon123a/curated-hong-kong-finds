@@ -30,7 +30,7 @@ const ProductCard = ({
         <img
           src={imageUrl}
           alt={name}
-          className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 img-warm"
           loading="lazy"
         />
         {isRecommended && (
