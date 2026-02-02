@@ -56,7 +56,7 @@ export const categories = {
     englishTitle: "LIFESTYLE",
     chineseTitle: "生活風格",
     description: "提升生活品質的精選好物，為您的日常增添美感與便利。",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop",
   },
 };
 
@@ -1299,7 +1299,7 @@ export const productDetails: ProductDetail[] = [
     categorySlug: "beauty",
     categoryName: "外在管理",
     subcategory: "沐浴露",
-    imageUrl: clearexWiProductImage,
+    imageUrl: clearexWiMainImage,
     rating: 4.9,
     reviewCount: 0,
     addedCount: 5,
