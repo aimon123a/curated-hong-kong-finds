@@ -283,8 +283,8 @@ const FeatureArticleV2 = () => {
                   商品概要
                 </HighlightedHeading>
 
-                {articleContent?.productSizes?.image && (
-                  <div className="img-container-warm mb-6">
+{articleContent?.productSizes?.image && (
+                  <div className="bg-white border border-border rounded-sm overflow-hidden mb-6">
                     <img
                       src={articleContent.productSizes.image}
                       alt={articleContent.productSizes.title}
