@@ -6,7 +6,7 @@ import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
 import kurageYuyuImage from "@/assets/selectors/kurage-yuyu.png";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
-import clearexWiMainImage from "@/assets/products/clearex-wi-main.png";
+import clearexWiMainImage from "@/assets/products/clearex-wi-bottle-only.png";
 
 // Clearex Wi article images
 import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
@@ -56,7 +56,7 @@ export const categories = {
     englishTitle: "LIFESTYLE",
     chineseTitle: "生活風格",
     description: "提升生活品質的精選好物，為您的日常增添美感與便利。",
-    imageUrl: "https://images.unsplash.com/photo-1484101403633-571e0aedb26c?w=1200&h=600&fit=crop",
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=600&fit=crop",
   },
 };
 
