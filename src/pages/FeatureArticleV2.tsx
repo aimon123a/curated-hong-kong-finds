@@ -183,7 +183,7 @@ const FeatureArticleV2 = () => {
 
             {/* Hero Image - First image only */}
             {articleContent?.heroImages?.[0] && (
-              <div className="bg-background-warm border border-border rounded-sm overflow-hidden mb-10">
+              <div className="img-container-warm mb-10">
                 <img
                   src={articleContent.heroImages[0]}
                   alt={`${product.name}`}
@@ -207,7 +207,7 @@ const FeatureArticleV2 = () => {
 
                 {/* Second hero image placed after intro text */}
                 {articleContent?.heroImages?.[1] && (
-                  <div className="bg-background-warm border border-border rounded-sm overflow-hidden mt-6">
+                  <div className="img-container-warm mt-6">
                     <img
                       src={articleContent.heroImages[1]}
                       alt={`${product.name} 商店實拍`}
@@ -260,7 +260,7 @@ const FeatureArticleV2 = () => {
                 </div>
 
                 {articleContent?.trialResults?.image && (
-                  <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
+                  <div className="img-container-warm mb-6">
                     <img
                       src={articleContent.trialResults.image}
                       alt="30日試用效果"
@@ -284,7 +284,7 @@ const FeatureArticleV2 = () => {
                 </HighlightedHeading>
 
                 {articleContent?.productSizes?.image && (
-                  <div className="bg-background-warm border border-border rounded-sm overflow-hidden mb-6">
+                  <div className="img-container-warm mb-6">
                     <img
                       src={articleContent.productSizes.image}
                       alt={articleContent.productSizes.title}
@@ -495,7 +495,7 @@ const FeatureArticleV2 = () => {
                 
                 <div className="space-y-8">
                   {articleContent?.knowledge?.sections?.map((section: { question: string; image: string; content: string }, index: number) => (
-                    <div key={index} className="bg-card border border-border rounded-sm overflow-hidden">
+                    <div key={index} className="img-container-warm">
                       <div className="bg-secondary/5 px-5 py-3 border-b border-border">
                         <h3 className="font-bold text-foreground">{section.question}</h3>
                       </div>
