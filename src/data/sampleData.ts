@@ -6,7 +6,7 @@ import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
 import kurageYuyuImage from "@/assets/selectors/kurage-yuyu.png";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
-import clearexWiMainImage from "@/assets/products/clearex-wi-bottle-only.png";
+import clearexWiMainImage from "@/assets/products/clearex-wi-cream-bg.png";
 
 // Clearex Wi article images
 import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
