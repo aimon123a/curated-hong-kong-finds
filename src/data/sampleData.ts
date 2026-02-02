@@ -6,6 +6,7 @@ import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
 import kurageYuyuImage from "@/assets/selectors/kurage-yuyu.png";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
+import clearexWiBottleImage from "@/assets/products/clearex-wi-bottle.png";
 
 // Clearex Wi article images
 import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
@@ -433,7 +434,7 @@ export const articles = [
       name: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
       brand: "第一三共 DAIICHI SANKYO",
       price: "100-180",
-      imageUrl: clearexWiProductImage,
+      imageUrl: clearexWiBottleImage,
       rating: 4.9,
       productType: "醫藥部外品",
       subtitle: "クリアレックスWi",

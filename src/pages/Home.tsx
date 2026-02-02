@@ -36,6 +36,20 @@ const Home = () => {
         </div>
       </section>
 
+      {/* 生活風格 Section */}
+      <section className="py-12 md:py-16 bg-muted">
+        <div className="container-editorial">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center leading-relaxed mb-5">
+            生活風格
+          </h2>
+          <img
+            src={categories.lifestyle.imageUrl}
+            alt="生活風格"
+            className="w-full aspect-video object-cover rounded-lg"
+          />
+        </div>
+      </section>
+
       {/* Categories */}
       <section className="py-12 md:py-16">
         <div className="container-editorial">
