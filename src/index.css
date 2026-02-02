@@ -160,18 +160,5 @@ All colors MUST be HSL.
   .link-underline:hover::after {
     @apply w-full;
   }
-
-  /* Warm image filter - blends white backgrounds with cream site background */
-  .img-warm {
-    filter: sepia(8%) saturate(95%) brightness(99%);
-  }
-
-  /* Image container that blends with warm background */
-  .img-container-warm {
-    @apply bg-background-warm border-0 rounded-sm overflow-hidden;
-  }
-  
-  .img-container-warm img {
-    filter: sepia(8%) saturate(95%) brightness(99%);
-  }
 }
+

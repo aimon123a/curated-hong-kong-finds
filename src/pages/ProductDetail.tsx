@@ -59,7 +59,7 @@ const ProductDetail = () => {
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="max-w-full max-h-full object-contain img-warm"
+                className="max-w-full max-h-full object-contain"
               />
             </div>
             
