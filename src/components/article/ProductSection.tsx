@@ -49,7 +49,7 @@ const ProductSection = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image */}
-        <div className="bg-muted rounded-sm p-8 aspect-square flex items-center justify-center">
+        <div className="bg-background-warm rounded-sm p-8 aspect-square flex items-center justify-center">
           <img
             src={imageUrl}
             alt={name}

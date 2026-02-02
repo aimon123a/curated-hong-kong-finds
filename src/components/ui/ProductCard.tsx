@@ -26,7 +26,7 @@ const ProductCard = ({
       className="product-card block bg-card group"
     >
       {/* Image */}
-      <div className="image-container aspect-product relative bg-muted">
+      <div className="image-container aspect-product relative bg-background-warm">
         <img
           src={imageUrl}
           alt={name}
