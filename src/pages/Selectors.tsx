@@ -49,7 +49,7 @@ const Selectors = () => {
           </h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
             如果你在某個領域有專業知識和熱情，歡迎加入我們的團隊，
-            與更多人分享你的專業見解。
+            與更多人分享你的專業見解與真實評測。
           </p>
           <a
             href="/contact"
