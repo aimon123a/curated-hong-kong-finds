@@ -55,7 +55,7 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
           {/* Left: Image Gallery */}
           <div className="space-y-4">
-            <div className="bg-background-warm border border-border rounded-sm p-8 aspect-square flex items-center justify-center">
+            <div className="bg-white border border-border rounded-sm p-4 aspect-square flex items-center justify-center">
               <img
                 src={product.imageUrl}
                 alt={product.name}
