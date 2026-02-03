@@ -250,20 +250,50 @@ const Home = () => {
             description="由各領域專家為您精選推薦"
           />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {selectors.map((selector) => (
-              <SelectorCard key={selector.id} selector={selector} />
-            ))}
-          </div>
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+            {/* Selector Cards */}
+            <div className="flex flex-wrap gap-6">
+              {selectors.map((selector) => (
+                <Link
+                  key={selector.id}
+                  to={`/selector/${selector.id}`}
+                  className="group flex flex-col items-center text-center"
+                >
+                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-colors mb-3">
+                    <img
+                      src={selector.imageUrl}
+                      alt={selector.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">
+                    {selector.name}
+                  </h3>
+                  <span className="text-sm text-muted-foreground">
+                    {selector.articleCount} 篇文章
+                  </span>
+                </Link>
+              ))}
+            </div>
 
-          <div className="text-center mt-10">
-            <Link
-              to="/selectors"
-              className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
-            >
-              查看所有 SELECTor
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            {/* Join Us CTA */}
+            <div className="flex-1 lg:max-w-md">
+              <div className="bg-card border border-border rounded-sm p-6 md:p-8">
+                <h3 className="text-xl font-bold text-foreground mb-4">
+                  成為 SELECTor
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  如果你在某個領域有專業知識和熱情，歡迎加入我們的團隊，與更多人分享你的專業見解與真實評測。
+                </p>
+                <Link
+                  to="/selectors"
+                  className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-sm font-medium text-sm"
+                >
+                  了解更多
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

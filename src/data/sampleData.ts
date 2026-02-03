@@ -75,7 +75,7 @@ export const selectors: Selector[] = [
     specialty: "身體暗瘡控制",
     bio: "擁有超過8年美容行業經驗，專注於身體肌膚護理研究。曾在多間皮膚科診所擔任顧問，對暗瘡成因及護理有深入了解。相信每個人都值得擁有健康自信的肌膚。",
     imageUrl: keiImage,
-    articleCount: 1,
+    articleCount: 2,
     expertise: ["身體暗瘡", "背部護理", "去角質", "身體乳液"],
     socialLinks: {
       instagram: "#",
