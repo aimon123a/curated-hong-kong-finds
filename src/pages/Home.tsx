@@ -1,37 +1,125 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ArticleCard from "@/components/ui/ArticleCard";
 import SelectorCard from "@/components/ui/SelectorCard";
 import { articles, categories, selectors } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
+
+const heroSlides = [
+  {
+    id: "01",
+    category: "APPEARANCE MANAGEMENT",
+    title: "外在管理",
+    subtitle: "打造最佳形象的秘訣",
+    description: "從護膚到健身，我們精選最有效的產品，助您展現最自信的一面。",
+    link: "/category/beauty",
+    buttonText: "瀏覽外在管理",
+  },
+  {
+    id: "02",
+    category: "HOME LIVING",
+    title: "家居生活",
+    subtitle: "品質居家的理想選擇",
+    description: "精選家居好物，從廚房到臥室，讓每個角落都充滿品味與舒適。",
+    link: "/category/kitchen",
+    buttonText: "瀏覽家居生活",
+  },
+  {
+    id: "03",
+    category: "LIFESTYLE",
+    title: "生活風格",
+    subtitle: "定義個人風格的態度",
+    description: "穿搭配件、生活小物，展現獨特品味，活出精彩每一天。",
+    link: "/category/lifestyle",
+    buttonText: "瀏覽生活風格",
+  },
+  {
+    id: "04",
+    category: "CURATED FOR YOU",
+    title: "由專業編輯精選",
+    subtitle: "最值得信賴的產品推薦",
+    description: "我們深入研究每一款產品，從功效、使用體驗到性價比，為您提供最詳盡的評測和推薦。",
+    link: "/articles",
+    buttonText: "瀏覽所有文章",
+  },
+];
+
 const Home = () => {
   const featuredArticles = articles.slice(0, 4);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const activeSlide = heroSlides[currentSlide];
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-background-warm py-16 md:py-24">
+      {/* Hero Section with Carousel */}
+      <section className="bg-background-warm py-16 md:py-24 relative overflow-hidden">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <span className="text-xs font-semibold tracking-editorial uppercase text-primary mb-4 block">
-              CURATED FOR YOU
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-              由專業編輯精選
-              <br />
-              <span className="text-primary">最值得信賴的產品推薦</span>
-            </h1>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-              我們深入研究每一款產品，從功效、使用體驗到性價比，為您提供最詳盡的評測和推薦。
-            </p>
-            <Link
-              to="/category/beauty"
-              className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
-            >
-              瀏覽外在管理
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+            {/* Content */}
+            <div className="max-w-2xl transition-opacity duration-500">
+              <span className="text-xs font-semibold tracking-editorial uppercase text-primary mb-4 block">
+                {activeSlide.category}
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 leading-tight">
+                {activeSlide.title}
+              </h1>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-tight">
+                {activeSlide.subtitle}
+              </h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+                {activeSlide.description}
+              </p>
+              <Link
+                to={activeSlide.link}
+                className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
+              >
+                {activeSlide.buttonText}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Slide Indicators */}
+            <div className="flex lg:flex-col gap-4 lg:gap-6">
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`flex items-center gap-3 text-left transition-all duration-300 group ${
+                    currentSlide === index ? "opacity-100" : "opacity-40 hover:opacity-70"
+                  }`}
+                >
+                  <span
+                    className={`text-sm font-bold tracking-wider ${
+                      currentSlide === index ? "text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    {slide.id}
+                  </span>
+                  <div className="hidden lg:block">
+                    <span
+                      className={`text-sm font-medium block ${
+                        currentSlide === index ? "text-foreground" : "text-muted-foreground"
+                      }`}
+                    >
+                      {slide.title}
+                    </span>
+                    {currentSlide === index && (
+                      <div className="h-0.5 bg-primary mt-1 w-full" />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
