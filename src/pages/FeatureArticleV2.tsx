@@ -75,6 +75,60 @@ const FeatureArticleV2 = () => {
   const category = getCategoryBySlug(categorySlug);
   const selector = article?.selectorId ? getSelectorById(article.selectorId) : null;
 
+  // Handle Coming Soon articles
+  if (article && (article as any).isComingSoon) {
+    return (
+      <Layout>
+        {/* Breadcrumb */}
+        <div className="bg-muted border-b border-border sticky top-0 z-40">
+          <div className="container-editorial py-3">
+            <nav className="flex items-center gap-2 text-sm">
+              <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
+                首頁
+              </Link>
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              <Link
+                to={`/category/${categorySlug}`}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {category?.chineseTitle || categorySlug}
+              </Link>
+              <ChevronRight className="w-4 h-4 text-muted-foreground" />
+              <span className="text-foreground font-medium line-clamp-1">
+                敬請期待
+              </span>
+            </nav>
+          </div>
+        </div>
+
+        {/* Coming Soon Content */}
+        <div className="container-editorial py-20">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="mb-8">
+              <img
+                src={article.imageUrl}
+                alt="敬請期待"
+                className="w-full max-w-md mx-auto rounded-sm"
+              />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              親自評測中，敬請期待
+            </h1>
+            <p className="text-lg text-muted-foreground mb-8">
+              我們正在認真測試這款產品，完整評測即將推出，敬請期待！
+            </p>
+            <Link
+              to={`/category/${categorySlug}`}
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium"
+            >
+              ← 返回{category?.chineseTitle || "分類"}
+            </Link>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   if (!article || !category || !article.featureProduct) {
     return (
       <Layout>

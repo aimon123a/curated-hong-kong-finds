@@ -19,6 +19,7 @@ import backAcneInfo2Image from "@/assets/articles/back-acne-info-2.jpg";
 import backAcneCausesImage from "@/assets/articles/back-acne-causes.jpg";
 import backAcneTipsImage from "@/assets/articles/back-acne-tips.jpg";
 import backAcneDietImage from "@/assets/articles/back-acne-diet.jpg";
+import comingSoonPreviewImage from "@/assets/articles/coming-soon-preview.png";
 
 export interface Selector {
   id: string;
@@ -121,289 +122,23 @@ export const selectors: Selector[] = [
 ];
 
 export const articles = [
-  // Original beauty articles
+  // Coming Soon placeholder article
   {
-    id: "bk001",
-    categorySlug: "beauty",
-    title: "2024年最佳美容儀推薦：10款專業級護膚神器評測",
-    excerpt: "從LED光療到微電流提拉，我們深入測試了市面上最受歡迎的美容儀，為您找出真正值得投資的產品。",
-    imageUrl: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&h=533&fit=crop",
-    date: "2024.01.15",
-    isPR: false,
-    author: {
-      name: "陳美琪",
-      title: "美容編輯",
-      imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
-    },
-    content: `
-      <p>在眾多美容儀中選擇適合自己的產品並不容易。我們花了三個月時間，深入測試了市面上最受歡迎的10款美容儀，從功效、使用體驗到性價比，為您提供最詳盡的評測。</p>
-      
-      <h2>如何選擇適合自己的美容儀？</h2>
-      <p>選購美容儀時，首先要了解自己的肌膚需求。是想要抗衰老、改善膚質，還是解決特定問題如暗瘡或色素？不同功能的美容儀針對不同需求。</p>
-      
-      <h2>我們的評測標準</h2>
-      <p>本次評測從以下幾個維度進行評分：</p>
-      <ul>
-        <li>功效表現（30%）</li>
-        <li>使用便利性（25%）</li>
-        <li>安全性（20%）</li>
-        <li>性價比（15%）</li>
-        <li>品牌服務（10%）</li>
-      </ul>
-    `,
-    products: [
-      {
-        id: "anken-1",
-        productId: "prod-001",
-        rank: 1,
-        name: "YAMAN 光療美容儀 HRF-S",
-        brand: "YAMAN",
-        price: "3,980",
-        imageUrl: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=600&fit=crop",
-        rating: 4.8,
-        description: "結合RF射頻與LED光療的專業級美容儀，能有效提拉緊緻肌膚，改善細紋和鬆弛問題。獨特的溫感設計讓護膚體驗更加舒適。",
-        pros: [
-          "多功能合一，性價比極高",
-          "溫感設計舒適度佳",
-          "見效快，使用一週即有感",
-          "充電續航力強",
-        ],
-        cons: [
-          "價格偏高",
-          "需配合專用凝膠使用",
-        ],
-        specs: [
-          { label: "產品尺寸", value: "180 x 45 x 45mm" },
-          { label: "重量", value: "約220g" },
-          { label: "充電時間", value: "約2.5小時" },
-          { label: "使用時間", value: "約30分鐘（滿電）" },
-          { label: "防水等級", value: "IPX5" },
-        ],
-      },
-      {
-        id: "anken-2",
-        productId: "prod-002",
-        rank: 2,
-        name: "Dr.Arrivo Zeus II",
-        brand: "Dr.Arrivo",
-        price: "5,680",
-        imageUrl: "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&h=600&fit=crop",
-        rating: 4.7,
-        description: "日本頂級美容儀品牌，採用獨家MFIP技術，能深層滲透護膚精華，同時刺激膠原蛋白增生，是專業美容院級別的家用設備。",
-        pros: [
-          "獨家MFIP技術效果顯著",
-          "質感高級，設計精美",
-          "多種模式可選擇",
-          "日本製造品質保證",
-        ],
-        cons: [
-          "價格較高",
-          "學習曲線較長",
-          "機身較重",
-        ],
-        specs: [
-          { label: "產品尺寸", value: "200 x 52 x 52mm" },
-          { label: "重量", value: "約280g" },
-          { label: "充電時間", value: "約3小時" },
-          { label: "使用時間", value: "約45分鐘（滿電）" },
-          { label: "防水等級", value: "IPX4" },
-        ],
-      },
-      {
-        id: "anken-3",
-        productId: "prod-003",
-        rank: 3,
-        name: "NuFACE Trinity+ 微電流美容儀",
-        brand: "NuFACE",
-        price: "2,880",
-        imageUrl: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=600&h=600&fit=crop",
-        rating: 4.5,
-        description: "美國知名微電流品牌，專注於面部提拉和輪廓塑造。獨特的三角形設計能精準貼合面部曲線，5分鐘即可完成日常護理。",
-        pros: [
-          "提拉效果即時可見",
-          "使用時間短效率高",
-          "FDA認證安全可靠",
-          "輕巧便攜",
-        ],
-        cons: [
-          "功能較為單一",
-          "需每日使用才能維持效果",
-        ],
-        specs: [
-          { label: "產品尺寸", value: "155 x 65 x 40mm" },
-          { label: "重量", value: "約180g" },
-          { label: "電源", value: "USB充電" },
-          { label: "使用時間", value: "約60分鐘（滿電）" },
-          { label: "認證", value: "FDA Cleared" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "bk002",
-    categorySlug: "beauty",
-    title: "離子導入儀完整指南：如何讓護膚品吸收更好",
-    excerpt: "深入解析離子導入技術的原理與使用方法，教您如何選擇適合的產品。",
-    imageUrl: "https://images.unsplash.com/photo-1619451334792-150fd785ee74?w=800&h=533&fit=crop",
-    date: "2024.01.10",
-    isPR: true,
-  },
-  {
-    id: "bk003",
-    categorySlug: "beauty",
-    title: "家用脫毛儀評測：5款熱門IPL脫毛機實測報告",
-    excerpt: "夏天將至，是時候準備脫毛儀了！我們為您測試了市面上最熱門的五款家用脫毛機。",
-    imageUrl: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=533&fit=crop",
-    date: "2024.01.05",
-    isPR: false,
-  },
-  {
-    id: "bk004",
-    categorySlug: "beauty",
-    title: "電動潔面儀真的有用嗎？皮膚科醫生這樣說",
-    excerpt: "專訪皮膚科專家，為您解答電動潔面儀的真正功效與使用注意事項。",
-    imageUrl: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=533&fit=crop",
-    date: "2023.12.28",
-    isPR: false,
-  },
-  // Kei's Feature Article - Clearex Wi
-  {
-    id: "kei-clearex-wi",
+    id: "coming-soon-001",
     categorySlug: "beauty",
     selectorId: "kei",
-    title: "背痘終結者｜第一三共 Clearex Wi 藥用沐浴露深度實測",
-    excerpt: "這款由日本製藥巨頭第一三共研發的藥用沐浴露，憑藉雙重藥用成分與極致溫和配方，成為我的「抗痘三件套」核心產品。",
-    imageUrl: clearexWiImage,
-    date: "2024.01.25",
+    title: "「？？？」 親自評測中，敬請期待",
+    excerpt: "敬請期待我們的下一篇深度評測文章！",
+    imageUrl: comingSoonPreviewImage,
+    date: "2026.02.03",
     isPR: false,
     isFeatureReview: true,
+    isShareArticle: true,
+    isComingSoon: true,
     author: {
       name: "Kei",
       title: "身體護理專家",
       imageUrl: keiImage,
-    },
-    content: `
-      <div class="lead-text">
-        <p>如果你跟我一樣，從青春期開始就飽受背痘困擾，那你一定試過無數方法——從各種偏方到昂貴的美容療程。但真正讓我找到「答案」的，是這款來自日本頂尖製藥廠的沐浴露。</p>
-      </div>
-    `,
-    featureProduct: {
-      id: "clearex-wi-main",
-      productId: "prod-clearex-wi",
-      name: "Clearex Wi 藥用沐浴露",
-      brand: "第一三共 DAIICHI SANKYO",
-      price: "168",
-      imageUrl: clearexWiImage,
-      rating: 4.8,
-      productType: "醫藥部外品",
-      subtitle: "クリアレックスWi",
-      tagline: "你的「抗痘三件套」核心產品",
-      keyPoints: [
-        {
-          title: "雙重藥用有效成分（殺菌 + 抗炎）",
-          icon: "shield",
-          description: "這是它與普通沐浴露最大的區別，也是解決背痘的科學根據。",
-          details: [
-            {
-              label: "Isopropyl Methylphenol (IPMP)",
-              value: "強效殺菌成分，能滲透毛孔，根除導致痤瘡（痘痘）的細菌及產生體臭的雜菌。"
-            },
-            {
-              label: "甘草酸二鉀 (Dipotassium Glycyrrhizate)",
-              value: "著名的抗炎成分，專門鎮定受紅腫影響的皮膚，防止痘痘進一步惡化。"
-            }
-          ]
-        },
-        {
-          title: "極致溫和的「低刺激」配方",
-          icon: "heart",
-          description: "對於已經發炎的背痘皮膚，過度清潔會適得其反。Clearex Wi 的特點是：",
-          details: [
-            {
-              label: "弱酸性",
-              value: "貼近皮膚天然 pH 值，保護肌膚屏障。"
-            },
-            {
-              label: "無香料、無著色",
-              value: "減少化學添加物對敏感或受損皮膚的刺激。"
-            },
-            {
-              label: "通過低敏測試",
-              value: "官方標榜適用於敏感肌，這能大幅降低購買疑慮。"
-            }
-          ]
-        },
-        {
-          title: "多功能解決方案（Acne + Odor）",
-          icon: "sparkles",
-          description: "除了針對背痘，它在物理層面上還解決了兩個常見問題：",
-          details: [
-            {
-              label: "體臭/汗臭預防",
-              value: "透過殺滅細菌，從根源消除汗味，非常適合運動愛好者。"
-            },
-            {
-              label: "清潔徹底但不乾澀",
-              value: "洗完後皮膚不會有緊繃感，適合日常每天使用。"
-            }
-          ]
-        },
-        {
-          title: "製藥公司的專業背書",
-          icon: "badge",
-          description: "作為「醫藥部外品」，它在日本藥妝店通常放在專業護理區，而非一般超市區。",
-          details: [
-            {
-              label: "藥劑師推薦",
-              value: "由第一三共這種頂尖製藥廠研發，賦予了產品強大的「專業信任感」。"
-            },
-            {
-              label: "醫藥部外品認證",
-              value: "日本厚生勞動省認可的有效成分含量，品質有保證。"
-            }
-          ]
-        }
-      ],
-      specs: [
-        { label: "品牌", value: "第一三共 (DAIICHI SANKYO)" },
-        { label: "產品名稱", value: "Clearex Wi (クリアレックスWi)" },
-        { label: "產品類別", value: "醫藥部外品" },
-        { label: "容量", value: "450ml" },
-        { label: "主要成分", value: "IPMP、甘草酸二鉀" },
-        { label: "pH值", value: "弱酸性" },
-        { label: "產地", value: "日本" },
-        { label: "適用對象", value: "身體暗瘡、敏感肌、運動愛好者" },
-      ],
-      pros: [
-        "雙重藥用成分，殺菌同時抗炎",
-        "弱酸性配方，溫和不刺激",
-        "無香料無著色，敏感肌適用",
-        "同時解決體臭問題",
-        "日本製藥大廠品質保證",
-      ],
-      cons: [
-        "香港較難購買，需代購",
-        "價格比一般沐浴露稍高",
-      ],
-      buyLinks: [
-        { name: "日本亞馬遜", url: "#", price: "168" },
-        { name: "樂天市場", url: "#", price: "175" },
-      ],
-      usageGuide: {
-        title: "建議使用方法",
-        steps: [
-          "運動後或大量出汗後盡快洗澡",
-          "取適量沐浴露於掌心或沐浴球",
-          "著重清洗背部、胸口等易出油部位",
-          "輕柔按摩1-2分鐘，讓有效成分滲透",
-          "以清水徹底沖洗乾淨",
-        ],
-        tips: "建議配合柔軟的長柄沐浴刷，能更有效清潔背部難以觸及的位置。"
-      },
-      verdict: {
-        title: "編輯評語",
-        content: "作為一個曾經飽受背痘困擾的人，我可以負責任地說：Clearex Wi 是我用過最有效的身體暗瘡護理產品之一。它不是那種誇大其詞的「神器」，而是真正以科學配方解決問題的日本製藥級產品。如果你也在尋找背痘的解決方案，這款沐浴露絕對值得一試。"
-      }
     },
   },
   // Kei's Feature Article 2 - Back Acne Solution (from Word doc)

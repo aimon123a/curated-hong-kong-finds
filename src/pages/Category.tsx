@@ -58,6 +58,7 @@ const Category = () => {
                   isPR={article.isPR}
                   isFeatureReview={(article as any).isFeatureReview}
                   isShareArticle={(article as any).isShareArticle}
+                  isComingSoon={(article as any).isComingSoon}
                 />
               ))}
             </div>
