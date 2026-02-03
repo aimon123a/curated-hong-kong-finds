@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ArticleCard from "@/components/ui/ArticleCard";
 import SelectorCard from "@/components/ui/SelectorCard";
-import { articles, categories, selectors } from "@/data/sampleData";
+import { articles, selectors } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
 
 // Import hero background images
@@ -198,36 +198,6 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="py-12 md:py-16">
-        <div className="container-editorial">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {Object.values(categories).map((category) => (
-              <Link
-                key={category.slug}
-                to={`/category/${category.slug}`}
-                className="group relative h-48 md:h-64 overflow-hidden rounded-sm"
-              >
-                <img
-                  src={category.imageUrl}
-                  alt={category.chineseTitle}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span className="text-xs font-semibold tracking-editorial uppercase text-primary-light block mb-1">
-                    {category.englishTitle}
-                  </span>
-                  <h3 className="text-xl font-bold text-background">
-                    {category.chineseTitle}
-                  </h3>
-                </div>
-              </Link>
-            ))}
           </div>
         </div>
       </section>

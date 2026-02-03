@@ -21,6 +21,11 @@ import backAcneTipsImage from "@/assets/articles/back-acne-tips.jpg";
 import backAcneDietImage from "@/assets/articles/back-acne-diet.jpg";
 import comingSoonPreviewImage from "@/assets/articles/coming-soon-preview.png";
 
+// Hero images for categories
+import beautyHeroImage from "@/assets/hero/beauty-hero.jpg";
+import homeHeroImage from "@/assets/hero/home-hero.jpg";
+import lifestyleHeroImage from "@/assets/hero/lifestyle-hero.jpg";
+
 export interface Selector {
   id: string;
   name: string;
@@ -43,21 +48,21 @@ export const categories = {
     englishTitle: "BEAUTY APPLIANCES",
     chineseTitle: "外在管理",
     description: "精選美容家電，從護膚到美髮，專業編輯為您挑選最值得入手的產品。",
-    imageUrl: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&h=600&fit=crop",
+    imageUrl: beautyHeroImage,
   },
   kitchen: {
     slug: "kitchen",
     englishTitle: "HOME LIVING",
     chineseTitle: "家居生活",
     description: "打造理想居家空間，精選實用家品、收納好物與生活質感提升的推薦。",
-    imageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=600&fit=crop",
+    imageUrl: homeHeroImage,
   },
   lifestyle: {
     slug: "lifestyle",
     englishTitle: "LIFESTYLE",
     chineseTitle: "生活風格",
     description: "提升生活品質的精選好物，為您的日常增添美感與便利。",
-    imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop",
+    imageUrl: lifestyleHeroImage,
   },
 };
 
