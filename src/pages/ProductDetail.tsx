@@ -187,6 +187,24 @@ const ProductDetail = () => {
           </div>
         </div>
 
+        {/* Related Articles - Moved above product introduction */}
+        {product.relatedArticleId && (
+          <section className="mb-12">
+            <div className="border-l-4 border-primary pl-4 mb-6">
+              <h2 className="text-xl font-bold text-foreground">相關評測</h2>
+            </div>
+
+            <Link
+              to={`/category/${product.categorySlug}/share/${product.relatedArticleId}`}
+              className="block bg-card border border-border rounded-sm p-6 hover:border-primary transition-colors group"
+            >
+              <p className="text-primary font-medium group-hover:underline">
+                → {product.name} 真的有用嗎？親自產品評測
+              </p>
+            </Link>
+          </section>
+        )}
+
         {/* Product Introduction */}
         <section className="mb-12">
           <div className="border-l-4 border-primary pl-4 mb-6">
@@ -339,23 +357,6 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* Related Articles */}
-        {product.relatedArticleId && (
-          <section className="mb-12">
-            <div className="border-l-4 border-primary pl-4 mb-6">
-              <h2 className="text-xl font-bold text-foreground">相關評測</h2>
-            </div>
-
-            <Link
-              to={`/category/${product.categorySlug}/share/${product.relatedArticleId}`}
-              className="block bg-card border border-border rounded-sm p-6 hover:border-primary transition-colors group"
-            >
-              <p className="text-primary font-medium group-hover:underline">
-                → {product.name} 真的有用嗎？親自產品評測
-              </p>
-            </Link>
-          </section>
-        )}
       </div>
     </Layout>
   );
