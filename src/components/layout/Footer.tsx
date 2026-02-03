@@ -38,7 +38,7 @@ const Footer = () => {
                   to="/category/kitchen"
                   className="text-sm text-background/70 hover:text-background transition-colors"
                 >
-                  廚房家電
+                  家居用品
                 </Link>
               </li>
               <li>
@@ -75,12 +75,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="text-sm text-background/70 hover:text-background transition-colors"
+                <a
+                  href="https://instagram.com/jaag_select"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-background/70 hover:text-background transition-colors inline-flex items-center gap-1"
                 >
-                  聯絡我們
-                </Link>
+                  Instagram: @jaag_select
+                </a>
               </li>
             </ul>
           </div>
