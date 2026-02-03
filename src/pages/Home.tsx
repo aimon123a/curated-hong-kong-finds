@@ -99,7 +99,7 @@ const Home = () => {
       <section className="relative min-h-[80vh] md:min-h-[85vh] overflow-hidden">
         {/* Background Image - positioned center-right */}
         <div className="absolute inset-0 transition-all duration-700">
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground via-foreground/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-warm via-background-warm/90 to-transparent z-10" />
           <img 
             src={activeSlide.bgImage} 
             alt="" 
@@ -121,7 +121,7 @@ const Home = () => {
                     className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                       activeIndex === index
                         ? "border-primary bg-primary text-primary-foreground scale-110"
-                        : "border-background/60 text-background hover:border-background hover:scale-105"
+                        : "border-foreground/30 text-foreground hover:border-primary hover:text-primary hover:scale-105"
                     }`}
                   >
                     <span className="text-lg md:text-xl font-bold tracking-wider">
@@ -139,7 +139,7 @@ const Home = () => {
                 <span 
                   className={`text-xs font-semibold tracking-[0.2em] uppercase block mb-4 transition-all duration-300 ${
                     visibleLines.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                  } text-primary-light`}
+                  } text-primary`}
                 >
                   {activeSlide.category}
                 </span>
@@ -148,7 +148,7 @@ const Home = () => {
                 <h1 
                   className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight transition-all duration-500 ${
                     visibleLines.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                  } text-background`}
+                  } text-foreground`}
                 >
                   {activeSlide.title}
                 </h1>
@@ -175,7 +175,7 @@ const Home = () => {
                           visibleLines.includes(adjustedIndex) 
                             ? "opacity-100 translate-y-0" 
                             : "opacity-0 translate-y-4"
-                        } text-background/90`}
+                        } text-muted-foreground`}
                         style={{ transitionDelay: `${adjustedIndex * 100}ms` }}
                       >
                         {line}
