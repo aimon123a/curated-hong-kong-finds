@@ -16,6 +16,8 @@ import Cart from "./pages/Cart";
 import ProductRequest from "./pages/ProductRequest";
 import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
+import About from "./pages/About";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +42,8 @@ const App = () => (
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/selectors" element={<Selectors />} />
           <Route path="/selector/:selectorId" element={<Selector />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/privacy" element={<Privacy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

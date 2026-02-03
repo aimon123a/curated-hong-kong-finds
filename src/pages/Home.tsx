@@ -294,19 +294,19 @@ const Home = () => {
             <div className="bg-primary-light rounded-sm p-8 md:p-12">
               <div className="grid grid-cols-2 gap-8 text-center">
                 <div>
-                  <p className="text-4xl font-bold text-primary mb-2">500+</p>
+                  <p className="text-4xl font-bold text-primary mb-2">1+</p>
                   <p className="text-sm text-muted-foreground">產品評測</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold text-primary mb-2">50+</p>
+                  <p className="text-4xl font-bold text-primary mb-2">1+</p>
                   <p className="text-sm text-muted-foreground">專業編輯</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold text-primary mb-2">100K+</p>
+                  <p className="text-4xl font-bold text-primary mb-2">500+</p>
                   <p className="text-sm text-muted-foreground">月活躍讀者</p>
                 </div>
                 <div>
-                  <p className="text-4xl font-bold text-primary mb-2">98%</p>
+                  <p className="text-4xl font-bold text-primary mb-2">99%</p>
                   <p className="text-sm text-muted-foreground">讀者滿意度</p>
                 </div>
               </div>
