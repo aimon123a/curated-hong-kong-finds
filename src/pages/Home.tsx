@@ -99,7 +99,7 @@ const Home = () => {
       <section className="relative min-h-[80vh] md:min-h-[85vh] overflow-hidden">
         {/* Background Image - positioned center-right */}
         <div className="absolute inset-0 transition-all duration-700">
-          <div className="absolute inset-0 bg-gradient-to-r from-background-warm via-background-warm/90 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-warm from-30% via-background-warm/70 via-50% to-transparent to-80% z-10" />
           <img 
             src={activeSlide.bgImage} 
             alt="" 
