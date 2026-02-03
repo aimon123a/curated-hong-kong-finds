@@ -598,27 +598,17 @@ const FeatureArticleV2 = () => {
                 />
               )}
 
-              {/* 3. Related Articles - THIRD */}
+              {/* 3. Related Articles - THIRD (Only existing articles) */}
               <div className="bg-card border border-border rounded-sm p-5">
                 <h4 className="font-bold text-foreground mb-4">相關文章</h4>
                 <ul className="space-y-3">
                   <li>
                     <Link 
-                      to="/category/beauty/review/kei-clearex-wi"
+                      to="/category/beauty/review/kei-clearex-wi-v2"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors block"
                     >
-                      → 背痘終結者｜Clearex Wi 深度實測
+                      → Clearex-WI 真的有用嗎？親自產品評測
                     </Link>
-                  </li>
-                  <li>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors block">
-                      → 背痘護理完全指南：從預防到治療
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors block">
-                      → 運動後皮膚護理的五個重點
-                    </a>
                   </li>
                 </ul>
               </div>
