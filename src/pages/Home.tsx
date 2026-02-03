@@ -7,118 +7,220 @@ import SelectorCard from "@/components/ui/SelectorCard";
 import { articles, categories, selectors } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
 
+// Import category images for background
+import beautyBg from "@/assets/articles/back-acne-info-1.jpg";
+import kitchenBg from "@/assets/articles/clearex-wi-store.jpg";
+import lifestyleBg from "@/assets/articles/clearex-wi-combo.jpg";
+import curatedBg from "@/assets/articles/clearex-wi-before-after.jpg";
+
 const heroSlides = [
   {
     id: "01",
     category: "APPEARANCE MANAGEMENT",
     title: "外在管理",
-    subtitle: "打造最佳形象的秘訣",
-    description: "從護膚到健身，我們精選最有效的產品，助您展現最自信的一面。",
+    lines: [
+      "從護膚到健身",
+      "我們精選最有效的產品",
+      "助您展現最自信的一面",
+    ],
     link: "/category/beauty",
     buttonText: "瀏覽外在管理",
+    bgImage: beautyBg,
   },
   {
     id: "02",
     category: "HOME LIVING",
     title: "家居生活",
-    subtitle: "品質居家的理想選擇",
-    description: "精選家居好物，從廚房到臥室，讓每個角落都充滿品味與舒適。",
+    lines: [
+      "精選家居好物",
+      "從廚房到臥室",
+      "讓每個角落都充滿品味與舒適",
+    ],
     link: "/category/kitchen",
     buttonText: "瀏覽家居生活",
+    bgImage: kitchenBg,
   },
   {
     id: "03",
     category: "LIFESTYLE",
     title: "生活風格",
-    subtitle: "定義個人風格的態度",
-    description: "穿搭配件、生活小物，展現獨特品味，活出精彩每一天。",
+    lines: [
+      "穿搭配件、生活小物",
+      "展現獨特品味",
+      "活出精彩每一天",
+    ],
     link: "/category/lifestyle",
     buttonText: "瀏覽生活風格",
+    bgImage: lifestyleBg,
   },
   {
     id: "04",
     category: "CURATED FOR YOU",
     title: "由專業編輯精選",
     subtitle: "最值得信賴的產品推薦",
-    description: "我們深入研究每一款產品，從功效、使用體驗到性價比，為您提供最詳盡的評測和推薦。",
+    lines: [
+      "我們深入研究每一款產品",
+      "從功效、使用體驗到性價比",
+      "為您提供最詳盡的評測和推薦",
+    ],
     link: "/articles",
     buttonText: "瀏覽所有文章",
+    bgImage: curatedBg,
   },
 ];
 
 const Home = () => {
   const featuredArticles = articles.slice(0, 4);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
+  // When activeIndex changes, animate lines one by one
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    if (activeIndex === null) {
+      setVisibleLines([]);
+      return;
+    }
 
-  const activeSlide = heroSlides[currentSlide];
+    setVisibleLines([]);
+    const slide = heroSlides[activeIndex];
+    const totalLines = (slide.subtitle ? 1 : 0) + slide.lines.length;
+    
+    const timeouts: NodeJS.Timeout[] = [];
+    
+    for (let i = 0; i < totalLines; i++) {
+      const timeout = setTimeout(() => {
+        setVisibleLines(prev => [...prev, i]);
+      }, 150 * (i + 1));
+      timeouts.push(timeout);
+    }
+
+    return () => timeouts.forEach(t => clearTimeout(t));
+  }, [activeIndex]);
+
+  const activeSlide = activeIndex !== null ? heroSlides[activeIndex] : null;
 
   return (
     <Layout>
-      {/* Hero Section with Carousel */}
-      <section className="bg-background-warm py-16 md:py-24 relative overflow-hidden">
-        <div className="container-editorial">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            {/* Content */}
-            <div className="max-w-2xl transition-opacity duration-500">
-              <span className="text-xs font-semibold tracking-editorial uppercase text-primary mb-4 block">
-                {activeSlide.category}
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 leading-tight">
-                {activeSlide.title}
-              </h1>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6 leading-tight">
-                {activeSlide.subtitle}
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-xl">
-                {activeSlide.description}
-              </p>
-              <Link
-                to={activeSlide.link}
-                className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
-              >
-                {activeSlide.buttonText}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+      {/* Hero Section with Interactive Numbers */}
+      <section className="relative min-h-[80vh] md:min-h-[85vh] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 transition-all duration-700">
+          {activeSlide ? (
+            <>
+              <img 
+                src={activeSlide.bgImage} 
+                alt="" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-foreground/60" />
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-background-warm to-muted" />
+          )}
+        </div>
 
-            {/* Slide Indicators */}
-            <div className="flex lg:flex-col gap-4 lg:gap-6">
+        <div className="container-editorial relative z-10 py-16 md:py-24 min-h-[80vh] md:min-h-[85vh] flex items-center">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-20 w-full">
+            {/* Left: Numbered Circles */}
+            <div className="flex flex-row lg:flex-col gap-6 lg:gap-8">
               {heroSlides.map((slide, index) => (
                 <button
                   key={slide.id}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`flex items-center gap-3 text-left transition-all duration-300 group ${
-                    currentSlide === index ? "opacity-100" : "opacity-40 hover:opacity-70"
-                  }`}
+                  onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                  className={`group relative flex items-center justify-center transition-all duration-300`}
                 >
-                  <span
-                    className={`text-sm font-bold tracking-wider ${
-                      currentSlide === index ? "text-primary" : "text-muted-foreground"
+                  {/* Circle */}
+                  <div
+                    className={`w-14 h-14 md:w-16 md:h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                      activeIndex === index
+                        ? "border-primary bg-primary text-primary-foreground scale-110"
+                        : activeSlide
+                          ? "border-background/60 text-background hover:border-background hover:scale-105"
+                          : "border-foreground/30 text-foreground hover:border-primary hover:text-primary hover:scale-105"
                     }`}
                   >
-                    {slide.id}
-                  </span>
-                  <div className="hidden lg:block">
-                    <span
-                      className={`text-sm font-medium block ${
-                        currentSlide === index ? "text-foreground" : "text-muted-foreground"
-                      }`}
-                    >
-                      {slide.title}
+                    <span className="text-lg md:text-xl font-bold tracking-wider">
+                      {slide.id}
                     </span>
-                    {currentSlide === index && (
-                      <div className="h-0.5 bg-primary mt-1 w-full" />
-                    )}
                   </div>
                 </button>
               ))}
+            </div>
+
+            {/* Right: Content (only shows when a number is clicked) */}
+            <div className="flex-1 min-h-[300px]">
+              {activeSlide ? (
+                <div className="animate-fade-in">
+                  {/* Category */}
+                  <span 
+                    className={`text-xs font-semibold tracking-[0.2em] uppercase block mb-4 transition-all duration-300 ${
+                      visibleLines.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                    } ${activeSlide ? "text-primary-light" : "text-primary"}`}
+                  >
+                    {activeSlide.category}
+                  </span>
+
+                  {/* Title */}
+                  <h1 
+                    className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight transition-all duration-500 ${
+                      visibleLines.length > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    } ${activeSlide ? "text-background" : "text-foreground"}`}
+                  >
+                    {activeSlide.title}
+                  </h1>
+
+                  {/* Subtitle (only for slide 04) */}
+                  {activeSlide.subtitle && (
+                    <h2 
+                      className={`text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-tight transition-all duration-500 delay-100 ${
+                        visibleLines.includes(0) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                      } text-primary`}
+                    >
+                      {activeSlide.subtitle}
+                    </h2>
+                  )}
+
+                  {/* Lines appear one by one */}
+                  <div className="space-y-3 mb-10">
+                    {activeSlide.lines.map((line, lineIndex) => {
+                      const adjustedIndex = activeSlide.subtitle ? lineIndex + 1 : lineIndex;
+                      return (
+                        <p
+                          key={lineIndex}
+                          className={`text-lg md:text-xl transition-all duration-500 ${
+                            visibleLines.includes(adjustedIndex) 
+                              ? "opacity-100 translate-y-0" 
+                              : "opacity-0 translate-y-4"
+                          } ${activeSlide ? "text-background/90" : "text-muted-foreground"}`}
+                          style={{ transitionDelay: `${adjustedIndex * 100}ms` }}
+                        >
+                          {line}
+                        </p>
+                      );
+                    })}
+                  </div>
+
+                  {/* Button */}
+                  <Link
+                    to={activeSlide.link}
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium transition-all duration-500 ${
+                      visibleLines.length >= activeSlide.lines.length 
+                        ? "opacity-100 translate-y-0" 
+                        : "opacity-0 translate-y-4"
+                    } bg-primary text-primary-foreground hover:bg-primary/90`}
+                  >
+                    {activeSlide.buttonText}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              ) : (
+                /* Default state - prompt to click */
+                <div className="flex flex-col justify-center h-full">
+                  <p className="text-lg md:text-xl text-muted-foreground animate-pulse">
+                    點擊左邊的數字探索更多 ←
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
