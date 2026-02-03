@@ -75,7 +75,7 @@ const Home = () => {
             description="編輯團隊為您挑選的熱門產品評測"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredArticles.map((article) => (
               <ArticleCard
                 key={article.id}
@@ -88,13 +88,14 @@ const Home = () => {
                 isPR={article.isPR}
                 isFeatureReview={(article as any).isFeatureReview}
                 isShareArticle={(article as any).isShareArticle}
+                isComingSoon={(article as any).isComingSoon}
               />
             ))}
           </div>
 
           <div className="text-center mt-10">
             <Link
-              to="/category/beauty"
+              to="/articles"
               className="btn-outline inline-flex items-center gap-2 px-6 py-3 rounded-sm font-medium"
             >
               查看更多文章

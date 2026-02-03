@@ -18,10 +18,11 @@ const Article = () => {
 
   // Handle scroll spy for table of contents
   useEffect(() => {
-    if (!article?.products) return;
+    const products = (article as any)?.products;
+    if (!products) return;
 
     const handleScroll = () => {
-      const productSections = article.products.map((p) => ({
+      const productSections = products.map((p: any) => ({
         id: p.id,
         element: document.getElementById(p.id),
       }));
@@ -56,7 +57,8 @@ const Article = () => {
     );
   }
 
-  const tocItems = article.products?.map((p) => ({
+  const products = (article as any).products;
+  const tocItems = products?.map((p: any) => ({
     id: p.id,
     rank: p.rank,
     name: p.name,
@@ -135,12 +137,12 @@ const Article = () => {
             )}
 
             {/* Product Sections */}
-            {article.products && article.products.length > 0 && (
+            {products && products.length > 0 && (
               <div className="mt-12">
                 <h2 className="text-xl font-bold text-foreground mb-6 pb-4 border-b border-border">
                   產品排名
                 </h2>
-                {article.products.map((product) => (
+                {products.map((product: any) => (
                   <ProductSection
                     key={product.id}
                     id={product.id}
