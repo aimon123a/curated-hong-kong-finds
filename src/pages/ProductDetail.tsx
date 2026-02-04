@@ -177,11 +177,11 @@ const ProductDetail = () => {
             <div className="space-y-3 text-sm text-muted-foreground border-t border-border pt-6">
               <p className="flex items-start gap-2">
                 <Package className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>關於備貨：普通商品備貨時間約為3-7天。發貨後，郵寄到香港的收貨地址約需2到4天。</span>
+                <span>關於備貨：普通商品備貨時間約為3-7天。發貨後，郵寄到香港的收貨地址約需3到6天。</span>
               </p>
               <p className="flex items-start gap-2">
                 <CreditCard className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>支付方式：信用卡 · PayPal · 轉數快 · 八達通</span>
+                <span>支付方式：轉數快 · 八達通</span>
               </p>
             </div>
           </div>
