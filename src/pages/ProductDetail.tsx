@@ -57,8 +57,8 @@ const ProductDetail = () => {
           <div className="space-y-4">
             <div className="bg-white border border-border rounded-sm p-4 aspect-square flex items-center justify-center">
               <img
-                src={product.imageUrl}
-                alt={product.name}
+                src={product.variants[selectedSize]?.imageUrl || product.imageUrl}
+                alt={`${product.name} - ${product.variants[selectedSize]?.size}`}
                 className="max-w-full max-h-full object-contain"
               />
             </div>
