@@ -7,6 +7,9 @@ import jacImage from "@/assets/selectors/jac.jpg";
 import kurageYuyuImage from "@/assets/selectors/kurage-yuyu.png";
 import clearexWiImage from "@/assets/products/clearex-wi.png";
 import clearexWiMainImage from "@/assets/products/clearex-wi-bottle-only.png";
+import clearexWi200mlImage from "@/assets/products/clearex-wi-200ml.webp";
+import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
+import clearexWiAntiAcneSetImage from "@/assets/products/clearex-wi-anti-acne-set.jpg";
 
 // Clearex Wi article images
 import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
@@ -651,7 +654,7 @@ export interface ProductDetail {
   pros: string[];
   cons: string[];
   specs: { label: string; value: string }[];
-  variants: { size: string; price: string; jpy: string }[];
+  variants: { size: string; price: string; jpy: string; imageUrl?: string }[];
   relatedArticleId?: string;
 }
 
@@ -707,9 +710,10 @@ export const productDetails: ProductDetail[] = [
       { label: "適用對象", value: "背部暗瘡、敏感肌、運動愛好者" }
     ],
     variants: [
-      { size: "200ml", price: "100", jpy: "1,900" },
-      { size: "380ml 補充裝", price: "150", jpy: "2,950" },
-      { size: "450ml", price: "180", jpy: "3,500" }
+      { size: "200ml", price: "100", jpy: "1,900", imageUrl: clearexWi200mlImage },
+      { size: "380ml 補充裝", price: "150", jpy: "2,950", imageUrl: clearexWi380mlRefillImage },
+      { size: "450ml", price: "180", jpy: "3,500", imageUrl: clearexWiMainImage },
+      { size: "抗痘套裝", price: "280", jpy: "5,400", imageUrl: clearexWiAntiAcneSetImage }
     ],
     relatedArticleId: "kei-clearex-wi-v2"
   }
