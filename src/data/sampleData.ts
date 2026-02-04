@@ -711,9 +711,9 @@ export const productDetails: ProductDetail[] = [
     ],
     variants: [
       { size: "200ml", price: "100", jpy: "1,900", imageUrl: clearexWi200mlImage },
-      { size: "380ml 補充裝", price: "150", jpy: "2,950", imageUrl: clearexWi380mlRefillImage },
-      { size: "450ml", price: "180", jpy: "3,500", imageUrl: clearexWiMainImage },
-      { size: "抗痘套裝", price: "280", jpy: "5,400", imageUrl: clearexWiAntiAcneSetImage }
+      { size: "380ml 補充裝", price: "180", jpy: "3,500", imageUrl: clearexWi380mlRefillImage },
+      { size: "450ml", price: "200", jpy: "3,900", imageUrl: clearexWiMainImage },
+      { size: "抗痘套裝", price: "300", jpy: "5,800", imageUrl: clearexWiAntiAcneSetImage }
     ],
     relatedArticleId: "kei-clearex-wi-v2"
   }
