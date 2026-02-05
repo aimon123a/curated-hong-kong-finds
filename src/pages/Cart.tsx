@@ -1,22 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { ChevronRight, Trash2, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle } from "lucide-react";
+import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/contexts/CartContext";
 import clearexWiProductImage from "@/assets/products/clearex-wi.png";
-
-interface CartItem {
-  id: string;
-  name: string;
-  brand: string;
-  variant: string;
-  price: number;
-  quantity: number;
-  imageUrl: string;
-  weight: number; // in grams
-}
 
 interface AddOnProduct {
   id: string;
@@ -28,20 +18,7 @@ interface AddOnProduct {
 
 const Cart = () => {
   const navigate = useNavigate();
-  
-  // Cart state - demo data
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "clearex-wi-450",
-      name: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
-      brand: "第一三共",
-      variant: "450ml",
-      price: 180,
-      quantity: 1,
-      imageUrl: clearexWiProductImage,
-      weight: 480,
-    }
-  ]);
+  const { items, addItem, removeItem, updateQuantity, createOrder, getSubtotal } = useCart();
 
   // Shipping method
   const [shippingMethod, setShippingMethod] = useState<"home" | "sf-locker">("home");
@@ -73,51 +50,29 @@ const Cart = () => {
     {
       id: "clearex-refill",
       name: "CLEAREX-Wi 補充裝 380ml",
-      price: 150,
+      price: 180,
       imageUrl: clearexWiProductImage,
       description: "環保補充裝",
     },
   ];
 
   // Calculate totals
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = getSubtotal();
   const shippingFee = shippingMethod === "home" ? 40 : 15;
   const total = subtotal + shippingFee;
-  const totalWeight = cartItems.reduce((sum, item) => sum + item.weight * item.quantity, 0);
-
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: string) => {
-    setCartItems(items => items.filter(item => item.id !== id));
-  };
+  const totalWeight = items.reduce((sum, item) => sum + item.weight * item.quantity, 0);
 
   const addToCart = (product: AddOnProduct) => {
-    const existingItem = cartItems.find(item => item.id === product.id);
-    if (existingItem) {
-      updateQuantity(product.id, 1);
-    } else {
-      setCartItems(items => [
-        ...items,
-        {
-          id: product.id,
-          name: product.name,
-          brand: "",
-          variant: "",
-          price: product.price,
-          quantity: 1,
-          imageUrl: product.imageUrl,
-          weight: 200,
-        }
-      ]);
-    }
+    addItem({
+      id: product.id,
+      name: product.name,
+      brand: "",
+      variant: "",
+      price: product.price,
+      quantity: 1,
+      imageUrl: product.imageUrl,
+      weight: 200,
+    });
   };
 
   const validateForm = () => {
@@ -151,18 +106,27 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    if (cartItems.length === 0) {
+    if (items.length === 0) {
       alert("購物車是空的");
       return;
     }
 
     if (validateForm()) {
-      // Process checkout
-      alert(`訂單確認！\n\n付款方式：${paymentMethod === "fps" ? "FPS 轉數快" : "PayMe"}\n運送方式：${shippingMethod === "home" ? "到宅配送" : "順豐智能櫃"}\n總金額：HKD ${total}`);
+      // Create order and navigate to checkout
+      const order = createOrder({
+        items: [...items],
+        subtotal,
+        shippingFee,
+        total,
+        shippingMethod,
+        paymentMethod,
+        address,
+      });
+      navigate("/checkout", { state: { order } });
     }
   };
 
-  if (cartItems.length === 0) {
+  if (items.length === 0) {
     return (
       <Layout>
         <div className="container-editorial py-20 text-center">
@@ -200,7 +164,7 @@ const Cart = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Cart Items */}
             <div className="bg-card border border-border rounded-sm overflow-hidden">
-              {cartItems.map((item, index) => (
+              {items.map((item, index) => (
                 <div
                   key={item.id}
                   className={`p-4 flex gap-4 ${index > 0 ? "border-t border-border" : ""}`}
@@ -239,10 +203,6 @@ const Cart = () => {
                         className="text-muted-foreground hover:text-destructive transition-colors text-sm"
                       >
                         刪除
-                      </button>
-                      <span className="text-muted-foreground">|</span>
-                      <button className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                        稍後再買
                       </button>
                     </div>
                     <div className="flex items-center gap-2 mt-3 justify-end">
@@ -540,7 +500,7 @@ const Cart = () => {
                   收件國/地區: 香港
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  預定出貨日: 2026-02-04
+                  關於備貨：普通商品備貨時間約為3-7天。發貨後，郵寄到香港的收貨地址約需3到6天。
                 </p>
               </div>
             </div>

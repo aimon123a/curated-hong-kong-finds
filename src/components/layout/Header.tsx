@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { articles, products } from "@/data/sampleData";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -9,6 +10,8 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { getItemCount } = useCart();
+  const itemCount = getItemCount();
 
   // Focus input when search opens
   useEffect(() => {
@@ -99,6 +102,19 @@ const Header = () => {
             >
               <Search className="w-5 h-5" />
             </button>
+
+            {/* Cart button */}
+            <Link
+              to="/cart"
+              className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {itemCount > 99 ? "99+" : itemCount}
+                </span>
+              )}
+            </Link>
             
             {/* Mobile menu button */}
             <button
