@@ -51,11 +51,19 @@ const TextWithProductLinks = ({ text, productId = "clearex-wi" }: { text: string
   );
 };
 
-const FeatureArticleV2 = () => {
-  const { categorySlug, articleId } = useParams<{
+interface FeatureArticleV2Props {
+  fixedCategorySlug?: string;
+  fixedArticleId?: string;
+}
+
+const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV2Props = {}) => {
+  const params = useParams<{
     categorySlug: string;
     articleId: string;
   }>();
+
+  const categorySlug = fixedCategorySlug || params.categorySlug;
+  const articleId = fixedArticleId || params.articleId;
 
   // Early return with loading state to prevent white screen flashes
   if (!categorySlug || !articleId) {
