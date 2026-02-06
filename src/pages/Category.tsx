@@ -50,6 +50,7 @@ const Category = () => {
                 <ArticleCard
                   key={article.id}
                   id={article.id}
+                  slug={(article as any).slug}
                   categorySlug={article.categorySlug}
                   title={article.title}
                   excerpt={article.excerpt}

@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import Layout from "@/components/layout/Layout";
-import { getProductDetailById } from "@/data/sampleData";
+import { getProductDetailById, getArticleById } from "@/data/sampleData";
 import { ChevronRight, Star, Check, AlertCircle, ShoppingCart, Heart, Truck, CreditCard, Package } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
@@ -219,7 +219,7 @@ const ProductDetail = () => {
             </div>
 
             <Link
-              to={`/category/${product.categorySlug}/share/${product.relatedArticleId}`}
+              to={`/${(getArticleById(product.relatedArticleId) as any)?.slug || product.relatedArticleId}`}
               className="block bg-card border border-border rounded-sm p-6 hover:border-primary transition-colors group"
             >
               <p className="text-primary font-medium group-hover:underline">

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 interface ArticleCardProps {
   id: string;
+  slug?: string;
   categorySlug: string;
   title: string;
   excerpt: string;
@@ -15,6 +16,7 @@ interface ArticleCardProps {
 
 const ArticleCard = ({
   id,
+  slug,
   categorySlug,
   title,
   excerpt,
@@ -25,13 +27,8 @@ const ArticleCard = ({
   isShareArticle = false,
   isComingSoon = false,
 }: ArticleCardProps) => {
-  // Determine link path based on article type
-  let linkPath = `/category/${categorySlug}/article/${id}`;
-  if (isShareArticle) {
-    linkPath = `/category/${categorySlug}/share/${id}`;
-  } else if (isFeatureReview) {
-    linkPath = `/category/${categorySlug}/review/${id}`;
-  }
+  // Use flat slug URL if available, otherwise fall back to category-based path
+  const linkPath = slug ? `/${slug}` : `/category/${categorySlug}/article/${id}`;
 
   return (
     <Link

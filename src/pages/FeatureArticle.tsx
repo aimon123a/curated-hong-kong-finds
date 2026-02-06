@@ -16,11 +16,19 @@ const iconMap = {
   badge: Check,
 };
 
-const FeatureArticle = () => {
-  const { categorySlug, articleId } = useParams<{
+interface FeatureArticleProps {
+  fixedCategorySlug?: string;
+  fixedArticleId?: string;
+}
+
+const FeatureArticle = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleProps = {}) => {
+  const params = useParams<{
     categorySlug: string;
     articleId: string;
   }>();
+
+  const categorySlug = fixedCategorySlug || params.categorySlug;
+  const articleId = fixedArticleId || params.articleId;
 
   const article = getArticleById(articleId || "");
   const category = getCategoryBySlug(categorySlug || "");
