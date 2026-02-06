@@ -42,6 +42,7 @@ const ArticleCard = ({
           alt={title}
           className="article-image w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
         />
         {isPR && <span className="pr-label">PR</span>}
         {isComingSoon && (

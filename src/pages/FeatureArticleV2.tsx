@@ -250,6 +250,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                   src={articleContent.heroImages[0]}
                   alt={`${product.name}`}
                   className="w-full h-auto object-cover"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             )}
@@ -274,6 +276,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                       src={articleContent.heroImages[1]}
                       alt={`${product.name} 商店實拍`}
                       className="w-full h-auto object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}
@@ -327,6 +331,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                       src={articleContent.trialResults.image}
                       alt="30日試用效果"
                       className="w-full h-auto"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}
@@ -351,6 +357,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                       src={articleContent.productSizes.image}
                       alt={articleContent.productSizes.title}
                       className="w-full max-w-md mx-auto"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}
@@ -567,6 +575,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                             src={section.image}
                             alt={section.question}
                             className="w-full h-auto rounded-sm"
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                       )}
