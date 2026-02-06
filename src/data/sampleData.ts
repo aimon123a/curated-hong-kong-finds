@@ -1,6 +1,6 @@
 // Sample data for the jaagSELECT HK website
 
-import keiImage from "@/assets/selectors/kei.jpg";
+import ansonImage from "@/assets/selectors/kei.jpg";
 import vicImage from "@/assets/selectors/vic.jpg";
 import gilImage from "@/assets/selectors/gil.jpg";
 import jacImage from "@/assets/selectors/jac.jpg";
@@ -71,13 +71,13 @@ export const categories = {
 
 export const selectors: Selector[] = [
   {
-    id: "kei",
-    name: "Kei",
-    englishName: "KEI",
+    id: "anson",
+    name: "Anson",
+    englishName: "ANSON",
     title: "身體護理專員",
     specialty: "身體暗瘡控制",
     bio: "擁有超過29年生暗瘡經驗，專注於身體肌膚護理研究。曾在瞼部降落火箭 (月球表面) ，對暗瘡成因及護理有深入了解。希望自己都值得擁有健康自信的肌膚。",
-    imageUrl: keiImage,
+    imageUrl: ansonImage,
     articleCount: 2,
     expertise: ["身體暗瘡", "背部護理", "去角質", "身體乳液"],
     socialLinks: {
@@ -91,7 +91,7 @@ export const articles = [
   {
     id: "coming-soon-001",
     categorySlug: "kitchen",
-    selectorId: "kei",
+    selectorId: "anson",
     title: "「？？？」 親自評測中，敬請期待",
     excerpt: "敬請期待我們的下一篇深度評測文章！",
     imageUrl: comingSoonPreviewImage,
@@ -101,16 +101,16 @@ export const articles = [
     isShareArticle: true,
     isComingSoon: true,
     author: {
-      name: "Kei",
+      name: "Anson",
       title: "身體護理專家",
-      imageUrl: keiImage,
+      imageUrl: ansonImage,
     },
   },
-  // Kei's Feature Article 2 - Back Acne Solution (from Word doc)
+  // Anson's Feature Article 2 - Back Acne Solution (from Word doc)
   {
-    id: "kei-clearex-wi-v2",
+    id: "anson-clearex-wi-v2",
     categorySlug: "beauty",
-    selectorId: "kei",
+    selectorId: "anson",
     title: "Clearex-WI 真的有用嗎？親自產品評測",
     excerpt: "日本製藥大廠「第一三共」研發低刺激藥用沐浴露，專治身體暗瘡。旅遊日本時偶遇的背痘救星！",
     imageUrl: clearexWiProductImage,
@@ -119,9 +119,9 @@ export const articles = [
     isFeatureReview: true,
     isShareArticle: true,
     author: {
-      name: "Kei",
+      name: "Anson",
       title: "身體護理專家",
-      imageUrl: keiImage,
+      imageUrl: ansonImage,
     },
     content: `
       <div class="lead-text">
@@ -327,7 +327,7 @@ export const articles = [
         tips: "雙管齊下效果更佳！配合背粒消使用，就算有新痘都好快消炎。"
       },
       verdict: {
-        title: "Kei 的真實感受",
+        title: "Anson 的真實感受",
         content: "個人感受背部明顯平滑了，發炎情況也減少了。使用了30日，真的看到了改變。對於香港這種濕熱天氣以及經常加班的打工一族，這款產品真的是救星！推薦給同樣受背痘困擾的你。"
       }
     },
@@ -444,8 +444,8 @@ export const products = {
     relatedArticles: ["bk001"],
   },
   // Selector products
-  "prod-kei-001": {
-    id: "prod-kei-001",
+  "prod-anson-001": {
+    id: "prod-anson-001",
     name: "Paula's Choice 2% BHA 身體乳液",
     brand: "Paula's Choice",
     price: "298",
@@ -466,10 +466,10 @@ export const products = {
       { name: "官方網站", url: "#", price: "298" },
       { name: "Lookfantastic", url: "#", price: "320" },
     ],
-    relatedArticles: ["kei-001"],
+    relatedArticles: ["anson-001"],
   },
-  "prod-kei-002": {
-    id: "prod-kei-002",
+  "prod-anson-002": {
+    id: "prod-anson-002",
     name: "CeraVe SA 潔膚露",
     brand: "CeraVe",
     price: "128",
@@ -490,7 +490,7 @@ export const products = {
       { name: "萬寧", url: "#", price: "128" },
       { name: "屈臣氏", url: "#", price: "135" },
     ],
-    relatedArticles: ["kei-001"],
+    relatedArticles: ["anson-001"],
   },
   "prod-vic-001": {
     id: "prod-vic-001",
@@ -715,7 +715,7 @@ export const productDetails: ProductDetail[] = [
       { size: "450ml", price: "200", jpy: "3,900", imageUrl: clearexWiMainImage },
       { size: "抗痘套裝", price: "300", jpy: "5,800", imageUrl: clearexWiAntiAcneSetImage }
     ],
-    relatedArticleId: "kei-clearex-wi-v2"
+    relatedArticleId: "anson-clearex-wi-v2"
   }
 ];
 

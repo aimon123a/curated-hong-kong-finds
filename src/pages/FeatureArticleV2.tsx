@@ -604,7 +604,7 @@ const FeatureArticleV2 = () => {
                 <ul className="space-y-3">
                   <li>
                     <Link 
-                      to="/category/beauty/review/kei-clearex-wi-v2"
+                      to="/category/beauty/review/anson-clearex-wi-v2"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors block"
                     >
                       → Clearex-WI 真的有用嗎？親自產品評測
