@@ -3,12 +3,36 @@ import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { getProductDetailById } from "@/data/sampleData";
 import { ChevronRight, Star, Check, AlertCircle, ShoppingCart, Heart, Truck, CreditCard, Package } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
   const product = getProductDetailById(productId || "");
   const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    const variant = product.variants[selectedSize];
+    addItem({
+      id: `${product.id}-${selectedSize}`,
+      name: product.name,
+      brand: product.brand,
+      variant: variant.size,
+      price: parseInt(variant.price),
+      quantity,
+      imageUrl: variant.imageUrl || product.imageUrl,
+      weight: 200,
+    });
+    toast({
+      title: "已加入購物車",
+      description: `${product.name} (${variant.size}) × ${quantity}`,
+    });
+    setQuantity(1);
+  };
 
   if (!product) {
     return (
@@ -159,13 +183,13 @@ const ProductDetail = () => {
                 </button>
               </div>
               
-              <Link 
-                to="/cart"
+              <button 
+                onClick={handleAddToCart}
                 className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-4 h-4" />
                 加入購物車
-              </Link>
+              </button>
             </div>
 
             {/* Added count */}
