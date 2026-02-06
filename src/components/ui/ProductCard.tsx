@@ -32,6 +32,7 @@ const ProductCard = ({
           alt={name}
           className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
         />
         {isRecommended && (
           <span className="absolute top-2 left-2 px-2 py-0.5 text-xs font-medium bg-primary text-primary-foreground">

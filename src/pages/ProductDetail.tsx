@@ -84,6 +84,8 @@ const ProductDetail = () => {
                 src={product.variants[selectedSize]?.imageUrl || product.imageUrl}
                 alt={`${product.name} - ${product.variants[selectedSize]?.size}`}
                 className="max-w-full max-h-full object-contain"
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
             

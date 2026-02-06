@@ -104,6 +104,8 @@ const Home = () => {
             src={activeSlide.bgImage} 
             alt="" 
             className="absolute right-0 top-0 h-full w-full md:w-3/4 lg:w-2/3 object-cover object-center"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
 
