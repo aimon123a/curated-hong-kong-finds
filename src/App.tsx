@@ -11,6 +11,7 @@ import Article from "./pages/Article";
 import Articles from "./pages/Articles";
 import FeatureArticle from "./pages/FeatureArticle";
 import FeatureArticleV2 from "./pages/FeatureArticleV2";
+import ArticleBySlug from "./pages/ArticleBySlug";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
@@ -21,7 +22,6 @@ import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
-import ClearexWiArticle from "./pages/ClearexWiArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,7 +51,8 @@ const App = () => (
             <Route path="/selector/:selectorId" element={<Selector />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/clearex-wi" element={<ClearexWiArticle />} />
+            {/* Flat article slug route - must be BEFORE catch-all */}
+            <Route path="/:slug" element={<ArticleBySlug />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

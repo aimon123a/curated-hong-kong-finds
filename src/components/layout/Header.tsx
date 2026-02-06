@@ -164,7 +164,7 @@ const Header = () => {
                           {searchResults.articles.map((article) => (
                             <button
                               key={article.id}
-                              onClick={() => handleResultClick(`/category/${article.categorySlug}/share/${article.id}`)}
+                              onClick={() => handleResultClick(article.slug ? `/${article.slug}` : `/category/${article.categorySlug}/share/${article.id}`)}
                               className="w-full text-left p-3 bg-muted/50 hover:bg-muted rounded-sm transition-colors"
                             >
                               <p className="text-sm font-medium text-foreground line-clamp-1">

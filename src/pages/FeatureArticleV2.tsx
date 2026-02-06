@@ -612,7 +612,7 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                 <ul className="space-y-3">
                   <li>
                     <Link 
-                      to="/category/beauty/review/anson-clearex-wi-v2"
+                      to="/clearex-wi"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors block"
                     >
                       → Clearex-WI 真的有用嗎？親自產品評測

@@ -90,6 +90,7 @@ export const articles = [
   // Coming Soon placeholder article
   {
     id: "coming-soon-001",
+    slug: "coming-soon",
     categorySlug: "kitchen",
     selectorId: "anson",
     title: "「？？？」 親自評測中，敬請期待",
@@ -109,6 +110,7 @@ export const articles = [
   // Anson's Feature Article 2 - Back Acne Solution (from Word doc)
   {
     id: "anson-clearex-wi-v2",
+    slug: "clearex-wi",
     categorySlug: "beauty",
     selectorId: "anson",
     title: "Clearex-WI 真的有用嗎？親自產品評測",
@@ -741,6 +743,10 @@ export const getProductById = (id: string) => {
 
 export const getCategoryBySlug = (slug: string) => {
   return categories[slug as keyof typeof categories];
+};
+
+export const getArticleBySlug = (slug: string) => {
+  return articles.find((article) => article.slug === slug);
 };
 
 export const getSelectorById = (id: string) => {
