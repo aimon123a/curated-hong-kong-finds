@@ -130,9 +130,23 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  <p className="mb-2">⚠️ 請在付款時備註訂單編號：<span className="font-medium text-foreground">{order.orderNumber}</span></p>
-                  <p>付款完成後，我們將會發送電郵確認您的訂單。</p>
+                <div className="text-sm text-muted-foreground space-y-2">
+                  <p className="font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-sm px-3 py-2">
+                    ⚠️ 請在付款時備註訂單編號：<span className="font-bold text-foreground">{order.orderNumber}</span>
+                  </p>
+                  <p className="flex items-center gap-1.5">
+                    付款完成後，請將截圖發送
+                    <a
+                      href="https://www.instagram.com/jaag_select"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-primary font-medium hover:underline"
+                    >
+                      <Instagram className="w-4 h-4" />
+                      @jaag_select
+                    </a>
+                    以確認您的訂單。
+                  </p>
                 </div>
               </div>
             ) : (
@@ -151,9 +165,24 @@ const Checkout = () => {
                     </div>
                   </div>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  <p className="mb-2">⚠️ 請在付款時備註訂單編號：<span className="font-medium text-foreground">{order.orderNumber}</span></p>
+                <div className="text-sm text-muted-foreground space-y-2">
+                  <p className="font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-sm px-3 py-2">
+                    ⚠️ 請在付款時備註訂單編號：<span className="font-bold text-foreground">{order.orderNumber}</span>
+                  </p>
                   <p>掃描 QR Code 後，請輸入正確金額並完成付款。</p>
+                  <p className="flex items-center gap-1.5">
+                    付款完成後，請將截圖發送
+                    <a
+                      href="https://www.instagram.com/jaag_select"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-primary font-medium hover:underline"
+                    >
+                      <Instagram className="w-4 h-4" />
+                      @jaag_select
+                    </a>
+                    以確認您的訂單。
+                  </p>
                 </div>
               </div>
             )}
