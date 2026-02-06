@@ -130,7 +130,7 @@ export const articles = [
     `,
     featureProduct: {
       id: "clearex-wi-v2",
-      productId: "prod-clearex-wi-v2",
+      productId: "clearex-wi",
       name: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
       brand: "第一三共 DAIICHI SANKYO",
       price: "100-180",

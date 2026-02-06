@@ -402,7 +402,7 @@ const Cart = () => {
                 {addOnProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="border border-border rounded-sm p-3 hover:border-primary/50 transition-colors"
+                    className="border border-border rounded-sm p-3 hover:border-primary/50 transition-colors flex flex-col"
                   >
                     <div className="aspect-square bg-muted rounded-sm overflow-hidden mb-2">
                       <img
@@ -415,15 +415,17 @@ const Cart = () => {
                       {product.name}
                     </h3>
                     <p className="text-xs text-muted-foreground mb-2">{product.description}</p>
-                    <p className="text-sm font-bold text-primary mb-2">
-                      HKD {product.price}
-                    </p>
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="w-full text-xs text-primary border border-primary rounded-sm py-1 hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      加入購物車
-                    </button>
+                    <div className="mt-auto">
+                      <p className="text-sm font-bold text-primary mb-2">
+                        HKD {product.price}
+                      </p>
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="w-full text-xs text-primary border border-primary rounded-sm py-1 hover:bg-primary hover:text-primary-foreground transition-colors"
+                      >
+                        加入購物車
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
