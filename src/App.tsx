@@ -21,6 +21,7 @@ import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
+import ClearexWiArticle from "./pages/ClearexWiArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
             <Route path="/selector/:selectorId" element={<Selector />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/clearex-wi" element={<ClearexWiArticle />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
