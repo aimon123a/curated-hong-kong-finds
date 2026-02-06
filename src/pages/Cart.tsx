@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/CartContext";
-import clearexWiProductImage from "@/assets/products/clearex-wi.png";
+import senakyuSprayImage from "@/assets/products/senakyu-spray.webp";
+import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
 
 interface AddOnProduct {
   id: string;
@@ -44,14 +45,14 @@ const Cart = () => {
       id: "senakyu",
       name: "背粒消 噴霧",
       price: 89,
-      imageUrl: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop",
+      imageUrl: senakyuSprayImage,
       description: "屈臣氏有售",
     },
     {
       id: "clearex-refill",
       name: "CLEAREX-Wi 補充裝 380ml",
       price: 180,
-      imageUrl: clearexWiProductImage,
+      imageUrl: clearexWi380mlRefillImage,
       description: "環保補充裝",
     },
   ];

@@ -193,9 +193,9 @@ export const articles = [
           title: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
           description: "含有殺菌成分和消炎成分，能夠有效殺菌清潔，解決引起體臭、痘痘等肌膚問題的細菌。",
           variants: [
-            { size: "200ml", price: "100 元（~1,900 円）" },
-            { size: "450ml", price: "180 元（~3,500 円）" },
-            { size: "補充用 380ml", price: "150 元（~2,950 円）" }
+            { size: "200ml", price: "100 元（~2,000 円）" },
+            { size: "450ml", price: "200 元（~4,000 円）" },
+            { size: "補充用 380ml", price: "180 元（~3,600 円）" }
           ]
         },
         knowledge: {
@@ -710,10 +710,10 @@ export const productDetails: ProductDetail[] = [
       { label: "適用對象", value: "背部暗瘡、敏感肌、運動愛好者" }
     ],
     variants: [
-      { size: "200ml", price: "100", jpy: "1,900", imageUrl: clearexWi200mlImage },
-      { size: "380ml 補充裝", price: "180", jpy: "3,500", imageUrl: clearexWi380mlRefillImage },
-      { size: "450ml", price: "200", jpy: "3,900", imageUrl: clearexWiMainImage },
-      { size: "抗痘套裝", price: "300", jpy: "5,800", imageUrl: clearexWiAntiAcneSetImage }
+      { size: "200ml", price: "100", jpy: "2,000", imageUrl: clearexWi200mlImage },
+      { size: "380ml 補充裝", price: "180", jpy: "3,600", imageUrl: clearexWi380mlRefillImage },
+      { size: "450ml", price: "200", jpy: "4,000", imageUrl: clearexWiMainImage },
+      { size: "抗痘套裝", price: "300", jpy: "6,000", imageUrl: clearexWiAntiAcneSetImage }
     ],
     relatedArticleId: "anson-clearex-wi-v2"
   }
