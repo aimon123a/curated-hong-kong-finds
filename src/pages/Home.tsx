@@ -56,7 +56,7 @@ const heroSlides = [
   {
     id: "04",
     category: "CURATED FOR YOU",
-    title: "由專業編輯精選",
+    title: "由編輯團隊精選",
     subtitle: "最值得信賴的產品推薦",
     lines: [
       "我們深入研究每一款產品",
@@ -286,7 +286,7 @@ const Home = () => {
                   成為 SELECTor
                 </h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  如果你在某個領域有專業知識和熱情，歡迎加入我們的團隊，與更多人分享你的專業見解與真實評測。
+                  如果你在某個領域有豐富經驗和熱情，歡迎加入我們的團隊，與更多人分享你的見解與真實評測。
                 </p>
                 <Link
                   to="/selectors"
@@ -332,7 +332,7 @@ const Home = () => {
                 </div>
                 <div>
                   <p className="text-4xl font-bold text-primary mb-2">1+</p>
-                  <p className="text-sm text-muted-foreground">專業編輯</p>
+                  <p className="text-sm text-muted-foreground">編輯團隊</p>
                 </div>
                 <div>
                   <p className="text-4xl font-bold text-primary mb-2">500+</p>

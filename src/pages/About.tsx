@@ -15,7 +15,7 @@ const About = () => {
             關於 jaagSELECT
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            為香港消費者提供最可靠、最專業的產品評測與推薦
+            為香港消費者提供最可靠、最詳盡的產品評測與推薦
           </p>
         </div>
 
@@ -37,9 +37,9 @@ const About = () => {
           <h2 className="text-2xl font-bold mb-8 text-center">我們的核心價值</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-muted p-6 rounded-sm">
-              <h3 className="text-lg font-bold mb-3 text-primary">專業嚴謹</h3>
+              <h3 className="text-lg font-bold mb-3 text-primary">認真嚴謹</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                每一篇評測都經過專業編輯的親身測試，從產品成分、使用體驗到性價比，為您提供全方位的分析。
+                每一篇評測都經過編輯的親身測試，從產品成分、使用體驗到性價比，為您提供全方位的分析。
               </p>
             </div>
             <div className="bg-muted p-6 rounded-sm">
@@ -61,7 +61,7 @@ const About = () => {
         <section className="max-w-4xl mx-auto mb-16">
           <h2 className="text-2xl font-bold mb-8 text-center">我們的團隊</h2>
           <p className="text-muted-foreground leading-relaxed text-center max-w-2xl mx-auto mb-8">
-            jaagSELECT 的編輯團隊由各領域的專家組成，包括美容達人、健身教練、生活風格博主等。每位 SELECTor 都在其專業領域擁有豐富經驗，為您帶來最專業的產品推薦。
+            jaagSELECT 的編輯團隊由對生活充滿熱情的人組成，包括美容達人、健身教練、生活風格博主等。每位 SELECTor 都在其擅長領域擁有豐富經驗，為您帶來最用心的產品推薦。
           </p>
           <div className="text-center">
             <Link

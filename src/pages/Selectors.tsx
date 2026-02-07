@@ -17,8 +17,8 @@ const Selectors = () => {
               SELECTor
             </h1>
             <p className="text-lg text-muted-foreground max-w-xl">
-              我們的專業編輯團隊，各自專精於不同領域。
-              憑藉豐富經驗和專業知識，為您挑選最值得推薦的產品。
+               我們的編輯團隊，各自深耕於不同領域。
+               憑藉豐富經驗和真實體驗，為您挑選最值得推薦的產品。
             </p>
           </div>
         </div>
@@ -29,8 +29,8 @@ const Selectors = () => {
         <div className="container-editorial">
           <SectionHeader
             englishTitle="OUR EXPERTS"
-            chineseTitle="專業編輯團隊"
-            description="每位 SELECTor 都在其專業領域擁有豐富經驗"
+             chineseTitle="編輯團隊"
+             description="每位 SELECTor 都在其擅長領域擁有豐富經驗"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -48,8 +48,8 @@ const Selectors = () => {
             成為 SELECTor
           </h2>
           <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            如果你在某個領域有專業知識和熱情，歡迎加入我們的團隊，
-            與更多人分享你的專業見解與真實評測。
+             如果你在某個領域有豐富經驗和熱情，歡迎加入我們的團隊，
+             與更多人分享你的見解與真實評測。
           </p>
           <a
             href="/contact"
