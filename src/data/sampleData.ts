@@ -50,7 +50,7 @@ export const categories = {
     slug: "beauty",
     englishTitle: "BEAUTY APPLIANCES",
     chineseTitle: "外在管理",
-    description: "精選美容家電，從護膚到美髮，專業編輯為您挑選最值得入手的產品。",
+    description: "精選美容家電，從護膚到美髮，編輯團隊為您挑選最值得入手的產品。",
     imageUrl: beautyHeroImage,
   },
   kitchen: {

@@ -8,9 +8,9 @@ interface DocumentMetaOptions {
   ogImage?: string;
 }
 
-const DEFAULT_TITLE = "jaagSELECT HK - 專業產品評測與推薦";
+const DEFAULT_TITLE = "jaagSELECT HK - 產品評測與推薦";
 const DEFAULT_DESCRIPTION =
-  "由專業編輯精選，為您帶來最值得信賴的產品推薦。深入研究每一款產品，讓您的選擇更加輕鬆。";
+  "由編輯團隊精選，為您帶來最值得信賴的產品推薦。深入研究每一款產品，讓您的選擇更加輕鬆。";
 const SUFFIX = " ｜ JaagSelect";
 
 /**

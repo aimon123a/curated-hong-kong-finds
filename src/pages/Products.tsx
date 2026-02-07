@@ -32,7 +32,7 @@ const Products = () => {
             產品目錄
           </h1>
           <p className="text-muted-foreground max-w-2xl">
-            精選日本優質產品，由我們的專業編輯親自測試推薦。每款產品均經過嚴格篩選，確保品質與效果。
+            精選日本優質產品，由我們的編輯團隊親自測試推薦。每款產品均經過嚴格篩選，確保品質與效果。
           </p>
         </div>
       </section>

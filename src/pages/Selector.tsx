@@ -81,7 +81,7 @@ const Selector = () => {
 
               {/* Expertise Tags */}
               <div className="mb-6">
-                <p className="text-sm font-medium text-foreground mb-2">專業領域</p>
+                <p className="text-sm font-medium text-foreground mb-2">擅長領域</p>
                 <div className="flex flex-wrap gap-2">
                   {selector.expertise.map((tag) => (
                     <span
@@ -136,7 +136,7 @@ const Selector = () => {
           <SectionHeader
             englishTitle={`ARTICLES BY ${selector.englishName}`}
             chineseTitle={`${selector.name} 的文章`}
-            description={`探索 ${selector.name} 的專業評測和推薦`}
+            description={`探索 ${selector.name} 的評測和推薦`}
           />
 
           {selectorArticles.length > 0 ? (

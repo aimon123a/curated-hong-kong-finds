@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="text-xs text-background/60 font-medium ml-2">HK</span>
             </Link>
             <p className="text-sm text-background/70 leading-relaxed max-w-md">
-              由專業編輯精選，為您帶來最值得信賴的產品推薦。
+              由編輯團隊精選，為您帶來最值得信賴的產品推薦。
               我們深入研究每一款產品，讓您的選擇更加輕鬆。
             </p>
           </div>
