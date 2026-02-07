@@ -77,6 +77,18 @@ const TwitterEmbed = ({
               {content}
             </p>
 
+            {/* Attached Image */}
+            {imageUrl && (
+              <div className="rounded-lg overflow-hidden border border-border mb-4">
+                <img
+                  src={imageUrl}
+                  alt="推文附圖"
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
 
             {/* Footer */}
             <div className="flex items-center gap-4 text-sm text-muted-foreground pt-3 border-t border-border">
