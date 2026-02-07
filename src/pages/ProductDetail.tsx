@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { getProductDetailById, getArticleById } from "@/data/sampleData";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { ChevronRight, Star, Check, AlertCircle, ShoppingCart, Heart, Truck, CreditCard, Package } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
@@ -13,6 +14,12 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
   const { toast } = useToast();
+
+  // Dynamic page title & meta for SEO
+  useDocumentMeta({
+    title: product ? `${product.brand} ${product.name}` : undefined,
+    description: product?.fullDescription,
+  });
 
   const handleAddToCart = () => {
     if (!product) return;
