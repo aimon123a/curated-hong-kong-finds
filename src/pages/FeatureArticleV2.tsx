@@ -311,11 +311,38 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                       date={articleContent.japaneseRecommendation.mainTweet.date}
                       content={articleContent.japaneseRecommendation.mainTweet.content}
                       translation={articleContent.japaneseRecommendation.mainTweet.translation}
-                      imageUrl={articleContent.japaneseRecommendation.mainTweet.imageUrl}
                       likes={articleContent.japaneseRecommendation.mainTweet.likes}
                       avatarUrl={articleContent.japaneseRecommendation.mainTweet.avatarUrl}
                       replies={articleContent.japaneseRecommendation.replies}
                     />
+                  )}
+
+                  {/* Inspiration Note - Combo Product Image with Purchase Link */}
+                  {articleContent.japaneseRecommendation.mainTweet?.imageUrl && (
+                    <div className="mt-8 bg-accent/10 border border-accent/30 rounded-sm p-5">
+                      <p className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
+                        💡 我們的「抗痘套餐」靈感正是來自這位日本網友的推薦！
+                      </p>
+                      <div className="bg-white border border-border rounded-sm overflow-hidden mb-4">
+                        <img
+                          src={articleContent.japaneseRecommendation.mainTweet.imageUrl}
+                          alt="CLEAREX-Wi + 背粒消 抗痘套餐組合"
+                          className="w-full max-w-sm mx-auto h-auto object-contain p-4"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        沐浴時使用 CLEAREX-Wi 殺菌清潔，洗澡後噴上背粒消鎮定消炎，雙管齊下效果更佳。
+                      </p>
+                      <Link
+                        to={`/products/${product.productId || "clearex-wi"}?variant=anti-acne-set`}
+                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all"
+                      >
+                        <span>🛒</span>
+                        查看抗痘套餐
+                      </Link>
+                    </div>
                   )}
                 </section>
               )}
