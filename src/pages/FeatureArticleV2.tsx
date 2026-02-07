@@ -336,8 +336,8 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                         沐浴時使用 CLEAREX-Wi 殺菌清潔，洗澡後噴上背粒消鎮定消炎，雙管齊下效果更佳。
                       </p>
                       <Link
-                        to={`/products/${product.productId || "clearex-wi"}?variant=anti-acne-set`}
-                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all"
+                        to={`/products/${product.productId || "clearex-wi"}?variant=3`}
+                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
                       >
                         <span>🛒</span>
                         查看抗痘套餐
@@ -353,11 +353,12 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                   個人試用30日的效果
                 </HighlightedHeading>
                 
-                <div className="bg-primary/5 border border-primary/20 rounded-sm p-4 mb-6">
-                  <p className="text-sm font-medium text-primary mb-2">
-                    <TextWithProductLinks text={articleContent?.trialResults?.subtitle || ""} />
-                  </p>
-                </div>
+                <Link
+                  to={`/products/${product.productId || "clearex-wi"}?variant=3`}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm font-bold text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg mb-6"
+                >
+                  🛒 抗痘套餐真實評測
+                </Link>
 
                 {articleContent?.trialResults?.image && (
                   <div className="bg-white border border-border rounded-sm overflow-hidden mb-6">

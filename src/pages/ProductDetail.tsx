@@ -1,5 +1,5 @@
-import { useParams, Link } from "react-router-dom";
-import { useState } from "react";
+import { useParams, Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { getProductDetailById, getArticleById } from "@/data/sampleData";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
@@ -9,11 +9,23 @@ import { useToast } from "@/hooks/use-toast";
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
+  const [searchParams] = useSearchParams();
   const product = getProductDetailById(productId || "");
   const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
   const { toast } = useToast();
+
+  // Auto-select variant from URL query param (e.g., ?variant=3)
+  useEffect(() => {
+    const variantParam = searchParams.get("variant");
+    if (variantParam && product) {
+      const index = parseInt(variantParam, 10);
+      if (!isNaN(index) && index >= 0 && index < product.variants.length) {
+        setSelectedSize(index);
+      }
+    }
+  }, [searchParams, product]);
 
   // Dynamic page title & meta for SEO
   useDocumentMeta({
