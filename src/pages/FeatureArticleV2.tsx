@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { getArticleById, getCategoryBySlug, getSelectorById } from "@/data/sampleData";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { ChevronRight, Clock, Check, AlertCircle, Lightbulb, Star, Share2, Bookmark } from "lucide-react";
 import ReviewerProfile from "@/components/article/ReviewerProfile";
 import ArticleTableOfContents from "@/components/article/ArticleTableOfContents";
@@ -65,6 +66,16 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
   const categorySlug = fixedCategorySlug || params.categorySlug;
   const articleId = fixedArticleId || params.articleId;
 
+  const article = articleId ? getArticleById(articleId) : null;
+  const category = categorySlug ? getCategoryBySlug(categorySlug) : null;
+  const selector = article?.selectorId ? getSelectorById(article.selectorId) : null;
+
+  // Dynamic page title & meta for SEO
+  useDocumentMeta({
+    title: article?.title,
+    description: article?.excerpt,
+  });
+
   // Early return with loading state to prevent white screen flashes
   if (!categorySlug || !articleId) {
     return (
@@ -78,10 +89,6 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
       </Layout>
     );
   }
-
-  const article = getArticleById(articleId);
-  const category = getCategoryBySlug(categorySlug);
-  const selector = article?.selectorId ? getSelectorById(article.selectorId) : null;
 
   // Handle Coming Soon articles
   if (article && (article as any).isComingSoon) {
