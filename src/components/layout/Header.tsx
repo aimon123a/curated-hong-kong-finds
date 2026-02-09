@@ -66,6 +66,11 @@ const Header = () => {
             <span className="text-xs text-muted-foreground font-medium">HK</span>
           </Link>
 
+          {/* Slogan */}
+          <span className="hidden md:inline-block text-xs text-muted-foreground border border-border rounded-full px-3 py-1 ml-2">
+            省流：評測 · 推薦 · 代購
+          </span>
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link

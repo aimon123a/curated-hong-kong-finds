@@ -135,7 +135,7 @@ export const articles = [
       productId: "clearex-wi",
       name: "CLEAREX-Wi 低刺激抗菌藥用沐浴乳",
       brand: "第一三共 DAIICHI SANKYO",
-      price: "100-180",
+      price: "100-220",
       imageUrl: clearexWiMainImage,
       rating: 4.9,
       productType: "醫藥部外品",
@@ -196,7 +196,7 @@ export const articles = [
           description: "含有殺菌成分和消炎成分，能夠有效殺菌清潔，解決引起體臭、痘痘等肌膚問題的細菌。",
           variants: [
             { size: "200ml", price: "100 元（~2,000 円）" },
-            { size: "450ml", price: "200 元（~4,000 円）" },
+            { size: "450ml", price: "220 元（~4,400 円）" },
             { size: "補充用 380ml", price: "180 元（~3,600 円）" }
           ]
         },
@@ -670,7 +670,7 @@ export const productDetails: ProductDetail[] = [
     subcategory: "沐浴露",
     imageUrl: clearexWiMainImage,
     rating: 4.9,
-    reviewCount: 0,
+    reviewCount: 1,
     addedCount: 5,
     fullDescription: "第一三共 CLEAREX-Wi 沐浴露。含有殺菌和消炎成分的溫和型潔凈沐浴露。弱酸性的藥用沐浴露，適合敏感的皮膚護理。用於預防各種細菌引起的痤瘡和異味，從臉部到全身都可以使用。",
     functions: "清潔肌膚，消毒殺菌，防止體味，汗味和粉刺。",
@@ -714,8 +714,8 @@ export const productDetails: ProductDetail[] = [
     variants: [
       { size: "200ml", price: "100", jpy: "2,000", imageUrl: clearexWi200mlImage },
       { size: "380ml 補充裝", price: "180", jpy: "3,600", imageUrl: clearexWi380mlRefillImage },
-      { size: "450ml", price: "200", jpy: "4,000", imageUrl: clearexWiMainImage },
-      { size: "抗痘套裝", price: "300", jpy: "6,000", imageUrl: clearexWiAntiAcneSetImage }
+      { size: "450ml", price: "220", jpy: "4,400", imageUrl: clearexWiMainImage },
+      { size: "抗痘套裝", price: "320", jpy: "6,400", imageUrl: clearexWiAntiAcneSetImage }
     ],
     relatedArticleId: "anson-clearex-wi-v2"
   }

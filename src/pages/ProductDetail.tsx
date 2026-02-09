@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const product = getProductDetailById(productId || "");
   const [selectedSize, setSelectedSize] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [wishlisted, setWishlisted] = useState(false);
   const { addItem } = useCart();
   const { toast } = useToast();
 
@@ -164,8 +165,11 @@ const ProductDetail = () => {
                   {product.reviewCount}人評價
                 </span>
               </div>
-              <button className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors">
-                <Heart className="w-4 h-4" />
+              <button 
+                onClick={() => setWishlisted(!wishlisted)}
+                className={`flex items-center gap-1 text-sm transition-colors ${wishlisted ? 'text-red-500' : 'text-muted-foreground hover:text-red-500'}`}
+              >
+                <Heart className={`w-4 h-4 ${wishlisted ? 'fill-current' : ''}`} />
                 收藏
               </button>
             </div>
@@ -197,12 +201,18 @@ const ProductDetail = () => {
                   <button
                     key={index}
                     onClick={() => setSelectedSize(index)}
-                    className={`px-4 py-2 rounded-sm border text-sm transition-colors ${
+                    className={`relative px-4 py-2 rounded-sm border text-sm transition-colors ${
                       selectedSize === index
                         ? "border-primary bg-primary/10 text-primary"
                         : "border-border hover:border-primary/50"
                     }`}
                   >
+                    {variant.size === "450ml" && (
+                      <span className="absolute -top-2 -left-1 px-1.5 py-0.5 text-[10px] font-bold bg-orange-500 text-white rounded-sm">熱門</span>
+                    )}
+                    {variant.size === "抗痘套裝" && (
+                      <span className="absolute -top-2 -left-1 px-1.5 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-sm">推薦</span>
+                    )}
                     {variant.size}
                   </button>
                 ))}
@@ -249,7 +259,7 @@ const ProductDetail = () => {
               </p>
               <p className="flex items-start gap-2">
                 <CreditCard className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>支付方式：轉數快 · 八達通</span>
+                <span>支付方式：FPS 轉數快 · PayMe</span>
               </p>
             </div>
           </div>
@@ -258,18 +268,22 @@ const ProductDetail = () => {
         {/* Related Articles - Moved above product introduction */}
         {product.relatedArticleId && (
           <section className="mb-12">
-            <div className="border-l-4 border-primary pl-4 mb-6">
-              <h2 className="text-xl font-bold text-foreground">相關評測</h2>
-            </div>
+            <div className="bg-primary/10 border-2 border-primary rounded-sm p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-bold rounded-sm">📖 必讀</span>
+                <h2 className="text-xl font-bold text-foreground">相關評測</h2>
+              </div>
 
-            <Link
-              to={`/${(getArticleById(product.relatedArticleId) as any)?.slug || product.relatedArticleId}`}
-              className="block bg-card border border-border rounded-sm p-6 hover:border-primary transition-colors group"
-            >
-              <p className="text-primary font-medium group-hover:underline">
-                → {product.name} 真的有用嗎？親自產品評測
-              </p>
-            </Link>
+              <Link
+                to={`/${(getArticleById(product.relatedArticleId) as any)?.slug || product.relatedArticleId}`}
+                className="block bg-card border border-primary/30 rounded-sm p-4 hover:bg-primary/5 transition-colors group"
+              >
+                <p className="text-primary font-bold text-lg group-hover:underline">
+                  → {product.name} 真的有用嗎？親自產品評測
+                </p>
+                <p className="text-muted-foreground text-sm mt-1">看看我們的編輯親身使用30日後的真實感受</p>
+              </Link>
+            </div>
           </section>
         )}
 

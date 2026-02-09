@@ -96,15 +96,36 @@ const TwitterEmbed = ({
           </div>
         </a>
 
-        {/* Translation - Right (2 cols) - Fits content */}
+        {/* Translation - Right (2 cols) - With highlights */}
         <div className="lg:col-span-2 bg-primary/5 border border-primary/20 rounded-lg p-4 h-fit">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-base">🇭🇰</span>
             <h4 className="text-sm font-bold text-foreground">翻譯重點</h4>
           </div>
-          <p className="text-sm text-foreground leading-relaxed whitespace-pre-line">
-            {translation}
-          </p>
+          <div className="text-sm text-foreground leading-relaxed whitespace-pre-line">
+            {translation.split('\n').map((line, i) => {
+              // Highlight lines starting with emoji or key phrases
+              const isHighlight = /^[✨🎯🛒💡]/.test(line.trim());
+              const hasKeyword = /(低刺激|殺菌|消炎|效果|推薦|好很多|光滑|減少)/.test(line);
+              if (isHighlight) {
+                return <p key={i} className="font-bold text-primary my-1">{line}</p>;
+              }
+              if (hasKeyword) {
+                // Bold the keywords inline
+                const parts = line.split(/(低刺激|殺菌|消炎|效果超讚|推薦|好很多|超光滑|明顯減少|雙管齊下)/g);
+                return (
+                  <p key={i} className="my-0.5">
+                    {parts.map((part, j) => 
+                      /(低刺激|殺菌|消炎|效果超讚|推薦|好很多|超光滑|明顯減少|雙管齊下)/.test(part)
+                        ? <mark key={j} className="bg-yellow-200/80 text-foreground font-bold px-0.5 rounded-sm">{part}</mark>
+                        : <span key={j}>{part}</span>
+                    )}
+                  </p>
+                );
+              }
+              return <p key={i} className="my-0.5">{line}</p>;
+            })}
+          </div>
         </div>
       </div>
 
@@ -146,15 +167,19 @@ const TwitterEmbed = ({
                 </div>
               </div>
 
-              {/* Reply Translation - Right */}
+              {/* Reply Translation - Right - With highlights */}
               <div className="lg:col-span-2 bg-secondary/10 border border-secondary/30 rounded-lg p-3 h-fit">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <span className="text-xs">🇭🇰</span>
                   <h5 className="text-xs font-medium text-muted-foreground">翻譯</h5>
                 </div>
-                <p className="text-foreground text-xs leading-relaxed whitespace-pre-line">
-                  {reply.translation}
-                </p>
+                <div className="text-foreground text-xs leading-relaxed whitespace-pre-line">
+                  {reply.translation.split(/(好很多|超光滑|明顯減少|消炎|好快|越來越不明顯|紅腫)/g).map((part, j) => 
+                    /(好很多|超光滑|明顯減少|消炎|好快|越來越不明顯|紅腫)/.test(part)
+                      ? <mark key={j} className="bg-yellow-200/80 text-foreground font-bold px-0.5 rounded-sm">{part}</mark>
+                      : <span key={j}>{part}</span>
+                  )}
+                </div>
               </div>
             </div>
           ))}

@@ -12,6 +12,7 @@ interface ArticleCardProps {
   isFeatureReview?: boolean;
   isShareArticle?: boolean;
   isComingSoon?: boolean;
+  tags?: string[];
 }
 
 const ArticleCard = ({
@@ -26,6 +27,7 @@ const ArticleCard = ({
   isFeatureReview = false,
   isShareArticle = false,
   isComingSoon = false,
+  tags = [],
 }: ArticleCardProps) => {
   // Use flat slug URL if available, otherwise fall back to category-based path
   const linkPath = slug ? `/${slug}` : `/category/${categorySlug}/article/${id}`;
@@ -64,9 +66,16 @@ const ArticleCard = ({
 
       {/* Content */}
       <div className="p-4 md:p-5">
-        <time className="text-xs text-muted-foreground mb-2 block">
-          {date}
-        </time>
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
+          <time className="text-xs text-muted-foreground">
+            {date}
+          </time>
+          {tags.map((tag, i) => (
+            <span key={i} className="text-xs px-2 py-0.5 bg-primary/10 text-primary rounded-full font-medium">
+              {tag}
+            </span>
+          ))}
+        </div>
         <h4 className="font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {title}
         </h4>

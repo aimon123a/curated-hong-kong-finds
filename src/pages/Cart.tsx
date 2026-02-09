@@ -365,13 +365,52 @@ const Cart = () => {
                 ) : (
                   <div>
                     <Label htmlFor="sfLockerCode">順豐智能櫃編號 *</Label>
-                    <Input
+                    <select
                       id="sfLockerCode"
                       value={address.sfLockerCode}
                       onChange={(e) => setAddress({ ...address, sfLockerCode: e.target.value })}
-                      placeholder="例如：H852M001"
-                      className={errors.sfLockerCode ? "border-destructive" : ""}
-                    />
+                      className={`flex h-10 w-full rounded-md border ${errors.sfLockerCode ? "border-destructive" : "border-input"} bg-background px-3 py-2 text-sm`}
+                    >
+                      <option value="">請選擇智能櫃</option>
+                      <optgroup label="香港島">
+                        <option value="H852H001">H852H001 - 中環站</option>
+                        <option value="H852H002">H852H002 - 金鐘站</option>
+                        <option value="H852H003">H852H003 - 銅鑼灣站</option>
+                        <option value="H852H004">H852H004 - 灣仔站</option>
+                        <option value="H852H005">H852H005 - 北角站</option>
+                        <option value="H852H006">H852H006 - 太古站</option>
+                        <option value="H852H007">H852H007 - 鰂魚涌站</option>
+                        <option value="H852H008">H852H008 - 筲箕灣站</option>
+                        <option value="H852H009">H852H009 - 西灣河站</option>
+                        <option value="H852H010">H852H010 - 香港仔</option>
+                      </optgroup>
+                      <optgroup label="九龍">
+                        <option value="H852K001">H852K001 - 旺角站</option>
+                        <option value="H852K002">H852K002 - 尖沙咀站</option>
+                        <option value="H852K003">H852K003 - 油麻地站</option>
+                        <option value="H852K004">H852K004 - 深水埗站</option>
+                        <option value="H852K005">H852K005 - 九龍塘站</option>
+                        <option value="H852K006">H852K006 - 觀塘站</option>
+                        <option value="H852K007">H852K007 - 黃大仙站</option>
+                        <option value="H852K008">H852K008 - 紅磡站</option>
+                        <option value="H852K009">H852K009 - 九龍灣站</option>
+                        <option value="H852K010">H852K010 - 鑽石山站</option>
+                      </optgroup>
+                      <optgroup label="新界">
+                        <option value="H852N001">H852N001 - 沙田站</option>
+                        <option value="H852N002">H852N002 - 大圍站</option>
+                        <option value="H852N003">H852N003 - 荃灣站</option>
+                        <option value="H852N004">H852N004 - 屯門站</option>
+                        <option value="H852N005">H852N005 - 元朗站</option>
+                        <option value="H852N006">H852N006 - 大埔墟站</option>
+                        <option value="H852N007">H852N007 - 粉嶺站</option>
+                        <option value="H852N008">H852N008 - 上水站</option>
+                        <option value="H852N009">H852N009 - 將軍澳站</option>
+                        <option value="H852N010">H852N010 - 青衣站</option>
+                        <option value="H852N011">H852N011 - 天水圍站</option>
+                        <option value="H852N012">H852N012 - 馬鞍山站</option>
+                      </optgroup>
+                    </select>
                     {errors.sfLockerCode && (
                       <p className="text-xs text-destructive mt-1 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />
@@ -385,7 +424,7 @@ const Cart = () => {
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"
                       >
-                        查找順豐智能櫃位置 →
+                        找不到你的智能櫃？查看完整列表 →
                       </a>
                     </p>
                   </div>
