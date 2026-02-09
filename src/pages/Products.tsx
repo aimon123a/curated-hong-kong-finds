@@ -3,8 +3,15 @@ import Layout from "@/components/layout/Layout";
 import { ChevronRight } from "lucide-react";
 import { productDetails } from "@/data/sampleData";
 import clearexWiProductImage from "@/assets/articles/clearex-wi-product.jpg";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Products = () => {
+  useDocumentMeta({
+    title: "產品目錄 - Clearex Wi 香港代購｜日本藥用沐浴露",
+    description: "精選日本優質產品，Clearex Wi 低刺激抗菌藥用沐浴露香港代購。由編輯團隊親自測試推薦。",
+    canonical: "/products",
+  });
+
   return (
     <Layout>
       {/* Breadcrumb - Sticky */}

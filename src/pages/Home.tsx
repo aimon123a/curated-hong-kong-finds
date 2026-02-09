@@ -6,6 +6,8 @@ import ArticleCard from "@/components/ui/ArticleCard";
 import SelectorCard from "@/components/ui/SelectorCard";
 import { articles, selectors } from "@/data/sampleData";
 import { ArrowRight } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
 
 // Import hero background images
 import beautyBg from "@/assets/hero/beauty-hero.jpg";
@@ -93,6 +95,24 @@ const Home = () => {
   }, [activeIndex]);
 
   const activeSlide = heroSlides[activeIndex];
+
+  useDocumentMeta({
+    title: "jaagSELECT HK - 產品評測與推薦｜Clearex Wi 香港代購",
+    description: "jaagSELECT HK 由編輯團隊精選，為香港消費者帶來最值得信賴的日本產品推薦。Clearex Wi 香港獨家代購、背痘沐浴露評測。",
+    canonical: "/",
+  });
+
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "jaagSELECT HK",
+    "url": "https://jaagselect.com",
+    "logo": "https://jaagselect.com/favicon.ico",
+    "description": "由編輯團隊精選，為香港消費者帶來最值得信賴的日本產品推薦與評測。",
+    "sameAs": [
+      "https://www.instagram.com/jaagselect"
+    ]
+  });
 
   return (
     <Layout>

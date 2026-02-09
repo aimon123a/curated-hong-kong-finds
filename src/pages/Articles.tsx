@@ -4,8 +4,15 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ArticleCard from "@/components/ui/ArticleCard";
 import { articles } from "@/data/sampleData";
 import { ChevronRight } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Articles = () => {
+  useDocumentMeta({
+    title: "所有文章 - Clearex Wi 評測｜背痘沐浴露推薦",
+    description: "瀏覽 jaagSELECT HK 全部評測文章。Clearex Wi 真實評測、背痘護理知識、日本藥用沐浴露推薦。",
+    canonical: "/articles",
+  });
+
   return (
     <Layout>
       {/* Breadcrumb */}
