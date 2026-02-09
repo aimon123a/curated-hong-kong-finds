@@ -20,35 +20,35 @@ const iconMap = {
 
 // Helper component to render text with CLEAREX Wi links
 const TextWithProductLinks = ({ text, productId = "clearex-wi" }: { text: string; productId?: string }) => {
-  const patterns = [/CLEAREX[- ]?Wi/gi, /Clearex[- ]?Wi/gi, /clearex[- ]?wi/gi];
-  let result = text;
-  
-  // Replace all variations with a placeholder
-  patterns.forEach(pattern => {
-    result = result.replace(pattern, '{{CLEAREX_LINK}}');
-  });
-  
-  const parts = result.split('{{CLEAREX_LINK}}');
-  
-  if (parts.length === 1) {
+  // Define link targets: keyword -> { display, url }
+  const linkMap: Array<{ pattern: RegExp; display: string; url: string }> = [
+    { pattern: /CLEAREX[- ]?Wi/gi, display: "CLEAREX-Wi", url: `/products/${productId}` },
+    { pattern: /背粒消/g, display: "背粒消", url: `/products/${productId}?variant=3` },
+  ];
+
+  // Build a combined regex
+  const combined = new RegExp(`(${linkMap.map(l => l.pattern.source).join('|')})`, 'gi');
+  const parts = text.split(combined).filter(Boolean);
+
+  if (parts.length <= 1 && parts[0] === text) {
     return <>{text}</>;
   }
-  
+
   return (
     <>
-      {parts.map((part, index) => (
-        <span key={index}>
-          {part}
-          {index < parts.length - 1 && (
-            <Link 
-              to={`/products/${productId}`}
-              className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
-            >
-              CLEAREX-Wi
+      {parts.map((part, index) => {
+        const match = linkMap.find(l => l.pattern.test(part));
+        // Reset lastIndex after test
+        linkMap.forEach(l => { l.pattern.lastIndex = 0; });
+        if (match) {
+          return (
+            <Link key={index} to={match.url} className="text-blue-600 hover:text-blue-800 hover:underline font-medium">
+              {part}
             </Link>
-          )}
-        </span>
-      ))}
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
     </>
   );
 };
