@@ -102,16 +102,27 @@ const Home = () => {
     canonical: "/",
   });
 
+  // Organization schema
   useJsonLd({
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "jaagSELECT HK",
+    "name": "jaagSELECT",
+    "alternateName": "jaagSELECT HK",
     "url": "https://jaagselect.com",
     "logo": "https://jaagselect.com/favicon.ico",
     "description": "由編輯團隊精選，為香港消費者帶來最值得信賴的日本產品推薦與評測。",
     "sameAs": [
       "https://www.instagram.com/jaagselect"
     ]
+  });
+
+  // WebSite schema — tells Google the site name
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "jaagSELECT",
+    "alternateName": ["jaagSELECT HK", "jaagselect"],
+    "url": "https://jaagselect.com"
   });
 
   return (
