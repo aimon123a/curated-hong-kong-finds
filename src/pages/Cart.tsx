@@ -44,7 +44,7 @@ const Cart = () => {
     {
       id: "senakyu",
       name: "背粒消 噴霧",
-      price: 89,
+      price: 98,
       imageUrl: senakyuSprayImage,
       description: "屈臣氏有售",
     },
