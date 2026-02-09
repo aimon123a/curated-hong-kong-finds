@@ -341,12 +341,12 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                   {articleContent.japaneseRecommendation.mainTweet?.imageUrl && (
                     <div className="mt-8 bg-accent/10 border border-accent/30 rounded-sm p-5">
                       <p className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
-                        💡 我們的「抗痘套餐」靈感正是來自這位日本網友的推薦！
+                        💡 我們的「抗痘套裝」靈感正是來自這位日本網友的推薦！
                       </p>
                       <div className="bg-white border border-border rounded-sm overflow-hidden mb-4">
                         <img
                           src={articleContent.japaneseRecommendation.mainTweet.imageUrl}
-                          alt="CLEAREX-Wi + 背粒消 抗痘套餐組合"
+                          alt="CLEAREX-Wi + 背粒消 抗痘套裝組合"
                           className="w-full max-w-sm mx-auto h-auto object-contain p-4"
                           loading="lazy"
                           decoding="async"
@@ -360,7 +360,7 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                         className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
                       >
                         <span>🛒</span>
-                        查看抗痘套餐
+                        查看抗痘套裝
                       </Link>
                     </div>
                   )}
@@ -377,7 +377,7 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                   to={`/products/${product.productId || "clearex-wi"}?variant=3`}
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm font-bold text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg mb-6"
                 >
-                  🛒 抗痘套餐真實評測
+                  🛒 抗痘套裝真實評測
                 </Link>
 
                 {articleContent?.trialResults?.image && (
