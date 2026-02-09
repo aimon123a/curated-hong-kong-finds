@@ -208,10 +208,10 @@ const ProductDetail = () => {
                     }`}
                   >
                     {variant.size === "450ml" && (
-                      <span className="absolute -top-2 -left-1 px-1.5 py-0.5 text-[10px] font-bold bg-orange-500 text-white rounded-sm">熱門</span>
+                      <span className="absolute -top-2.5 -right-2 px-1.5 py-0.5 text-[10px] font-bold bg-orange-500 text-white rounded-full shadow-sm rotate-12 leading-none">熱門</span>
                     )}
                     {variant.size === "抗痘套裝" && (
-                      <span className="absolute -top-2 -left-1 px-1.5 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-sm">推薦</span>
+                      <span className="absolute -top-2.5 -right-2 px-1.5 py-0.5 text-[10px] font-bold bg-primary text-primary-foreground rounded-full shadow-sm rotate-12 leading-none">推薦</span>
                     )}
                     {variant.size}
                   </button>
