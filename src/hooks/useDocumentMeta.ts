@@ -6,18 +6,20 @@ interface DocumentMetaOptions {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  canonical?: string;
 }
 
 const DEFAULT_TITLE = "jaagSELECT HK - 產品評測與推薦";
 const DEFAULT_DESCRIPTION =
   "由編輯團隊精選，為您帶來最值得信賴的產品推薦。深入研究每一款產品，讓您的選擇更加輕鬆。";
 const SUFFIX = " ｜ JaagSelect";
+const BASE_URL = "https://jaagselect.com";
 
 /**
- * Sets document title and meta tags dynamically.
+ * Sets document title, meta tags, and canonical URL dynamically.
  * Restores defaults on unmount.
  */
-export function useDocumentMeta({ title, description, ogTitle, ogDescription, ogImage }: DocumentMetaOptions) {
+export function useDocumentMeta({ title, description, ogTitle, ogDescription, ogImage, canonical }: DocumentMetaOptions) {
   useEffect(() => {
     // Title
     if (title) {
@@ -54,6 +56,18 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
       }
     }
 
+    // Canonical URL
+    if (canonical) {
+      const fullCanonical = canonical.startsWith("http") ? canonical : BASE_URL + canonical;
+      let linkEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      if (!linkEl) {
+        linkEl = document.createElement("link");
+        linkEl.setAttribute("rel", "canonical");
+        document.head.appendChild(linkEl);
+      }
+      linkEl.setAttribute("href", fullCanonical);
+    }
+
     // Cleanup: restore defaults on unmount
     return () => {
       document.title = DEFAULT_TITLE;
@@ -65,6 +79,10 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
 
       const ogDescEl = document.querySelector('meta[property="og:description"]');
       if (ogDescEl) ogDescEl.setAttribute("content", DEFAULT_DESCRIPTION);
+
+      // Remove canonical on unmount
+      const linkEl = document.querySelector('link[rel="canonical"]');
+      if (linkEl) linkEl.remove();
     };
-  }, [title, description, ogTitle, ogDescription, ogImage]);
+  }, [title, description, ogTitle, ogDescription, ogImage, canonical]);
 }

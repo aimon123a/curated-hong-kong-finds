@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { getArticleById, getCategoryBySlug, getSelectorById } from "@/data/sampleData";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
 import { ChevronRight, Clock, Check, AlertCircle, Lightbulb, Star, Share2, Bookmark } from "lucide-react";
 import ReviewerProfile from "@/components/article/ReviewerProfile";
 import ArticleTableOfContents from "@/components/article/ArticleTableOfContents";
@@ -73,8 +74,27 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
   // Dynamic page title & meta for SEO
   useDocumentMeta({
     title: article?.title,
-    description: article?.excerpt,
+    description: article ? `${article.excerpt} | Clearex Wi 香港評測` : undefined,
+    canonical: article ? `/${(article as any).slug || articleId}` : undefined,
   });
+
+  useJsonLd(article ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "image": article.imageUrl,
+    "datePublished": article.date,
+    "author": {
+      "@type": "Person",
+      "name": article.author?.name || "jaagSELECT 編輯部",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "jaagSELECT HK",
+      "url": "https://jaagselect.com",
+    },
+  } : null);
 
   // Early return with loading state to prevent white screen flashes
   if (!categorySlug || !articleId) {

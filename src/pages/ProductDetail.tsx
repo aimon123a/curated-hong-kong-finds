@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { getProductDetailById, getArticleById } from "@/data/sampleData";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
 import { ChevronRight, Star, Check, AlertCircle, ShoppingCart, Heart, Truck, CreditCard, Package } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
@@ -29,9 +30,31 @@ const ProductDetail = () => {
 
   // Dynamic page title & meta for SEO
   useDocumentMeta({
-    title: product ? `${product.brand} ${product.name}` : undefined,
-    description: product?.fullDescription,
+    title: product ? `${product.brand} ${product.name} - 香港代購` : undefined,
+    description: product ? `${product.name} 香港代購。${product.fullDescription}` : undefined,
+    canonical: product ? `/products/${product.id}` : undefined,
   });
+
+  useJsonLd(product ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": `${product.brand} ${product.name}`,
+    "description": product.fullDescription,
+    "image": product.imageUrl,
+    "brand": { "@type": "Brand", "name": product.brand },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating,
+      "reviewCount": product.reviewCount,
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "HKD",
+      "lowPrice": product.variants[0]?.price,
+      "highPrice": product.variants[product.variants.length - 1]?.price,
+      "availability": "https://schema.org/InStock",
+    },
+  } : null);
 
   const handleAddToCart = () => {
     if (!product) return;
