@@ -373,14 +373,11 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                   個人試用30日的效果
                 </HighlightedHeading>
                 
-                <Link
-                  to={`/products/${product.productId || "clearex-wi"}?variant=3`}
-                  className="inline-flex items-center gap-2 mb-6"
-                >
+                <div className="inline-flex items-center gap-2 mb-6">
                   <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full border border-border">🔻 發炎</span>
                   <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full border border-border">🔻 凹凸</span>
                   <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-medium px-2.5 py-1 rounded-full border border-primary/30">✨ 光滑</span>
-                </Link>
+                </div>
 
                 {articleContent?.trialResults?.image && (
                   <div className="bg-white border border-border rounded-sm overflow-hidden mb-6">
