@@ -375,9 +375,11 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                 
                 <Link
                   to={`/products/${product.productId || "clearex-wi"}?variant=3`}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm font-bold text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg mb-6"
+                  className="inline-flex items-center gap-2 mb-6"
                 >
-                  🛒 抗痘套裝真實評測
+                  <div className="bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-4 py-2 rounded-sm shadow-sm">
+                    <span className="font-bold text-sm tracking-wide">抗痘套裝真實評測 ✓</span>
+                  </div>
                 </Link>
 
                 {articleContent?.trialResults?.image && (
