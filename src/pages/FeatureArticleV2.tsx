@@ -375,11 +375,9 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                 
                 <Link
                   to={`/products/${product.productId || "clearex-wi"}?variant=3`}
-                  className="inline-flex items-center gap-2 mb-6"
+                  className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline mb-6"
                 >
-                  <div className="bg-gradient-to-r from-accent to-accent/80 text-accent-foreground px-4 py-2 rounded-sm shadow-sm">
-                    <span className="font-bold text-sm tracking-wide">抗痘套裝真實評測 ✓</span>
-                  </div>
+                  📋 查看抗痘套裝詳細規格 →
                 </Link>
 
                 {articleContent?.trialResults?.image && (
