@@ -679,7 +679,7 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                       to="/clearex-wi"
                       className="text-sm text-muted-foreground hover:text-primary transition-colors block"
                     >
-                      → Clearex-WI 真的有用嗎？親自產品評測
+                      → 第一三共 Clearex-WI 真的有用嗎？親自評測 | jaagSELECT
                     </Link>
                   </li>
                 </ul>
