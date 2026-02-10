@@ -186,6 +186,7 @@ const ProductDetail = () => {
             <div className="mb-6">
               <p className="text-sm text-muted-foreground mb-1">價格：</p>
               <p className="text-3xl font-bold text-primary">
+                <span className="text-sm font-medium text-accent-foreground bg-accent px-1.5 py-0.5 rounded mr-2 align-middle">試業價</span>
                 HKD {product.variants[selectedSize].price}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
