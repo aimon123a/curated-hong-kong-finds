@@ -59,7 +59,8 @@ const Cart = () => {
 
   // Calculate totals
   const subtotal = getSubtotal();
-  const shippingFee = shippingMethod === "home" ? 40 : 15;
+  const isFreeShipping = subtotal >= 500;
+  const shippingFee = isFreeShipping ? 0 : (shippingMethod === "home" ? 40 : 15);
   const total = subtotal + shippingFee;
   const totalWeight = items.reduce((sum, item) => sum + item.weight * item.quantity, 0);
 
@@ -158,7 +159,13 @@ const Cart = () => {
       </div>
 
       <div className="container-editorial py-8 md:py-12">
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-8">購物車</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-4">購物車</h1>
+
+        {/* Free shipping banner */}
+        <div className="bg-primary/10 border border-primary/30 rounded-sm px-4 py-2.5 mb-8 flex items-center gap-2">
+          <Truck className="w-4 h-4 text-primary shrink-0" />
+          <p className="text-sm text-primary font-medium">購滿 HKD 500 包郵</p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left: Cart Items */}
@@ -247,7 +254,7 @@ const Cart = () => {
                     <Truck className="w-4 h-4" />
                     <span className="font-medium text-foreground">到宅配送</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">運費 HKD 40</p>
+                  <p className="text-sm text-muted-foreground">{isFreeShipping ? <span className="text-primary font-medium">免運費</span> : "運費 HKD 40"}</p>
                 </button>
                 <button
                   onClick={() => setShippingMethod("sf-locker")}
@@ -261,7 +268,7 @@ const Cart = () => {
                     <Package className="w-4 h-4" />
                     <span className="font-medium text-foreground">順豐智能櫃</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">運費 HKD 15</p>
+                  <p className="text-sm text-muted-foreground">{isFreeShipping ? <span className="text-primary font-medium">免運費</span> : "運費 HKD 15"}</p>
                 </button>
               </div>
 
@@ -482,8 +489,15 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">運費</span>
-                  <span className="text-foreground">HKD {shippingFee}</span>
+                  <span className={isFreeShipping ? "text-primary font-medium" : "text-foreground"}>
+                    {isFreeShipping ? "免運費" : `HKD ${shippingFee}`}
+                  </span>
                 </div>
+                {!isFreeShipping && (
+                  <p className="text-xs text-primary">
+                    再買 HKD {500 - subtotal} 即可享免運費
+                  </p>
+                )}
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">出貨重量</span>
                   <span className="text-foreground">{totalWeight}g</span>
