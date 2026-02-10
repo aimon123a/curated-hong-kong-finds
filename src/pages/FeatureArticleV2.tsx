@@ -375,9 +375,11 @@ const FeatureArticleV2 = ({ fixedCategorySlug, fixedArticleId }: FeatureArticleV
                 
                 <Link
                   to={`/products/${product.productId || "clearex-wi"}?variant=3`}
-                  className="inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline mb-6"
+                  className="inline-flex items-center gap-2 mb-6"
                 >
-                  📋 查看抗痘套裝詳細規格 →
+                  <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full border border-border">🔻 發炎</span>
+                  <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-2.5 py-1 rounded-full border border-border">🔻 凹凸</span>
+                  <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-medium px-2.5 py-1 rounded-full border border-primary/30">✨ 光滑</span>
                 </Link>
 
                 {articleContent?.trialResults?.image && (
