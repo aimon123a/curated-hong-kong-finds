@@ -113,7 +113,7 @@ export const articles = [
     slug: "clearex-wi",
     categorySlug: "beauty",
     selectorId: "anson",
-    title: "第一三共 Clearex-WI 真的有用嗎？親自評測 | jaagSELECT",
+    title: "第一三共 Clearex-WI 真的有用嗎？親自評測",
     excerpt: "日本製藥大廠「第一三共」研發低刺激藥用沐浴露，專治身體暗瘡。旅遊日本時偶遇的背痘救星！",
     imageUrl: clearexWiProductImage,
     date: "2026.02.01",
