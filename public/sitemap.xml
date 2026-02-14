@@ -31,6 +31,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://jaagselect.com/category/beauty</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jaagselect.com/category/kitchen</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jaagselect.com/category/lifestyle</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://jaagselect.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -39,5 +54,15 @@
     <loc>https://jaagselect.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://jaagselect.com/cart</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://jaagselect.com/product-request</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>
