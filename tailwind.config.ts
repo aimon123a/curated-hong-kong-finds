@@ -69,8 +69,8 @@ export default {
         category: {
           beauty: "hsl(var(--category-beauty))",
           "beauty-light": "hsl(var(--category-beauty-light))",
-          kitchen: "hsl(var(--category-kitchen))",
-          "kitchen-light": "hsl(var(--category-kitchen-light))",
+          "home-living": "hsl(var(--category-home-living))",
+          "home-living-light": "hsl(var(--category-home-living-light))",
           lifestyle: "hsl(var(--category-lifestyle))",
           "lifestyle-light": "hsl(var(--category-lifestyle-light))",
         },

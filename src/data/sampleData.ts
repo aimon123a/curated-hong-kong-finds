@@ -53,8 +53,8 @@ export const categories = {
     description: "精選美容家電，從護膚到美髮，編輯團隊為您挑選最值得入手的產品。",
     imageUrl: beautyHeroImage,
   },
-  kitchen: {
-    slug: "kitchen",
+  "home-living": {
+    slug: "home-living",
     englishTitle: "HOME LIVING",
     chineseTitle: "家居生活",
     description: "打造理想居家空間，精選實用家品、收納好物與生活質感提升的推薦。",
@@ -91,7 +91,7 @@ export const articles = [
   {
     id: "coming-soon-001",
     slug: "coming-soon",
-    categorySlug: "kitchen",
+    categorySlug: "home-living",
     selectorId: "anson",
     title: "「？？？」 親自評測中，敬請期待",
     excerpt: "敬請期待我們的下一篇深度評測文章！",

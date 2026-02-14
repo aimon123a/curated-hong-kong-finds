@@ -38,7 +38,7 @@ const heroSlides = [
       "從廚房到臥室",
       "讓每個角落都充滿品味與舒適",
     ],
-    link: "/category/kitchen",
+    link: "/category/home-living",
     buttonText: "瀏覽家居生活",
     bgImage: homeBg,
   },
