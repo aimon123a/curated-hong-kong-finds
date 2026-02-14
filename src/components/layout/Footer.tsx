@@ -35,7 +35,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/category/kitchen"
+                  to="/category/home-living"
                   className="text-sm text-background/70 hover:text-background transition-colors"
                 >
                   家居用品

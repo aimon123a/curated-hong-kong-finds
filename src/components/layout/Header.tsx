@@ -86,7 +86,7 @@ const Header = () => {
               外在管理
             </Link>
             <Link
-              to="/category/kitchen"
+              to="/category/home-living"
               className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors link-underline py-1"
             >
               家居生活
@@ -245,7 +245,7 @@ const Header = () => {
                 外在管理
               </Link>
               <Link
-                to="/category/kitchen"
+                to="/category/home-living"
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-2 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
