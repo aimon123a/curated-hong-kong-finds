@@ -6,6 +6,7 @@ import ArticleCard from "@/components/ui/ArticleCard";
 import { getCategoryBySlug, getArticlesByCategory, productDetails } from "@/data/sampleData";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { ShoppingCart } from "lucide-react";
 
 const Category = () => {
@@ -14,6 +15,12 @@ const Category = () => {
   const articles = getArticlesByCategory(slug || "");
   const { addItem } = useCart();
   const { toast } = useToast();
+
+  useDocumentMeta({
+    title: category ? `${category.chineseTitle} - 產品評測與推薦` : undefined,
+    description: category ? category.description : undefined,
+    canonical: slug ? `/category/${slug}` : undefined,
+  });
 
   // Get CLEAREX-Wi product for quick add buttons
   const clearexProduct = productDetails.find(p => p.id === "clearex-wi");

@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { getArticleById, getCategoryBySlug, getSelectorById } from "@/data/sampleData";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
 import { ChevronRight, Clock, Check, AlertCircle, Lightbulb, Star, Share2, Bookmark } from "lucide-react";
 import ReviewerProfile from "@/components/article/ReviewerProfile";
 import ArticleTableOfContents from "@/components/article/ArticleTableOfContents";
@@ -33,6 +35,30 @@ const FeatureArticle = ({ fixedCategorySlug, fixedArticleId }: FeatureArticlePro
   const article = getArticleById(articleId || "");
   const category = getCategoryBySlug(categorySlug || "");
   const selector = article?.selectorId ? getSelectorById(article.selectorId) : null;
+
+  useDocumentMeta({
+    title: article?.title,
+    description: article ? `${article.excerpt} | jaagSELECT 深度評測` : undefined,
+    canonical: article ? `/${(article as any).slug || articleId}` : undefined,
+  });
+
+  useJsonLd(article && article.featureProduct ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "image": article.imageUrl,
+    "datePublished": article.date,
+    "author": {
+      "@type": "Person",
+      "name": article.author?.name || "jaagSELECT 編輯部",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "jaagSELECT HK",
+      "url": "https://jaagselect.com",
+    },
+  } : null);
 
   if (!article || !category || !article.featureProduct) {
     return (

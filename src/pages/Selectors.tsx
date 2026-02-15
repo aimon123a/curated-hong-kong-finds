@@ -2,8 +2,15 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SelectorCard from "@/components/ui/SelectorCard";
 import { selectors } from "@/data/sampleData";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Selectors = () => {
+  useDocumentMeta({
+    title: "SELECTor 編輯團隊 - jaagSELECT HK",
+    description: "認識 jaagSELECT 的編輯團隊。每位 SELECTor 都在其擅長領域擁有豐富經驗，為您帶來最用心的產品推薦。",
+    canonical: "/selectors",
+  });
+
   return (
     <Layout>
       {/* Hero */}
