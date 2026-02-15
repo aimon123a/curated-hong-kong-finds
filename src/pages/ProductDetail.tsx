@@ -53,6 +53,7 @@ const ProductDetail = () => {
       "priceCurrency": "HKD",
       "lowPrice": product.variants[0]?.price,
       "highPrice": product.variants[product.variants.length - 1]?.price,
+      "offerCount": product.variants.length,
       "availability": "https://schema.org/InStock",
     },
   } : null);
