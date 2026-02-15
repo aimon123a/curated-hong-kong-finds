@@ -1,8 +1,15 @@
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const About = () => {
+  useDocumentMeta({
+    title: "關於 jaagSELECT - 香港產品評測平台",
+    description: "jaagSELECT HK 致力於成為香港消費者最信賴的產品評測平台。由各領域專家組成的編輯團隊，為您嚴選最值得購買的產品。",
+    canonical: "/about",
+  });
+
   return (
     <Layout>
       <div className="container-editorial py-12 md:py-20">

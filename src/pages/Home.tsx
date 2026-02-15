@@ -109,7 +109,7 @@ const Home = () => {
     "name": "jaagSELECT",
     "alternateName": "jaagSELECT HK",
     "url": "https://jaagselect.com",
-    "logo": "https://jaagselect.com/favicon.ico",
+    "logo": "https://jaagselect.com/favicon.png",
     "description": "由編輯團隊精選，為香港消費者帶來最值得信賴的日本產品推薦與評測。",
     "sameAs": [
       "https://www.instagram.com/jaagselect"
