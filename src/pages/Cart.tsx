@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useCart } from "@/contexts/CartContext";
 import senakyuSprayImage from "@/assets/products/senakyu-spray.webp";
 import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 interface AddOnProduct {
   id: string;
