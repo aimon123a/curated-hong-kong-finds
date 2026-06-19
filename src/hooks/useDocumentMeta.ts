@@ -6,12 +6,14 @@ interface DocumentMetaOptions {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogType?: string;
   canonical?: string;
 }
 
 const DEFAULT_TITLE = "jaagSELECT HK - 產品評測與推薦";
 const DEFAULT_DESCRIPTION =
   "由編輯團隊精選，為您帶來最值得信賴的產品推薦。深入研究每一款產品，讓您的選擇更加輕鬆。";
+const DEFAULT_OG_TYPE = "website";
 const SUFFIX = " ｜ JaagSelect";
 const BASE_URL = "https://jaagselect.com";
 
@@ -19,7 +21,7 @@ const BASE_URL = "https://jaagselect.com";
  * Sets document title, meta tags, and canonical URL dynamically.
  * Restores defaults on unmount.
  */
-export function useDocumentMeta({ title, description, ogTitle, ogDescription, ogImage, canonical }: DocumentMetaOptions) {
+export function useDocumentMeta({ title, description, ogTitle, ogDescription, ogImage, ogType, canonical }: DocumentMetaOptions) {
   useEffect(() => {
     // Title
     if (title) {
@@ -44,6 +46,12 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
       ogDescEl.setAttribute("content", ogDescription || description || DEFAULT_DESCRIPTION);
     }
 
+    // OG type
+    const ogTypeEl = document.querySelector('meta[property="og:type"]');
+    if (ogTypeEl) {
+      ogTypeEl.setAttribute("content", ogType || DEFAULT_OG_TYPE);
+    }
+
     // OG image
     if (ogImage) {
       const ogImageEl = document.querySelector('meta[property="og:image"]');
@@ -56,7 +64,7 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
       }
     }
 
-    // Canonical URL
+    // Canonical URL + og:url
     if (canonical) {
       const fullCanonical = canonical.startsWith("http") ? canonical : BASE_URL + canonical;
       let linkEl = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -66,6 +74,11 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
         document.head.appendChild(linkEl);
       }
       linkEl.setAttribute("href", fullCanonical);
+
+      const ogUrlEl = document.querySelector('meta[property="og:url"]');
+      if (ogUrlEl) {
+        ogUrlEl.setAttribute("content", fullCanonical);
+      }
     }
 
     // Cleanup: restore defaults on unmount
@@ -80,9 +93,15 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
       const ogDescEl = document.querySelector('meta[property="og:description"]');
       if (ogDescEl) ogDescEl.setAttribute("content", DEFAULT_DESCRIPTION);
 
+      const ogTypeEl = document.querySelector('meta[property="og:type"]');
+      if (ogTypeEl) ogTypeEl.setAttribute("content", DEFAULT_OG_TYPE);
+
+      const ogUrlEl = document.querySelector('meta[property="og:url"]');
+      if (ogUrlEl) ogUrlEl.setAttribute("content", BASE_URL);
+
       // Remove canonical on unmount
       const linkEl = document.querySelector('link[rel="canonical"]');
       if (linkEl) linkEl.remove();
     };
-  }, [title, description, ogTitle, ogDescription, ogImage, canonical]);
+  }, [title, description, ogTitle, ogDescription, ogImage, ogType, canonical]);
 }
