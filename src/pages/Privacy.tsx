@@ -1,6 +1,13 @@
 import Layout from "@/components/layout/Layout";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Privacy = () => {
+  useDocumentMeta({
+    title: "私隱政策",
+    description: "了解 jaagSELECT HK 如何收集、使用及保護您的個人資料。我們重視您的私隱，並嚴格遵守香港個人資料條例。",
+    canonical: "/privacy",
+  });
+
   return (
     <Layout>
       <div className="container-editorial py-12 md:py-20">

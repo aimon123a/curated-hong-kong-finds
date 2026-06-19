@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useCart, Order } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import paymeQR from "@/assets/payment/payme-qr.jpg";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 
 const Checkout = () => {
   const location = useLocation();
@@ -13,6 +14,12 @@ const Checkout = () => {
   const { clearCart } = useCart();
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+
+  useDocumentMeta({
+    title: "結帳付款 - 訂單確認",
+    description: "完成訂單付款指示：使用 FPS 轉數快或 PayMe 過數，並透過 Instagram 或 WhatsApp 提交付款截圖確認訂單。",
+    canonical: "/checkout",
+  });
 
   // Get order from location state
   const order = location.state?.order as Order | undefined;
