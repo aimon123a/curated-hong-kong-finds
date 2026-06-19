@@ -6,8 +6,47 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
 
 const ProductRequest = () => {
+  useDocumentMeta({
+    title: "商品引入申請 - 推薦你心儀的日本好物",
+    description: "想入手某款日本商品？填寫表格推薦給 jaagSELECT 編輯團隊。成功引入者享首單 9 折優惠，3-5 個工作天內回覆。",
+    canonical: "/product-request",
+  });
+
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "申請後多久會有回覆？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "我們會在 3-5 個工作天內審核您的申請，並透過電郵通知結果。",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "所有商品都可以申請嗎？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "我們主要引入日本護膚、健康、家居類商品。部分受限商品（如處方藥品、酒精飲品）無法引入。",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "上架後會有優惠嗎？",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "作為感謝，成功推薦商品的顧客可享有該商品首單 9 折優惠。",
+        },
+      },
+    ],
+  });
+
   const [formData, setFormData] = useState({
     productName: "",
     productUrl: "",
