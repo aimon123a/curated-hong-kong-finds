@@ -323,7 +323,7 @@ const Home = () => {
                   to="/selectors"
                   className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-sm font-medium text-sm"
                 >
-                  了解更多
+                  了解更多關於成為 SELECTor
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -351,7 +351,7 @@ const Home = () => {
                 to="/about"
                 className="text-primary font-medium inline-flex items-center gap-1 link-underline"
               >
-                了解更多
+                了解更多關於 jaagSELECT
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
