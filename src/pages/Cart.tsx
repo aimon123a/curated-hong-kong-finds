@@ -22,6 +22,12 @@ const Cart = () => {
   const navigate = useNavigate();
   const { items, addItem, removeItem, updateQuantity, createOrder, getSubtotal } = useCart();
 
+  useDocumentMeta({
+    title: "購物車 - 確認訂單",
+    description: "查看購物車內商品、選擇順豐到付或智能櫃配送、以 FPS 轉數快或 PayMe 完成付款。滿 HKD 500 免運費。",
+    canonical: "/cart",
+  });
+
   // Shipping method
   const [shippingMethod, setShippingMethod] = useState<"home" | "sf-locker">("home");
   
