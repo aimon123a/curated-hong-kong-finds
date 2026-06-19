@@ -1,0 +1,20 @@
+# jaagSELECT
+
+> 省流：評測、推薦、代購。香港本地編輯團隊為您實測好物，從護膚美妝到家居生活，精選最值得買的產品與獨立評測。
+
+jaagSELECT is a Hong Kong-based product curation and review platform. Our editorial team tests and reviews products across beauty, home living, and lifestyle categories, providing honest recommendations and a seamless local shopping experience.
+
+## Pages
+
+- [首頁](/): 瀏覽四大主題分類、精選文章與編輯團隊推薦。Homepage with hero category slides, featured articles, and curated product selectors.
+- [文章](/articles): 所有編輯評測與推薦文章總覽。Complete list of editorial reviews, product tests, and recommendation articles.
+- [產品目錄](/products): 經編輯團隊挑選的優質產品清單，含價格、規格與用戶評價。Curated product catalog with pricing, specs, and reviews.
+- [編輯團隊](/selectors): 認識我們的選物專家與編輯團隊成員。Meet our curators and editorial team members.
+- [關於我們](/about): jaagSELECT 的品牌理念、服務範圍與聯絡資訊。About our mission, services, and story.
+- [私隱政策](/privacy): 個人資料處理與私隱保護政策。Privacy policy and data handling practices.
+
+## Optional
+
+- [外在管理](/category/beauty): 護膚、美妝、健身相關產品評測與推薦。Beauty, skincare, and fitness product reviews.
+- [家居生活](/category/home-living): 廚房、臥室、家居好物評測。Home living and kitchen product reviews.
+- [生活風格](/category/lifestyle): 穿搭配件與生活小物推薦。Lifestyle accessories and fashion recommendations.
