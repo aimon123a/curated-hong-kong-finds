@@ -104,6 +104,7 @@ const Header = () => {
             <button 
               className="p-2 text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="搜尋"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -112,6 +113,7 @@ const Header = () => {
             <Link
               to="/cart"
               className="relative p-2 text-foreground/70 hover:text-foreground transition-colors"
+              aria-label="購物車"
             >
               <ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
@@ -125,6 +127,7 @@ const Header = () => {
             <button
               className="md:hidden p-2 text-foreground/70 hover:text-foreground transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "關閉選單" : "開啟選單"}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
