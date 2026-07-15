@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle } from "lucide-react";
+import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ import { useCart } from "@/contexts/CartContext";
 import senakyuSprayImage from "@/assets/products/senakyu-spray.webp";
 import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { supabase, generateOrderNumber, ShippingMethod } from "@/integrations/supabase/client";
 
 interface AddOnProduct {
   id: string;
@@ -38,13 +39,18 @@ const Cart = () => {
   const [address, setAddress] = useState({
     name: "",
     phone: "",
+    email: "",
+    igHandle: "",
     address: "",
     district: "",
+    districtLabel: "",
     sfLockerCode: "",
+    sfLockerLabel: "",
   });
 
   // Validation errors
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
 
   // Add-on products
   const addOnProducts: AddOnProduct[] = [
@@ -97,6 +103,12 @@ const Cart = () => {
       newErrors.phone = "請輸入8位數香港電話號碼";
     }
 
+    if (!address.email.trim()) {
+      newErrors.email = "請輸入電郵地址（訂單通知使用）";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address.email.trim())) {
+      newErrors.email = "電郵格式不正確";
+    }
+
     if (shippingMethod === "home") {
       if (!address.address.trim()) {
         newErrors.address = "請輸入送貨地址";
@@ -114,25 +126,67 @@ const Cart = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (items.length === 0) {
       alert("購物車是空的");
       return;
     }
 
-    if (validateForm()) {
-      // Create order and navigate to checkout
-      const order = createOrder({
-        items: [...items],
-        subtotal,
-        shippingFee,
-        total,
-        shippingMethod,
-        paymentMethod,
-        address,
-      });
-      navigate("/checkout", { state: { order } });
+    if (!validateForm()) return;
+
+    setSubmitting(true);
+
+    // Compose shipping address string for CRM
+    const shippingAddressText =
+      shippingMethod === "home"
+        ? `${address.districtLabel || address.district} ${address.address}`.trim()
+        : `順豐智能櫃：${address.sfLockerLabel || address.sfLockerCode}`;
+
+    const productsText = items
+      .map((it) => `${it.brand ? `[${it.brand}] ` : ""}${it.name}${it.variant ? `（${it.variant}）` : ""} x${it.quantity}`)
+      .join("、");
+
+    const orderNumber = generateOrderNumber();
+
+    // Insert into Supabase CRM (non-blocking on error — customer still sees checkout)
+    const { error: dbError } = await supabase.from("orders").insert({
+      order_number: orderNumber,
+      customer_name: address.name.trim(),
+      phone: address.phone.trim(),
+      email: address.email.trim(),
+      ig_handle: address.igHandle.trim() || null,
+      shipping_method: (shippingMethod === "home" ? "到宅配送" : "順豐智能櫃") as ShippingMethod,
+      shipping_address: shippingAddressText,
+      products: productsText,
+      amount: total,
+      status: "等待入貨",
+    });
+
+    if (dbError) {
+      console.error("Failed to write order to CRM:", dbError);
     }
+
+    // Local order (localStorage) for the checkout confirmation page
+    const order = createOrder({
+      items: [...items],
+      subtotal,
+      shippingFee,
+      total,
+      shippingMethod,
+      paymentMethod,
+      address: {
+        name: address.name,
+        phone: address.phone,
+        address: shippingMethod === "home" ? `${address.districtLabel} ${address.address}`.trim() : "",
+        district: address.district,
+        sfLockerCode: address.sfLockerCode,
+      },
+    });
+    // Preserve the DB-side order number in the local order too
+    order.orderNumber = orderNumber;
+
+    setSubmitting(false);
+    navigate("/checkout", { state: { order } });
   };
 
   if (items.length === 0) {
@@ -316,6 +370,44 @@ const Cart = () => {
                   </div>
                 </div>
 
+                {/* Email + IG */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="email" className="flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-primary" />
+                      電郵地址 *
+                      <span className="text-xs text-muted-foreground font-normal">（訂單通知）</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={address.email}
+                      onChange={(e) => setAddress({ ...address, email: e.target.value })}
+                      placeholder="you@example.com"
+                      className={errors.email ? "border-destructive" : ""}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="igHandle">
+                      Instagram 帳號
+                      <span className="text-xs text-muted-foreground font-normal ml-1">（選填 · 方便聯絡）</span>
+                    </Label>
+                    <Input
+                      id="igHandle"
+                      value={address.igHandle}
+                      onChange={(e) => setAddress({ ...address, igHandle: e.target.value })}
+                      placeholder="@your_ig"
+                    />
+                  </div>
+                </div>
+
+
                 {shippingMethod === "home" ? (
                   <>
                     <div>
@@ -323,7 +415,10 @@ const Cart = () => {
                       <select
                         id="district"
                         value={address.district}
-                        onChange={(e) => setAddress({ ...address, district: e.target.value })}
+                        onChange={(e) => {
+                          const label = e.target.selectedOptions[0]?.text ?? "";
+                          setAddress({ ...address, district: e.target.value, districtLabel: e.target.value ? label : "" });
+                        }}
                         className={`flex h-10 w-full rounded-md border ${errors.district ? "border-destructive" : "border-input"} bg-background px-3 py-2 text-sm`}
                       >
                         <option value="">請選擇區域</option>
@@ -382,7 +477,10 @@ const Cart = () => {
                     <select
                       id="sfLockerCode"
                       value={address.sfLockerCode}
-                      onChange={(e) => setAddress({ ...address, sfLockerCode: e.target.value })}
+                      onChange={(e) => {
+                          const label = e.target.selectedOptions[0]?.text ?? "";
+                          setAddress({ ...address, sfLockerCode: e.target.value, sfLockerLabel: e.target.value ? label : "" });
+                        }}
                       className={`flex h-10 w-full rounded-md border ${errors.sfLockerCode ? "border-destructive" : "border-input"} bg-background px-3 py-2 text-sm`}
                     >
                       <option value="">請選擇智能櫃</option>
@@ -552,8 +650,9 @@ const Cart = () => {
                 className="w-full" 
                 size="lg"
                 onClick={handleCheckout}
+                disabled={submitting}
               >
-                前往結帳
+                {submitting ? "處理中…" : "前往結帳"}
               </Button>
 
               {/* Shipping Info */}
