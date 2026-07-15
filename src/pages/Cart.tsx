@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
-import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle } from "lucide-react";
+import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ import { useCart } from "@/contexts/CartContext";
 import senakyuSprayImage from "@/assets/products/senakyu-spray.webp";
 import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { supabase, generateOrderNumber, ShippingMethod } from "@/integrations/supabase/client";
 
 interface AddOnProduct {
   id: string;
