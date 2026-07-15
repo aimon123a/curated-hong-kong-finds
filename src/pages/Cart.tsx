@@ -650,8 +650,9 @@ const Cart = () => {
                 className="w-full" 
                 size="lg"
                 onClick={handleCheckout}
+                disabled={submitting}
               >
-                前往結帳
+                {submitting ? "處理中…" : "前往結帳"}
               </Button>
 
               {/* Shipping Info */}
