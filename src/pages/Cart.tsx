@@ -477,7 +477,10 @@ const Cart = () => {
                     <select
                       id="sfLockerCode"
                       value={address.sfLockerCode}
-                      onChange={(e) => setAddress({ ...address, sfLockerCode: e.target.value })}
+                      onChange={(e) => {
+                          const label = e.target.selectedOptions[0]?.text ?? "";
+                          setAddress({ ...address, sfLockerCode: e.target.value, sfLockerLabel: e.target.value ? label : "" });
+                        }}
                       className={`flex h-10 w-full rounded-md border ${errors.sfLockerCode ? "border-destructive" : "border-input"} bg-background px-3 py-2 text-sm`}
                     >
                       <option value="">請選擇智能櫃</option>
