@@ -415,7 +415,10 @@ const Cart = () => {
                       <select
                         id="district"
                         value={address.district}
-                        onChange={(e) => setAddress({ ...address, district: e.target.value })}
+                        onChange={(e) => {
+                          const label = e.target.selectedOptions[0]?.text ?? "";
+                          setAddress({ ...address, district: e.target.value, districtLabel: e.target.value ? label : "" });
+                        }}
                         className={`flex h-10 w-full rounded-md border ${errors.district ? "border-destructive" : "border-input"} bg-background px-3 py-2 text-sm`}
                       >
                         <option value="">請選擇區域</option>
