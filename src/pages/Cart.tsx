@@ -370,6 +370,44 @@ const Cart = () => {
                   </div>
                 </div>
 
+                {/* Email + IG */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="email" className="flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-primary" />
+                      電郵地址 *
+                      <span className="text-xs text-muted-foreground font-normal">（訂單通知）</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={address.email}
+                      onChange={(e) => setAddress({ ...address, email: e.target.value })}
+                      placeholder="you@example.com"
+                      className={errors.email ? "border-destructive" : ""}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-destructive mt-1 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" />
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="igHandle">
+                      Instagram 帳號
+                      <span className="text-xs text-muted-foreground font-normal ml-1">（選填 · 方便聯絡）</span>
+                    </Label>
+                    <Input
+                      id="igHandle"
+                      value={address.igHandle}
+                      onChange={(e) => setAddress({ ...address, igHandle: e.target.value })}
+                      placeholder="@your_ig"
+                    />
+                  </div>
+                </div>
+
+
                 {shippingMethod === "home" ? (
                   <>
                     <div>
