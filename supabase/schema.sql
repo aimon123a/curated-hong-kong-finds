@@ -1,0 +1,77 @@
+-- =============================================================
+-- jaagSELECT CRM Schema
+-- 在 Supabase Dashboard > SQL Editor 中執行此檔案
+-- =============================================================
+
+-- 訂單狀態枚舉
+do $$ begin
+  create type public.order_status as enum ('等待入貨', '已到港', '已發貨');
+exception when duplicate_object then null; end $$;
+
+do $$ begin
+  create type public.shipping_method as enum ('到宅配送', '順豐智能櫃');
+exception when duplicate_object then null; end $$;
+
+-- =============================================================
+-- Orders 表
+-- =============================================================
+create table if not exists public.orders (
+  id uuid primary key default gen_random_uuid(),
+  order_number text not null unique,
+  customer_name text not null,
+  phone text not null,
+  email text not null,                 -- 必填，用於未來 Resend 自動發信
+  ig_handle text,                       -- 選填
+  shipping_method public.shipping_method not null default '順豐智能櫃',
+  shipping_address text not null,       -- 到宅地址 或 智能櫃編號
+  products text not null,
+  amount numeric(10,2) not null default 0,
+  sf_tracking text,
+  status public.order_status not null default '等待入貨',
+  created_by uuid references auth.users(id) on delete set null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists orders_created_at_idx on public.orders (created_at desc);
+create index if not exists orders_status_idx on public.orders (status);
+
+-- Data API 授權（Supabase 不會自動授予 public schema）
+grant select, insert, update, delete on public.orders to authenticated;
+grant all on public.orders to service_role;
+
+-- RLS：僅登入使用者可存取
+alter table public.orders enable row level security;
+
+drop policy if exists "Authenticated users can read orders" on public.orders;
+create policy "Authenticated users can read orders"
+  on public.orders for select
+  to authenticated using (true);
+
+drop policy if exists "Authenticated users can insert orders" on public.orders;
+create policy "Authenticated users can insert orders"
+  on public.orders for insert
+  to authenticated with check (true);
+
+drop policy if exists "Authenticated users can update orders" on public.orders;
+create policy "Authenticated users can update orders"
+  on public.orders for update
+  to authenticated using (true) with check (true);
+
+drop policy if exists "Authenticated users can delete orders" on public.orders;
+create policy "Authenticated users can delete orders"
+  on public.orders for delete
+  to authenticated using (true);
+
+-- updated_at 自動更新
+create or replace function public.set_updated_at()
+returns trigger language plpgsql as $$
+begin
+  new.updated_at = now();
+  return new;
+end $$;
+
+drop trigger if exists orders_set_updated_at on public.orders;
+create trigger orders_set_updated_at
+  before update on public.orders
+  for each row execute function public.set_updated_at();
