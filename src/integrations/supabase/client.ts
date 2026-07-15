@@ -1,27 +1,17 @@
 import { createClient } from "@supabase/supabase-js";
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+// Publishable values — safe to ship in the client bundle. Access is protected by RLS.
+const SUPABASE_URL = "https://cubduvdmxfzfdfembkcw.supabase.co";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1YmR1dmRteGZ6ZmRmZW1ia2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQxMzk0MzYsImV4cCI6MjA5OTcxNTQzNn0.MjG8AptfwQI8zt9OYDmvjIAr1ge93AY1SYYODJ2j8zA";
 
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  // Surface clear guidance in the browser console instead of a cryptic runtime error.
-  // eslint-disable-next-line no-console
-  console.warn(
-    "[Supabase] VITE_SUPABASE_URL 或 VITE_SUPABASE_ANON_KEY 未設定，請在專案 .env 中加入。"
-  );
-}
-
-export const supabase = createClient(
-  SUPABASE_URL ?? "https://placeholder.supabase.co",
-  SUPABASE_ANON_KEY ?? "placeholder-anon-key",
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      storage: localStorage,
-    },
-  }
-);
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    storage: localStorage,
+  },
+});
 
 export type OrderStatus = "等待入貨" | "已到港" | "已發貨";
 export type ShippingMethod = "到宅配送" | "順豐智能櫃";
