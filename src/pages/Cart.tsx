@@ -39,13 +39,18 @@ const Cart = () => {
   const [address, setAddress] = useState({
     name: "",
     phone: "",
+    email: "",
+    igHandle: "",
     address: "",
     district: "",
+    districtLabel: "",
     sfLockerCode: "",
+    sfLockerLabel: "",
   });
 
   // Validation errors
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
 
   // Add-on products
   const addOnProducts: AddOnProduct[] = [
