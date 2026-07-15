@@ -22,6 +22,8 @@ import Selectors from "./pages/Selectors";
 import Selector from "./pages/Selector";
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -51,6 +53,8 @@ const App = () => (
             <Route path="/selector/:selectorId" element={<Selector />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             {/* Flat article slug route - must be BEFORE catch-all */}
             <Route path="/:slug" element={<ArticleBySlug />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
