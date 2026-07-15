@@ -39,9 +39,8 @@ create index if not exists orders_status_idx on public.orders (status);
 -- Data API 授權（Supabase 不會自動授予 public schema）
 grant select, insert, update, delete on public.orders to authenticated;
 grant all on public.orders to service_role;
-
--- RLS：僅登入使用者可存取
-alter table public.orders enable row level security;
+-- 允許前台顧客（匿名）建立訂單，但不可 SELECT / UPDATE / DELETE
+grant insert on public.orders to anon;
 
 drop policy if exists "Authenticated users can read orders" on public.orders;
 create policy "Authenticated users can read orders"
