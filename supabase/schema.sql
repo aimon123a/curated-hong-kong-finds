@@ -42,6 +42,9 @@ grant all on public.orders to service_role;
 -- 允許前台顧客（匿名）建立訂單，但不可 SELECT / UPDATE / DELETE
 grant insert on public.orders to anon;
 
+-- RLS：登入使用者可全權存取；匿名者僅可 INSERT
+alter table public.orders enable row level security;
+
 drop policy if exists "Authenticated users can read orders" on public.orders;
 create policy "Authenticated users can read orders"
   on public.orders for select
@@ -51,6 +54,11 @@ drop policy if exists "Authenticated users can insert orders" on public.orders;
 create policy "Authenticated users can insert orders"
   on public.orders for insert
   to authenticated with check (true);
+
+drop policy if exists "Anonymous customers can create orders" on public.orders;
+create policy "Anonymous customers can create orders"
+  on public.orders for insert
+  to anon with check (true);
 
 drop policy if exists "Authenticated users can update orders" on public.orders;
 create policy "Authenticated users can update orders"
