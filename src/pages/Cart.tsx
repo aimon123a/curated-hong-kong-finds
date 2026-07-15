@@ -103,6 +103,12 @@ const Cart = () => {
       newErrors.phone = "請輸入8位數香港電話號碼";
     }
 
+    if (!address.email.trim()) {
+      newErrors.email = "請輸入電郵地址（訂單通知使用）";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address.email.trim())) {
+      newErrors.email = "電郵格式不正確";
+    }
+
     if (shippingMethod === "home") {
       if (!address.address.trim()) {
         newErrors.address = "請輸入送貨地址";
@@ -120,25 +126,67 @@ const Cart = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (items.length === 0) {
       alert("購物車是空的");
       return;
     }
 
-    if (validateForm()) {
-      // Create order and navigate to checkout
-      const order = createOrder({
-        items: [...items],
-        subtotal,
-        shippingFee,
-        total,
-        shippingMethod,
-        paymentMethod,
-        address,
-      });
-      navigate("/checkout", { state: { order } });
+    if (!validateForm()) return;
+
+    setSubmitting(true);
+
+    // Compose shipping address string for CRM
+    const shippingAddressText =
+      shippingMethod === "home"
+        ? `${address.districtLabel || address.district} ${address.address}`.trim()
+        : `順豐智能櫃：${address.sfLockerLabel || address.sfLockerCode}`;
+
+    const productsText = items
+      .map((it) => `${it.brand ? `[${it.brand}] ` : ""}${it.name}${it.variant ? `（${it.variant}）` : ""} x${it.quantity}`)
+      .join("、");
+
+    const orderNumber = generateOrderNumber();
+
+    // Insert into Supabase CRM (non-blocking on error — customer still sees checkout)
+    const { error: dbError } = await supabase.from("orders").insert({
+      order_number: orderNumber,
+      customer_name: address.name.trim(),
+      phone: address.phone.trim(),
+      email: address.email.trim(),
+      ig_handle: address.igHandle.trim() || null,
+      shipping_method: (shippingMethod === "home" ? "到宅配送" : "順豐智能櫃") as ShippingMethod,
+      shipping_address: shippingAddressText,
+      products: productsText,
+      amount: total,
+      status: "等待入貨",
+    });
+
+    if (dbError) {
+      console.error("Failed to write order to CRM:", dbError);
     }
+
+    // Local order (localStorage) for the checkout confirmation page
+    const order = createOrder({
+      items: [...items],
+      subtotal,
+      shippingFee,
+      total,
+      shippingMethod,
+      paymentMethod,
+      address: {
+        name: address.name,
+        phone: address.phone,
+        address: shippingMethod === "home" ? `${address.districtLabel} ${address.address}`.trim() : "",
+        district: address.district,
+        sfLockerCode: address.sfLockerCode,
+      },
+    });
+    // Preserve the DB-side order number in the local order too
+    order.orderNumber = orderNumber;
+
+    setSubmitting(false);
+    navigate("/checkout", { state: { order } });
   };
 
   if (items.length === 0) {
