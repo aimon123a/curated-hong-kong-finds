@@ -369,8 +369,58 @@ const AdminDashboard = () => {
                           {o.shipping_address}
                         </div>
                       </TableCell>
-                      <TableCell className="text-xs font-mono">
-                        {o.sf_tracking || "—"}
+                      <TableCell>
+                        {(() => {
+                          const editingVal = trackingEdits[o.id];
+                          const isDirty = editingVal !== undefined && editingVal !== (o.sf_tracking ?? "");
+                          return (
+                            <div className="flex items-center gap-1">
+                              <Input
+                                value={editingVal ?? o.sf_tracking ?? ""}
+                                onChange={(e) =>
+                                  setTrackingEdits((prev) => ({ ...prev, [o.id]: e.target.value }))
+                                }
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    handleSaveTracking(o);
+                                  }
+                                }}
+                                placeholder="—"
+                                className="h-8 w-[130px] text-xs font-mono"
+                              />
+                              {isDirty && (
+                                <>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 w-8 p-0"
+                                    disabled={savingTracking === o.id}
+                                    onClick={() => handleSaveTracking(o)}
+                                    aria-label="儲存順豐單號"
+                                  >
+                                    <Check className="w-4 h-4 text-emerald-600" />
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 w-8 p-0"
+                                    onClick={() =>
+                                      setTrackingEdits((prev) => {
+                                        const next = { ...prev };
+                                        delete next[o.id];
+                                        return next;
+                                      })
+                                    }
+                                    aria-label="取消"
+                                  >
+                                    <X className="w-4 h-4 text-muted-foreground" />
+                                  </Button>
+                                </>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </TableCell>
                       <TableCell>
                         <Select
