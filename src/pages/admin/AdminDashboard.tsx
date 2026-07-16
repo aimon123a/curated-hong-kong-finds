@@ -580,4 +580,64 @@ const StatCard = ({
   );
 };
 
+const formatDateTime = (iso: string | null) => {
+  if (!iso) return "";
+  const d = new Date(iso);
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
+const EmailStatusBadge = ({
+  label,
+  status,
+  sentAt,
+  error,
+}: {
+  label: string;
+  status: EmailStatus;
+  sentAt: string | null;
+  error: string | null;
+}) => {
+  const tone =
+    status === "sent"
+      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      : status === "failed"
+      ? "bg-red-50 text-red-800 border-red-200"
+      : "bg-muted text-muted-foreground border-border";
+  const dot =
+    status === "sent" ? "bg-emerald-500" : status === "failed" ? "bg-red-500" : "bg-muted-foreground/50";
+  const text =
+    status === "sent"
+      ? sentAt ? formatDateTime(sentAt) : "已寄"
+      : status === "failed"
+      ? "失敗"
+      : "未寄";
+
+  const tooltip =
+    status === "failed" && error
+      ? `${label}｜失敗\n${sentAt ? `時間：${formatDateTime(sentAt)}\n` : ""}原因：${error}`
+      : status === "sent" && sentAt
+      ? `${label}｜已寄出\n時間：${formatDateTime(sentAt)}`
+      : `${label}｜尚未寄出`;
+
+  return (
+    <TooltipProvider delayDuration={100}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className={`inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded border text-[10px] font-medium cursor-help ${tone}`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${dot}`} />
+            <span className="text-muted-foreground/80">{label}</span>
+            <span className="font-mono">{text}</span>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-xs whitespace-pre-wrap text-xs">
+          {tooltip}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+};
+
 export default AdminDashboard;
