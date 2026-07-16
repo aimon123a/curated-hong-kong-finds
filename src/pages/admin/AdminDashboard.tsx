@@ -41,9 +41,16 @@ import {
   OrderRow,
   ORDER_STATUSES,
   OrderStatus,
+  EmailStatus,
 } from "@/integrations/supabase/client";
 import OrderFormDialog from "./OrderFormDialog";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const statusVariant: Record<OrderStatus, string> = {
   等待入貨: "bg-amber-100 text-amber-900 border-amber-200",
@@ -150,6 +157,7 @@ const AdminDashboard = () => {
         .invoke("send-order-shipped", {
           body: {
             to: row.email,
+            orderId: row.id,
             orderNumber: row.order_number,
             customerName: row.customer_name,
             amount: row.amount,
@@ -158,7 +166,10 @@ const AdminDashboard = () => {
             sfTracking: row.sf_tracking,
           },
         })
-        .then(() => toast({ title: "已寄出發貨通知電郵" }))
+        .then(() => {
+          toast({ title: "已寄出發貨通知電郵" });
+          fetchOrders();
+        })
         .catch((err) => console.error("Shipped email failed:", err));
     }
   };
@@ -207,6 +218,7 @@ const AdminDashboard = () => {
     const { error } = await supabase.functions.invoke(fn, {
       body: {
         to: row.email,
+        orderId: row.id,
         orderNumber: row.order_number,
         customerName: row.customer_name,
         amount: row.amount,
@@ -217,12 +229,14 @@ const AdminDashboard = () => {
     });
     if (error) {
       toast({ title: "寄送失敗", description: error.message, variant: "destructive" });
+      fetchOrders();
       return;
     }
     toast({
       title: kind === "confirmation" ? "已重新寄出下單確認電郵" : "已重新寄出發貨通知電郵",
       description: row.email,
     });
+    fetchOrders();
   };
 
   const handleDelete = async () => {
@@ -325,19 +339,20 @@ const AdminDashboard = () => {
                   <TableHead>送貨</TableHead>
                   <TableHead>順豐單號</TableHead>
                   <TableHead>狀態</TableHead>
+                  <TableHead>寄信</TableHead>
                   <TableHead className="text-right">操作</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {loading ? (
                   <TableRow>
-                    <TableCell colSpan={9} className="text-center py-10 text-muted-foreground">
+                    <TableCell colSpan={10} className="text-center py-10 text-muted-foreground">
                       載入中...
                     </TableCell>
                   </TableRow>
                 ) : filtered.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={9} className="text-center py-10 text-muted-foreground">
+                    <TableCell colSpan={10} className="text-center py-10 text-muted-foreground">
                       {orders.length === 0
                         ? "還沒有訂單，點選右上「新增訂單」開始。"
                         : "沒有符合條件的訂單。"}
@@ -440,6 +455,22 @@ const AdminDashboard = () => {
                             ))}
                           </SelectContent>
                         </Select>
+                      </TableCell>
+                      <TableCell>
+                        <div className="space-y-1">
+                          <EmailStatusBadge
+                            label="下單"
+                            status={o.confirmation_email_status}
+                            sentAt={o.confirmation_email_sent_at}
+                            error={o.confirmation_email_error}
+                          />
+                          <EmailStatusBadge
+                            label="發貨"
+                            status={o.shipped_email_status}
+                            sentAt={o.shipped_email_sent_at}
+                            error={o.shipped_email_error}
+                          />
+                        </div>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
@@ -546,6 +577,66 @@ const StatCard = ({
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className={`text-2xl font-bold tracking-tight ${toneClass}`}>{value}</p>
     </div>
+  );
+};
+
+const formatDateTime = (iso: string | null) => {
+  if (!iso) return "";
+  const d = new Date(iso);
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
+const EmailStatusBadge = ({
+  label,
+  status,
+  sentAt,
+  error,
+}: {
+  label: string;
+  status: EmailStatus;
+  sentAt: string | null;
+  error: string | null;
+}) => {
+  const tone =
+    status === "sent"
+      ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+      : status === "failed"
+      ? "bg-red-50 text-red-800 border-red-200"
+      : "bg-muted text-muted-foreground border-border";
+  const dot =
+    status === "sent" ? "bg-emerald-500" : status === "failed" ? "bg-red-500" : "bg-muted-foreground/50";
+  const text =
+    status === "sent"
+      ? sentAt ? formatDateTime(sentAt) : "已寄"
+      : status === "failed"
+      ? "失敗"
+      : "未寄";
+
+  const tooltip =
+    status === "failed" && error
+      ? `${label}｜失敗\n${sentAt ? `時間：${formatDateTime(sentAt)}\n` : ""}原因：${error}`
+      : status === "sent" && sentAt
+      ? `${label}｜已寄出\n時間：${formatDateTime(sentAt)}`
+      : `${label}｜尚未寄出`;
+
+  return (
+    <TooltipProvider delayDuration={100}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className={`inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded border text-[10px] font-medium cursor-help ${tone}`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${dot}`} />
+            <span className="text-muted-foreground/80">{label}</span>
+            <span className="font-mono">{text}</span>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-xs whitespace-pre-wrap text-xs">
+          {tooltip}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };
 

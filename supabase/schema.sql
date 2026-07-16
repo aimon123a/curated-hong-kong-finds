@@ -28,10 +28,25 @@ create table if not exists public.orders (
   amount numeric(10,2) not null default 0,
   sf_tracking text,
   status public.order_status not null default '等待入貨',
+  -- 寄信狀態欄位（'pending' | 'sent' | 'failed'）
+  confirmation_email_status text not null default 'pending',
+  confirmation_email_sent_at timestamptz,
+  confirmation_email_error text,
+  shipped_email_status text not null default 'pending',
+  shipped_email_sent_at timestamptz,
+  shipped_email_error text,
   created_by uuid references auth.users(id) on delete set null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- 若表已存在，補上新欄位
+alter table public.orders add column if not exists confirmation_email_status text not null default 'pending';
+alter table public.orders add column if not exists confirmation_email_sent_at timestamptz;
+alter table public.orders add column if not exists confirmation_email_error text;
+alter table public.orders add column if not exists shipped_email_status text not null default 'pending';
+alter table public.orders add column if not exists shipped_email_sent_at timestamptz;
+alter table public.orders add column if not exists shipped_email_error text;
 
 create index if not exists orders_created_at_idx on public.orders (created_at desc);
 create index if not exists orders_status_idx on public.orders (status);

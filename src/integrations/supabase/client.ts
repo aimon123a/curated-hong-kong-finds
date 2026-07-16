@@ -15,6 +15,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
 
 export type OrderStatus = "等待入貨" | "已到港" | "已發貨";
 export type ShippingMethod = "到宅配送" | "順豐智能櫃";
+export type EmailStatus = "pending" | "sent" | "failed";
 
 export interface OrderRow {
   id: string;
@@ -29,6 +30,12 @@ export interface OrderRow {
   amount: number;
   sf_tracking: string | null;
   status: OrderStatus;
+  confirmation_email_status: EmailStatus;
+  confirmation_email_sent_at: string | null;
+  confirmation_email_error: string | null;
+  shipped_email_status: EmailStatus;
+  shipped_email_sent_at: string | null;
+  shipped_email_error: string | null;
   created_at: string;
   updated_at: string;
 }

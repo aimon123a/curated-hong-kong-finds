@@ -149,18 +149,22 @@ const Cart = () => {
     const orderNumber = generateOrderNumber();
 
     // Insert into Supabase CRM (non-blocking on error — customer still sees checkout)
-    const { error: dbError } = await supabase.from("orders").insert({
-      order_number: orderNumber,
-      customer_name: address.name.trim(),
-      phone: address.phone.trim(),
-      email: address.email.trim(),
-      ig_handle: address.igHandle.trim() || null,
-      shipping_method: (shippingMethod === "home" ? "到宅配送" : "順豐智能櫃") as ShippingMethod,
-      shipping_address: shippingAddressText,
-      products: productsText,
-      amount: total,
-      status: "等待入貨",
-    });
+    const { data: inserted, error: dbError } = await supabase
+      .from("orders")
+      .insert({
+        order_number: orderNumber,
+        customer_name: address.name.trim(),
+        phone: address.phone.trim(),
+        email: address.email.trim(),
+        ig_handle: address.igHandle.trim() || null,
+        shipping_method: (shippingMethod === "home" ? "到宅配送" : "順豐智能櫃") as ShippingMethod,
+        shipping_address: shippingAddressText,
+        products: productsText,
+        amount: total,
+        status: "等待入貨",
+      })
+      .select("id")
+      .single();
 
     if (dbError) {
       console.error("Failed to write order to CRM:", dbError);
@@ -170,6 +174,7 @@ const Cart = () => {
         .invoke("send-order-confirmation", {
           body: {
             to: address.email.trim(),
+            orderId: inserted?.id,
             orderNumber,
             customerName: address.name.trim(),
             amount: total,
