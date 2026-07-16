@@ -164,6 +164,20 @@ const Cart = () => {
 
     if (dbError) {
       console.error("Failed to write order to CRM:", dbError);
+    } else {
+      // Fire-and-forget confirmation email
+      supabase.functions
+        .invoke("send-order-confirmation", {
+          body: {
+            to: address.email.trim(),
+            orderNumber,
+            customerName: address.name.trim(),
+            amount: total,
+            shippingAddress: shippingAddressText,
+            products: productsText,
+          },
+        })
+        .catch((err) => console.error("Email send failed:", err));
     }
 
     // Local order (localStorage) for the checkout confirmation page

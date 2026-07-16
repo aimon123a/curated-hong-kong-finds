@@ -123,6 +123,34 @@ const OrderFormDialog = ({ open, onOpenChange, order, onSaved }: Props) => {
       toast({ title: "儲存失敗", description: error.message, variant: "destructive" });
       return;
     }
+
+    // Trigger emails
+    const emailPayload = {
+      to: payload.email,
+      orderNumber: payload.order_number,
+      customerName: payload.customer_name,
+      amount: payload.amount,
+      shippingAddress: payload.shipping_address,
+      products: payload.products,
+      sfTracking: payload.sf_tracking,
+    };
+    if (!isEdit) {
+      supabase.functions
+        .invoke("send-order-confirmation", { body: emailPayload })
+        .catch((err) => console.error("Confirmation email failed:", err));
+    } else {
+      const becameShipped =
+        payload.status === "已發貨" &&
+        !!payload.sf_tracking &&
+        (order!.status !== "已發貨" || (order!.sf_tracking ?? "") !== payload.sf_tracking);
+      if (becameShipped) {
+        supabase.functions
+          .invoke("send-order-shipped", { body: emailPayload })
+          .catch((err) => console.error("Shipped email failed:", err));
+        toast({ title: "已寄出發貨通知電郵" });
+      }
+    }
+
     toast({ title: isEdit ? "訂單已更新" : "訂單已建立" });
     onSaved();
     onOpenChange(false);
