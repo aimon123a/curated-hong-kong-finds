@@ -150,6 +150,7 @@ const AdminDashboard = () => {
         .invoke("send-order-shipped", {
           body: {
             to: row.email,
+            orderId: row.id,
             orderNumber: row.order_number,
             customerName: row.customer_name,
             amount: row.amount,
@@ -158,7 +159,10 @@ const AdminDashboard = () => {
             sfTracking: row.sf_tracking,
           },
         })
-        .then(() => toast({ title: "已寄出發貨通知電郵" }))
+        .then(() => {
+          toast({ title: "已寄出發貨通知電郵" });
+          fetchOrders();
+        })
         .catch((err) => console.error("Shipped email failed:", err));
     }
   };
