@@ -449,6 +449,22 @@ const AdminDashboard = () => {
                           </SelectContent>
                         </Select>
                       </TableCell>
+                      <TableCell>
+                        <div className="space-y-1">
+                          <EmailStatusBadge
+                            label="下單"
+                            status={o.confirmation_email_status}
+                            sentAt={o.confirmation_email_sent_at}
+                            error={o.confirmation_email_error}
+                          />
+                          <EmailStatusBadge
+                            label="發貨"
+                            status={o.shipped_email_status}
+                            sentAt={o.shipped_email_sent_at}
+                            error={o.shipped_email_error}
+                          />
+                        </div>
+                      </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
                           <DropdownMenu>
