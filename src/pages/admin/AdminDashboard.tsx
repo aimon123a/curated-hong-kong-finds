@@ -126,6 +126,29 @@ const AdminDashboard = () => {
       return;
     }
     setOrders((prev) => prev.map((o) => (o.id === row.id ? { ...o, status } : o)));
+
+    // Send shipped email if newly shipped and tracking exists
+    if (status === "已發貨" && row.status !== "已發貨" && row.sf_tracking) {
+      supabase.functions
+        .invoke("send-order-shipped", {
+          body: {
+            to: row.email,
+            orderNumber: row.order_number,
+            customerName: row.customer_name,
+            amount: row.amount,
+            shippingAddress: row.shipping_address,
+            products: row.products,
+            sfTracking: row.sf_tracking,
+          },
+        })
+        .then(() => toast({ title: "已寄出發貨通知電郵" }))
+        .catch((err) => console.error("Shipped email failed:", err));
+    } else if (status === "已發貨" && !row.sf_tracking) {
+      toast({
+        title: "尚未寄出發貨電郵",
+        description: "請先在編輯畫面填入順豐單號後再切換至已發貨。",
+      });
+    }
   };
 
   const handleDelete = async () => {
