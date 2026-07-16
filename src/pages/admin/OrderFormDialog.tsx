@@ -107,6 +107,14 @@ const OrderFormDialog = ({ open, onOpenChange, order, onSaved }: Props) => {
       });
       return;
     }
+    if (parsed.data.status === "已發貨" && !parsed.data.sf_tracking) {
+      toast({
+        title: "無法儲存",
+        description: "狀態為已發貨時，順豐單號必須填寫。",
+        variant: "destructive",
+      });
+      return;
+    }
     setSaving(true);
     const payload = {
       ...parsed.data,
