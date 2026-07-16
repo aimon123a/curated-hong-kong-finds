@@ -332,13 +332,14 @@ const AdminDashboard = () => {
                   <TableHead>送貨</TableHead>
                   <TableHead>順豐單號</TableHead>
                   <TableHead>狀態</TableHead>
+                  <TableHead>寄信</TableHead>
                   <TableHead className="text-right">操作</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {loading ? (
                   <TableRow>
-                    <TableCell colSpan={9} className="text-center py-10 text-muted-foreground">
+                    <TableCell colSpan={10} className="text-center py-10 text-muted-foreground">
                       載入中...
                     </TableCell>
                   </TableRow>
