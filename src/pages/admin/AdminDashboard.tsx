@@ -443,6 +443,34 @@ const AdminDashboard = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                aria-label="重新寄出電郵"
+                                title="重新寄出電郵"
+                              >
+                                <Mail className="w-4 h-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => handleResend(o, "confirmation")}>
+                                重新寄出下單確認
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => handleResend(o, "shipped")}
+                                disabled={!o.sf_tracking}
+                              >
+                                重新寄出發貨通知
+                                {!o.sf_tracking && (
+                                  <span className="ml-2 text-xs text-muted-foreground">
+                                    （需順豐單號）
+                                  </span>
+                                )}
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -450,6 +478,7 @@ const AdminDashboard = () => {
                               setEditing(o);
                               setDialogOpen(true);
                             }}
+                            aria-label="編輯訂單"
                           >
                             <Pencil className="w-4 h-4" />
                           </Button>
@@ -457,6 +486,7 @@ const AdminDashboard = () => {
                             variant="ghost"
                             size="sm"
                             onClick={() => setDeleteTarget(o)}
+                            aria-label="刪除訂單"
                           >
                             <Trash2 className="w-4 h-4 text-destructive" />
                           </Button>
