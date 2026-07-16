@@ -2,7 +2,7 @@ import { corsHeaders } from "npm:@supabase/supabase-js@2/cors";
 import { buildOrderConfirmationEmail, OrderEmailData } from "../_shared/email-template.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const FROM = "jaagSELECT <onboarding@resend.dev>";
+const FROM = "jaagSELECT <no-reply@jaagselect.com>";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
