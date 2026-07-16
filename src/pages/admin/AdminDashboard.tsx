@@ -345,7 +345,7 @@ const AdminDashboard = () => {
                   </TableRow>
                 ) : filtered.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={9} className="text-center py-10 text-muted-foreground">
+                    <TableCell colSpan={10} className="text-center py-10 text-muted-foreground">
                       {orders.length === 0
                         ? "還沒有訂單，點選右上「新增訂單」開始。"
                         : "沒有符合條件的訂單。"}
