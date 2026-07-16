@@ -128,6 +128,15 @@ const AdminDashboard = () => {
   }, [orders]);
 
   const handleQuickStatus = async (row: OrderRow, status: OrderStatus) => {
+    if (status === "已發貨" && !row.sf_tracking) {
+      toast({
+        title: "無法更改狀態",
+        description: "請先填入順豐單號，才可將狀態設為已發貨。",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const { error } = await supabase.from("orders").update({ status }).eq("id", row.id);
     if (error) {
       toast({ title: "更新失敗", description: error.message, variant: "destructive" });
@@ -135,7 +144,7 @@ const AdminDashboard = () => {
     }
     setOrders((prev) => prev.map((o) => (o.id === row.id ? { ...o, status } : o)));
 
-    // Send shipped email if newly shipped and tracking exists
+    // Send shipped email if newly shipped
     if (status === "已發貨" && row.status !== "已發貨" && row.sf_tracking) {
       supabase.functions
         .invoke("send-order-shipped", {
@@ -151,12 +160,69 @@ const AdminDashboard = () => {
         })
         .then(() => toast({ title: "已寄出發貨通知電郵" }))
         .catch((err) => console.error("Shipped email failed:", err));
-    } else if (status === "已發貨" && !row.sf_tracking) {
-      toast({
-        title: "尚未寄出發貨電郵",
-        description: "請先在編輯畫面填入順豐單號後再切換至已發貨。",
-      });
     }
+  };
+
+  const handleSaveTracking = async (row: OrderRow) => {
+    const value = (trackingEdits[row.id] ?? "").trim();
+    if (value === (row.sf_tracking ?? "")) {
+      setTrackingEdits((prev) => {
+        const next = { ...prev };
+        delete next[row.id];
+        return next;
+      });
+      return;
+    }
+    setSavingTracking(row.id);
+    const { error } = await supabase
+      .from("orders")
+      .update({ sf_tracking: value || null })
+      .eq("id", row.id);
+    setSavingTracking(null);
+    if (error) {
+      toast({ title: "更新失敗", description: error.message, variant: "destructive" });
+      return;
+    }
+    setOrders((prev) =>
+      prev.map((o) => (o.id === row.id ? { ...o, sf_tracking: value || null } : o))
+    );
+    setTrackingEdits((prev) => {
+      const next = { ...prev };
+      delete next[row.id];
+      return next;
+    });
+    toast({ title: "順豐單號已更新" });
+  };
+
+  const handleResend = async (row: OrderRow, kind: "confirmation" | "shipped") => {
+    if (kind === "shipped" && !row.sf_tracking) {
+      toast({
+        title: "無法寄送",
+        description: "請先填入順豐單號。",
+        variant: "destructive",
+      });
+      return;
+    }
+    const fn = kind === "confirmation" ? "send-order-confirmation" : "send-order-shipped";
+    const { error } = await supabase.functions.invoke(fn, {
+      body: {
+        to: row.email,
+        orderNumber: row.order_number,
+        customerName: row.customer_name,
+        amount: row.amount,
+        shippingAddress: row.shipping_address,
+        products: row.products,
+        sfTracking: row.sf_tracking,
+      },
+    });
+    if (error) {
+      toast({ title: "寄送失敗", description: error.message, variant: "destructive" });
+      return;
+    }
+    toast({
+      title: kind === "confirmation" ? "已重新寄出下單確認電郵" : "已重新寄出發貨通知電郵",
+      description: row.email,
+    });
   };
 
   const handleDelete = async () => {
