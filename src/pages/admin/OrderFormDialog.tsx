@@ -122,9 +122,9 @@ const OrderFormDialog = ({ open, onOpenChange, order, onSaved }: Props) => {
       sf_tracking: parsed.data.sf_tracking || null,
     };
 
-    const { error } = isEdit
-      ? await supabase.from("orders").update(payload).eq("id", order!.id)
-      : await supabase.from("orders").insert(payload);
+    const { data: saved, error } = isEdit
+      ? await supabase.from("orders").update(payload).eq("id", order!.id).select("id").single()
+      : await supabase.from("orders").insert(payload).select("id").single();
 
     setSaving(false);
     if (error) {
@@ -135,6 +135,7 @@ const OrderFormDialog = ({ open, onOpenChange, order, onSaved }: Props) => {
     // Trigger emails
     const emailPayload = {
       to: payload.email,
+      orderId: saved?.id ?? order?.id,
       orderNumber: payload.order_number,
       customerName: payload.customer_name,
       amount: payload.amount,
