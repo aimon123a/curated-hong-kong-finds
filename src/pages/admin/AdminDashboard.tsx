@@ -28,7 +28,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Plus, Pencil, Trash2, LogOut, Search, RefreshCw } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Search, RefreshCw, Mail, Check, X } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
 import {
   supabase,
@@ -60,6 +66,8 @@ const AdminDashboard = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editing, setEditing] = useState<OrderRow | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<OrderRow | null>(null);
+  const [trackingEdits, setTrackingEdits] = useState<Record<string, string>>({});
+  const [savingTracking, setSavingTracking] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -120,6 +128,15 @@ const AdminDashboard = () => {
   }, [orders]);
 
   const handleQuickStatus = async (row: OrderRow, status: OrderStatus) => {
+    if (status === "已發貨" && !row.sf_tracking) {
+      toast({
+        title: "無法更改狀態",
+        description: "請先填入順豐單號，才可將狀態設為已發貨。",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const { error } = await supabase.from("orders").update({ status }).eq("id", row.id);
     if (error) {
       toast({ title: "更新失敗", description: error.message, variant: "destructive" });
@@ -127,7 +144,7 @@ const AdminDashboard = () => {
     }
     setOrders((prev) => prev.map((o) => (o.id === row.id ? { ...o, status } : o)));
 
-    // Send shipped email if newly shipped and tracking exists
+    // Send shipped email if newly shipped
     if (status === "已發貨" && row.status !== "已發貨" && row.sf_tracking) {
       supabase.functions
         .invoke("send-order-shipped", {
@@ -143,12 +160,69 @@ const AdminDashboard = () => {
         })
         .then(() => toast({ title: "已寄出發貨通知電郵" }))
         .catch((err) => console.error("Shipped email failed:", err));
-    } else if (status === "已發貨" && !row.sf_tracking) {
-      toast({
-        title: "尚未寄出發貨電郵",
-        description: "請先在編輯畫面填入順豐單號後再切換至已發貨。",
-      });
     }
+  };
+
+  const handleSaveTracking = async (row: OrderRow) => {
+    const value = (trackingEdits[row.id] ?? "").trim();
+    if (value === (row.sf_tracking ?? "")) {
+      setTrackingEdits((prev) => {
+        const next = { ...prev };
+        delete next[row.id];
+        return next;
+      });
+      return;
+    }
+    setSavingTracking(row.id);
+    const { error } = await supabase
+      .from("orders")
+      .update({ sf_tracking: value || null })
+      .eq("id", row.id);
+    setSavingTracking(null);
+    if (error) {
+      toast({ title: "更新失敗", description: error.message, variant: "destructive" });
+      return;
+    }
+    setOrders((prev) =>
+      prev.map((o) => (o.id === row.id ? { ...o, sf_tracking: value || null } : o))
+    );
+    setTrackingEdits((prev) => {
+      const next = { ...prev };
+      delete next[row.id];
+      return next;
+    });
+    toast({ title: "順豐單號已更新" });
+  };
+
+  const handleResend = async (row: OrderRow, kind: "confirmation" | "shipped") => {
+    if (kind === "shipped" && !row.sf_tracking) {
+      toast({
+        title: "無法寄送",
+        description: "請先填入順豐單號。",
+        variant: "destructive",
+      });
+      return;
+    }
+    const fn = kind === "confirmation" ? "send-order-confirmation" : "send-order-shipped";
+    const { error } = await supabase.functions.invoke(fn, {
+      body: {
+        to: row.email,
+        orderNumber: row.order_number,
+        customerName: row.customer_name,
+        amount: row.amount,
+        shippingAddress: row.shipping_address,
+        products: row.products,
+        sfTracking: row.sf_tracking,
+      },
+    });
+    if (error) {
+      toast({ title: "寄送失敗", description: error.message, variant: "destructive" });
+      return;
+    }
+    toast({
+      title: kind === "confirmation" ? "已重新寄出下單確認電郵" : "已重新寄出發貨通知電郵",
+      description: row.email,
+    });
   };
 
   const handleDelete = async () => {
@@ -295,8 +369,58 @@ const AdminDashboard = () => {
                           {o.shipping_address}
                         </div>
                       </TableCell>
-                      <TableCell className="text-xs font-mono">
-                        {o.sf_tracking || "—"}
+                      <TableCell>
+                        {(() => {
+                          const editingVal = trackingEdits[o.id];
+                          const isDirty = editingVal !== undefined && editingVal !== (o.sf_tracking ?? "");
+                          return (
+                            <div className="flex items-center gap-1">
+                              <Input
+                                value={editingVal ?? o.sf_tracking ?? ""}
+                                onChange={(e) =>
+                                  setTrackingEdits((prev) => ({ ...prev, [o.id]: e.target.value }))
+                                }
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") {
+                                    e.preventDefault();
+                                    handleSaveTracking(o);
+                                  }
+                                }}
+                                placeholder="—"
+                                className="h-8 w-[130px] text-xs font-mono"
+                              />
+                              {isDirty && (
+                                <>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 w-8 p-0"
+                                    disabled={savingTracking === o.id}
+                                    onClick={() => handleSaveTracking(o)}
+                                    aria-label="儲存順豐單號"
+                                  >
+                                    <Check className="w-4 h-4 text-emerald-600" />
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="h-8 w-8 p-0"
+                                    onClick={() =>
+                                      setTrackingEdits((prev) => {
+                                        const next = { ...prev };
+                                        delete next[o.id];
+                                        return next;
+                                      })
+                                    }
+                                    aria-label="取消"
+                                  >
+                                    <X className="w-4 h-4 text-muted-foreground" />
+                                  </Button>
+                                </>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </TableCell>
                       <TableCell>
                         <Select
@@ -319,6 +443,34 @@ const AdminDashboard = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                aria-label="重新寄出電郵"
+                                title="重新寄出電郵"
+                              >
+                                <Mail className="w-4 h-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => handleResend(o, "confirmation")}>
+                                重新寄出下單確認
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => handleResend(o, "shipped")}
+                                disabled={!o.sf_tracking}
+                              >
+                                重新寄出發貨通知
+                                {!o.sf_tracking && (
+                                  <span className="ml-2 text-xs text-muted-foreground">
+                                    （需順豐單號）
+                                  </span>
+                                )}
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -326,6 +478,7 @@ const AdminDashboard = () => {
                               setEditing(o);
                               setDialogOpen(true);
                             }}
+                            aria-label="編輯訂單"
                           >
                             <Pencil className="w-4 h-4" />
                           </Button>
@@ -333,6 +486,7 @@ const AdminDashboard = () => {
                             variant="ghost"
                             size="sm"
                             onClick={() => setDeleteTarget(o)}
+                            aria-label="刪除訂單"
                           >
                             <Trash2 className="w-4 h-4 text-destructive" />
                           </Button>
