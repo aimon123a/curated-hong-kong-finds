@@ -211,6 +211,7 @@ const AdminDashboard = () => {
     const { error } = await supabase.functions.invoke(fn, {
       body: {
         to: row.email,
+        orderId: row.id,
         orderNumber: row.order_number,
         customerName: row.customer_name,
         amount: row.amount,
@@ -221,12 +222,14 @@ const AdminDashboard = () => {
     });
     if (error) {
       toast({ title: "寄送失敗", description: error.message, variant: "destructive" });
+      fetchOrders();
       return;
     }
     toast({
       title: kind === "confirmation" ? "已重新寄出下單確認電郵" : "已重新寄出發貨通知電郵",
       description: row.email,
     });
+    fetchOrders();
   };
 
   const handleDelete = async () => {
