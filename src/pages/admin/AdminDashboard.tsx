@@ -41,9 +41,16 @@ import {
   OrderRow,
   ORDER_STATUSES,
   OrderStatus,
+  EmailStatus,
 } from "@/integrations/supabase/client";
 import OrderFormDialog from "./OrderFormDialog";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const statusVariant: Record<OrderStatus, string> = {
   等待入貨: "bg-amber-100 text-amber-900 border-amber-200",
