@@ -66,6 +66,8 @@ const AdminDashboard = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editing, setEditing] = useState<OrderRow | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<OrderRow | null>(null);
+  const [trackingEdits, setTrackingEdits] = useState<Record<string, string>>({});
+  const [savingTracking, setSavingTracking] = useState<string | null>(null);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
