@@ -90,28 +90,34 @@ alter table public.orders add column if not exists confirmation_email_error text
 alter table public.orders add column if not exists shipped_email_status text not null default 'pending';
 alter table public.orders add column if not exists shipped_email_sent_at timestamptz;
 alter table public.orders add column if not exists shipped_email_error text;
+-- 付款狀態（由 marks-paid Stripe webhook 更新）
+alter table public.orders add column if not exists payment_status text not null default 'pending';
+alter table public.orders add column if not exists paid_at timestamptz;
+alter table public.orders add column if not exists stripe_session_id text;
 
 create index if not exists orders_created_at_idx on public.orders (created_at desc);
 create index if not exists orders_status_idx on public.orders (status);
 
--- Data API 授權（Supabase 不會自動授予 public schema）
+-- Data API 授權
 grant select, insert, update, delete on public.orders to authenticated;
 grant all on public.orders to service_role;
 -- 允許前台顧客（匿名）建立訂單，但不可 SELECT / UPDATE / DELETE
 grant insert on public.orders to anon;
 
--- RLS：登入使用者可全權存取；匿名者僅可 INSERT
+-- RLS：只有具備 admin 角色的登入者可讀/寫/刪；匿名顧客僅可 INSERT
 alter table public.orders enable row level security;
 
 drop policy if exists "Authenticated users can read orders" on public.orders;
-create policy "Authenticated users can read orders"
+drop policy if exists "Admins can read orders" on public.orders;
+create policy "Admins can read orders"
   on public.orders for select
-  to authenticated using (true);
+  to authenticated using (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Authenticated users can insert orders" on public.orders;
-create policy "Authenticated users can insert orders"
+drop policy if exists "Admins can insert orders" on public.orders;
+create policy "Admins can insert orders"
   on public.orders for insert
-  to authenticated with check (true);
+  to authenticated with check (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Anonymous customers can create orders" on public.orders;
 create policy "Anonymous customers can create orders"
@@ -119,14 +125,18 @@ create policy "Anonymous customers can create orders"
   to anon with check (true);
 
 drop policy if exists "Authenticated users can update orders" on public.orders;
-create policy "Authenticated users can update orders"
+drop policy if exists "Admins can update orders" on public.orders;
+create policy "Admins can update orders"
   on public.orders for update
-  to authenticated using (true) with check (true);
+  to authenticated
+  using (public.has_role(auth.uid(), 'admin'))
+  with check (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Authenticated users can delete orders" on public.orders;
-create policy "Authenticated users can delete orders"
+drop policy if exists "Admins can delete orders" on public.orders;
+create policy "Admins can delete orders"
   on public.orders for delete
-  to authenticated using (true);
+  to authenticated using (public.has_role(auth.uid(), 'admin'));
 
 -- updated_at 自動更新
 create or replace function public.set_updated_at()
