@@ -509,6 +509,20 @@ const AdminDashboard = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
+                          {o.status === "等待入貨" && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-8 text-xs"
+                              disabled={stripeLoading === o.id}
+                              onClick={() => handleStripePay(o)}
+                              aria-label="透過 Stripe 付款"
+                              title="產生 Stripe 付款連結"
+                            >
+                              <CreditCard className="w-3.5 h-3.5 mr-1" />
+                              {stripeLoading === o.id ? "產生中…" : "Stripe 付款"}
+                            </Button>
+                          )}
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button
