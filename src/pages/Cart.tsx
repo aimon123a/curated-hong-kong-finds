@@ -189,7 +189,7 @@ const Cart = () => {
       shippingFee,
       total,
       shippingMethod,
-      paymentMethod,
+      paymentMethod: "stripe",
       address: {
         name: address.name,
         phone: address.phone,
@@ -201,8 +201,34 @@ const Cart = () => {
     // Preserve the DB-side order number in the local order too
     order.orderNumber = orderNumber;
 
-    setSubmitting(false);
-    navigate("/checkout", { state: { order } });
+    // Create Stripe Checkout session and redirect
+    try {
+      const { data: sessionData, error: sessionError } = await supabase.functions.invoke(
+        "create-checkout-session",
+        {
+          body: {
+            order_id: inserted?.id,
+            order_number: orderNumber,
+            amount: total,
+            customer_email: address.email.trim(),
+            success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=success`,
+            cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=cancelled`,
+          },
+        },
+      );
+      if (sessionError || !sessionData?.url) {
+        console.error("Stripe checkout session failed:", sessionError, sessionData);
+        alert("建立付款連結失敗，請稍後再試或聯絡我們。");
+        setSubmitting(false);
+        return;
+      }
+      // Redirect to Stripe Checkout
+      window.location.href = sessionData.url;
+    } catch (err) {
+      console.error("Stripe checkout error:", err);
+      alert("建立付款連結失敗，請稍後再試或聯絡我們。");
+      setSubmitting(false);
+    }
   };
 
   if (items.length === 0) {
