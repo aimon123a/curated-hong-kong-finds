@@ -20,7 +20,6 @@ interface AddOnProduct {
 }
 
 const Cart = () => {
-  const navigate = useNavigate();
   const { items, addItem, removeItem, updateQuantity, createOrder, getSubtotal } = useCart();
 
   useDocumentMeta({
