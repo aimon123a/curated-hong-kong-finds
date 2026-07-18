@@ -244,10 +244,8 @@ const AdminDashboard = () => {
     setStripeLoading(row.id);
     const { data, error } = await supabase.functions.invoke("create-checkout-session", {
       body: {
+        // 只傳 order_id — 金額由 Edge Function 於後端向 DB 查詢，避免被竄改
         order_id: row.id,
-        order_number: row.order_number,
-        amount: Number(row.amount),
-        customer_email: row.email,
         success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=success`,
         cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=cancelled`,
       },
