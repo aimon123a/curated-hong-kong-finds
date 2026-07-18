@@ -239,6 +239,41 @@ const AdminDashboard = () => {
     fetchOrders();
   };
 
+  const [stripeLoading, setStripeLoading] = useState<string | null>(null);
+  const handleStripePay = async (row: OrderRow) => {
+    setStripeLoading(row.id);
+    const { data, error } = await supabase.functions.invoke("create-checkout-session", {
+      body: {
+        order_id: row.id,
+        order_number: row.order_number,
+        amount: Number(row.amount),
+        customer_email: row.email,
+        success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=success`,
+        cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=cancelled`,
+      },
+    });
+    setStripeLoading(null);
+    if (error || !data?.url) {
+      toast({
+        title: "建立付款連結失敗",
+        description: error?.message || "請檢查 STRIPE_SECRET_KEY 是否已設定。",
+        variant: "destructive",
+      });
+      return;
+    }
+    // Copy link + open in new tab so admin can also forward it to the customer
+    try {
+      await navigator.clipboard.writeText(data.url);
+    } catch {
+      /* ignore */
+    }
+    window.open(data.url, "_blank", "noopener,noreferrer");
+    toast({
+      title: "已產生 Stripe 付款連結",
+      description: "已開啟新視窗，連結亦複製到剪貼板。",
+    });
+  };
+
   const handleDelete = async () => {
     if (!deleteTarget) return;
     const { error } = await supabase.from("orders").delete().eq("id", deleteTarget.id);
