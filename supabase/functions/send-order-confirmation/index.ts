@@ -172,8 +172,44 @@ async function updateEmailStatus(
   }
 }
 
+// --- Inline auth guard: only allow internal secret OR admin-JWT callers ---
+const INTERNAL_EMAIL_SECRET = Deno.env.get("INTERNAL_EMAIL_SECRET");
+const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
+
+async function authorize(req: Request): Promise<{ ok: true } | { ok: false; status: number; error: string }> {
+  const provided = req.headers.get("x-internal-secret");
+  if (INTERNAL_EMAIL_SECRET && provided && provided === INTERNAL_EMAIL_SECRET) return { ok: true };
+
+  if (!SUPABASE_URL || !SERVICE_ROLE_KEY) return { ok: false, status: 500, error: "Server misconfigured" };
+  const authHeader = req.headers.get("authorization") ?? "";
+  const token = authHeader.toLowerCase().startsWith("bearer ") ? authHeader.slice(7).trim() : "";
+  if (!token) return { ok: false, status: 401, error: "Missing bearer token" };
+  const userRes = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+    headers: { Authorization: `Bearer ${token}`, apikey: SUPABASE_ANON_KEY ?? SERVICE_ROLE_KEY },
+  });
+  if (!userRes.ok) return { ok: false, status: 401, error: "Invalid token" };
+  const user = await userRes.json();
+  if (!user?.id) return { ok: false, status: 401, error: "Invalid user" };
+  const roleRes = await fetch(
+    `${SUPABASE_URL}/rest/v1/user_roles?user_id=eq.${encodeURIComponent(user.id)}&role=eq.admin&select=user_id`,
+    { headers: { apikey: SERVICE_ROLE_KEY, Authorization: `Bearer ${SERVICE_ROLE_KEY}` } },
+  );
+  if (!roleRes.ok) return { ok: false, status: 500, error: "Role lookup failed" };
+  const rows = await roleRes.json();
+  if (!Array.isArray(rows) || rows.length === 0) return { ok: false, status: 403, error: "Admin role required" };
+  return { ok: true };
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
+
+  const authz = await authorize(req);
+  if (!authz.ok) {
+    return new Response(JSON.stringify({ error: authz.error }), {
+      status: authz.status,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
 
   const body = (await req.json().catch(() => ({}))) as OrderEmailData & { to: string; orderId?: string };
 
