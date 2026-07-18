@@ -657,33 +657,17 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Payment Methods */}
+              {/* Payment Method — Stripe only */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
                   <CreditCard className="w-4 h-4 text-primary" />
                   <span className="text-sm font-medium text-foreground">付款方式</span>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setPaymentMethod("fps")}
-                    className={`p-3 border rounded-sm text-center transition-colors ${
-                      paymentMethod === "fps"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-foreground">FPS 轉數快</span>
-                  </button>
-                  <button
-                    onClick={() => setPaymentMethod("payme")}
-                    className={`p-3 border rounded-sm text-center transition-colors ${
-                      paymentMethod === "payme"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-foreground">PayMe</span>
-                  </button>
+                <div className="p-3 border border-primary/40 bg-primary/5 rounded-sm">
+                  <p className="text-sm font-medium text-foreground">Stripe 安全付款</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    支援 Visa / Mastercard / American Express 等信用卡，全程加密處理。
+                  </p>
                 </div>
               </div>
 
