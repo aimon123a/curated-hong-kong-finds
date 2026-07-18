@@ -206,10 +206,8 @@ const Cart = () => {
         "create-checkout-session",
         {
           body: {
+            // 只傳 order_id — 金額由 Edge Function 於後端向 DB 查詢，避免被竄改
             order_id: inserted?.id,
-            order_number: orderNumber,
-            amount: total,
-            customer_email: address.email.trim(),
             success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=success`,
             cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=cancelled`,
           },
