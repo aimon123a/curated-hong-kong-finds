@@ -25,15 +25,12 @@ const Cart = () => {
 
   useDocumentMeta({
     title: "購物車 - 確認訂單",
-    description: "查看購物車內商品、選擇順豐到付或智能櫃配送、以 FPS 轉數快或 PayMe 完成付款。滿 HKD 500 免運費。",
+    description: "查看購物車內商品、選擇順豐到付或智能櫃配送、透過 Stripe 安全付款。滿 HKD 500 免運費。",
     canonical: "/cart",
   });
 
   // Shipping method
   const [shippingMethod, setShippingMethod] = useState<"home" | "sf-locker">("home");
-  
-  // Payment method
-  const [paymentMethod, setPaymentMethod] = useState<"fps" | "payme">("fps");
   
   // Shipping address form
   const [address, setAddress] = useState({
