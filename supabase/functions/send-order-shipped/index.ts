@@ -12,7 +12,7 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 const FROM = "jaagSELECT <no-reply@jaagselect.com>";
-const LOGO_URL = "https://via.placeholder.com/200x60?text=jaagSELECT";
+const LOGO_URL = "https://jaagselect.com/__l5e/assets-v1/1771e200-16e7-4add-b069-f0bc9d2a8a31/jaag-logo.png";
 const IG_URL = "https://www.instagram.com/jaag_select/";
 
 interface OrderEmailData {
@@ -107,7 +107,7 @@ const shell = (bodyHtml: string) => `<!DOCTYPE html>
     <tr><td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:8px;overflow:hidden;">
         <tr><td style="padding:32px 32px 16px;text-align:center;border-bottom:1px solid #EEEEEE;">
-          <img src="${LOGO_URL}" alt="jaagSELECT" style="max-width:200px;height:auto;display:inline-block;" />
+          <img src="${LOGO_URL}" alt="jaagSELECT" style="max-width:120px;height:auto;display:inline-block;" />
         </td></tr>
         <tr><td style="padding:32px;color:#333;font-size:15px;line-height:1.7;">
           ${bodyHtml}
