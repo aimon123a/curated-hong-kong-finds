@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
