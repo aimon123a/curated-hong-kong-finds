@@ -12,7 +12,7 @@ const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 const FROM = "jaagSELECT <no-reply@jaagselect.com>";
-const LOGO_URL = "https://via.placeholder.com/200x60?text=jaagSELECT";
+const LOGO_URL = "https://jaagselect.com/__l5e/assets-v1/1771e200-16e7-4add-b069-f0bc9d2a8a31/jaag-logo.png";
 const IG_URL = "https://www.instagram.com/jaag_select/";
 
 interface OrderEmailData {

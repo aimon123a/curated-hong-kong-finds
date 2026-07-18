@@ -10,7 +10,7 @@ export interface OrderEmailData {
   sfTracking?: string | null;
 }
 
-const LOGO_URL = "https://via.placeholder.com/200x60?text=jaagSELECT";
+const LOGO_URL = "https://jaagselect.com/__l5e/assets-v1/1771e200-16e7-4add-b069-f0bc9d2a8a31/jaag-logo.png";
 const IG_URL = "https://www.instagram.com/jaag_select/";
 
 const productsToRows = (products: string) => {
