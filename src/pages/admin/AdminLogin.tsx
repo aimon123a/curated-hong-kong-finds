@@ -27,10 +27,25 @@ const AdminLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
+    const { data: signIn, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
+      setLoading(false);
       toast({ title: "登入失敗", description: error.message, variant: "destructive" });
+      return;
+    }
+    // 驗證 admin 角色
+    const { data: roleData, error: roleErr } = await supabase.rpc("has_role", {
+      _user_id: signIn.user?.id,
+      _role: "admin",
+    });
+    setLoading(false);
+    if (roleErr || !roleData) {
+      await supabase.auth.signOut();
+      toast({
+        title: "權限不足",
+        description: "此帳號沒有管理員權限。",
+        variant: "destructive",
+      });
       return;
     }
     navigate("/admin", { replace: true });
