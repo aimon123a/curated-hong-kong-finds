@@ -77,15 +77,37 @@ const AdminDashboard = () => {
   const [savingTracking, setSavingTracking] = useState<string | null>(null);
 
   useEffect(() => {
+    const verify = async (userId: string | undefined) => {
+      if (!userId) {
+        navigate("/admin/login", { replace: true });
+        return;
+      }
+      const { data: isAdmin, error } = await supabase.rpc("has_role", {
+        _user_id: userId,
+        _role: "admin",
+      });
+      if (error || !isAdmin) {
+        await supabase.auth.signOut();
+        toast({
+          title: "權限不足",
+          description: "此帳號沒有管理員權限。",
+          variant: "destructive",
+        });
+        navigate("/admin/login", { replace: true });
+      }
+    };
+
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) {
         navigate("/admin/login", { replace: true });
         return;
       }
       setUserEmail(data.user.email ?? "");
+      verify(data.user.id);
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_evt, session) => {
       if (!session) navigate("/admin/login", { replace: true });
+      else verify(session.user.id);
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate]);

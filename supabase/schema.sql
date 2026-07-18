@@ -3,6 +3,49 @@
 -- 在 Supabase Dashboard > SQL Editor 中執行此檔案
 -- =============================================================
 
+-- =============================================================
+-- 使用者權限系統 (user_roles + has_role) — 修復 Admin Panel 無存取控制的問題
+-- =============================================================
+do $$ begin
+  create type public.app_role as enum ('admin');
+exception when duplicate_object then null; end $$;
+
+create table if not exists public.user_roles (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade not null,
+  role public.app_role not null,
+  unique (user_id, role)
+);
+
+grant select on public.user_roles to authenticated;
+grant all on public.user_roles to service_role;
+
+alter table public.user_roles enable row level security;
+
+drop policy if exists "Users can read own roles" on public.user_roles;
+create policy "Users can read own roles"
+  on public.user_roles for select
+  to authenticated using (user_id = auth.uid());
+
+create or replace function public.has_role(_user_id uuid, _role public.app_role)
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.user_roles
+    where user_id = _user_id and role = _role
+  )
+$$;
+
+-- 手動指派 admin 角色（把 <YOUR-USER-UUID> 換成你在 Supabase Authentication 建立的 user id）：
+-- insert into public.user_roles (user_id, role) values ('<YOUR-USER-UUID>', 'admin');
+
+
+-- =============================================================
+
 -- 訂單狀態枚舉
 do $$ begin
   create type public.order_status as enum ('等待入貨', '已到港', '已發貨');
@@ -47,28 +90,34 @@ alter table public.orders add column if not exists confirmation_email_error text
 alter table public.orders add column if not exists shipped_email_status text not null default 'pending';
 alter table public.orders add column if not exists shipped_email_sent_at timestamptz;
 alter table public.orders add column if not exists shipped_email_error text;
+-- 付款狀態（由 marks-paid Stripe webhook 更新）
+alter table public.orders add column if not exists payment_status text not null default 'pending';
+alter table public.orders add column if not exists paid_at timestamptz;
+alter table public.orders add column if not exists stripe_session_id text;
 
 create index if not exists orders_created_at_idx on public.orders (created_at desc);
 create index if not exists orders_status_idx on public.orders (status);
 
--- Data API 授權（Supabase 不會自動授予 public schema）
+-- Data API 授權
 grant select, insert, update, delete on public.orders to authenticated;
 grant all on public.orders to service_role;
 -- 允許前台顧客（匿名）建立訂單，但不可 SELECT / UPDATE / DELETE
 grant insert on public.orders to anon;
 
--- RLS：登入使用者可全權存取；匿名者僅可 INSERT
+-- RLS：只有具備 admin 角色的登入者可讀/寫/刪；匿名顧客僅可 INSERT
 alter table public.orders enable row level security;
 
 drop policy if exists "Authenticated users can read orders" on public.orders;
-create policy "Authenticated users can read orders"
+drop policy if exists "Admins can read orders" on public.orders;
+create policy "Admins can read orders"
   on public.orders for select
-  to authenticated using (true);
+  to authenticated using (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Authenticated users can insert orders" on public.orders;
-create policy "Authenticated users can insert orders"
+drop policy if exists "Admins can insert orders" on public.orders;
+create policy "Admins can insert orders"
   on public.orders for insert
-  to authenticated with check (true);
+  to authenticated with check (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Anonymous customers can create orders" on public.orders;
 create policy "Anonymous customers can create orders"
@@ -76,14 +125,18 @@ create policy "Anonymous customers can create orders"
   to anon with check (true);
 
 drop policy if exists "Authenticated users can update orders" on public.orders;
-create policy "Authenticated users can update orders"
+drop policy if exists "Admins can update orders" on public.orders;
+create policy "Admins can update orders"
   on public.orders for update
-  to authenticated using (true) with check (true);
+  to authenticated
+  using (public.has_role(auth.uid(), 'admin'))
+  with check (public.has_role(auth.uid(), 'admin'));
 
 drop policy if exists "Authenticated users can delete orders" on public.orders;
-create policy "Authenticated users can delete orders"
+drop policy if exists "Admins can delete orders" on public.orders;
+create policy "Admins can delete orders"
   on public.orders for delete
-  to authenticated using (true);
+  to authenticated using (public.has_role(auth.uid(), 'admin'));
 
 -- updated_at 自動更新
 create or replace function public.set_updated_at()
