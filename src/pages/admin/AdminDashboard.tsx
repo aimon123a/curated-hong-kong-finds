@@ -28,7 +28,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Plus, Pencil, Trash2, LogOut, Search, RefreshCw, Mail, Check, X } from "lucide-react";
+import { Plus, Pencil, Trash2, LogOut, Search, RefreshCw, Mail, Check, X, CreditCard } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -237,6 +237,41 @@ const AdminDashboard = () => {
       description: row.email,
     });
     fetchOrders();
+  };
+
+  const [stripeLoading, setStripeLoading] = useState<string | null>(null);
+  const handleStripePay = async (row: OrderRow) => {
+    setStripeLoading(row.id);
+    const { data, error } = await supabase.functions.invoke("create-checkout-session", {
+      body: {
+        order_id: row.id,
+        order_number: row.order_number,
+        amount: Number(row.amount),
+        customer_email: row.email,
+        success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=success`,
+        cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(row.order_number)}&status=cancelled`,
+      },
+    });
+    setStripeLoading(null);
+    if (error || !data?.url) {
+      toast({
+        title: "建立付款連結失敗",
+        description: error?.message || "請檢查 STRIPE_SECRET_KEY 是否已設定。",
+        variant: "destructive",
+      });
+      return;
+    }
+    // Copy link + open in new tab so admin can also forward it to the customer
+    try {
+      await navigator.clipboard.writeText(data.url);
+    } catch {
+      /* ignore */
+    }
+    window.open(data.url, "_blank", "noopener,noreferrer");
+    toast({
+      title: "已產生 Stripe 付款連結",
+      description: "已開啟新視窗，連結亦複製到剪貼板。",
+    });
   };
 
   const handleDelete = async () => {
@@ -474,6 +509,20 @@ const AdminDashboard = () => {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
+                          {o.status === "等待入貨" && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-8 text-xs"
+                              disabled={stripeLoading === o.id}
+                              onClick={() => handleStripePay(o)}
+                              aria-label="透過 Stripe 付款"
+                              title="產生 Stripe 付款連結"
+                            >
+                              <CreditCard className="w-3.5 h-3.5 mr-1" />
+                              {stripeLoading === o.id ? "產生中…" : "Stripe 付款"}
+                            </Button>
+                          )}
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button

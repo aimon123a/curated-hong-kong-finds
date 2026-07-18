@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,20 +20,16 @@ interface AddOnProduct {
 }
 
 const Cart = () => {
-  const navigate = useNavigate();
   const { items, addItem, removeItem, updateQuantity, createOrder, getSubtotal } = useCart();
 
   useDocumentMeta({
     title: "購物車 - 確認訂單",
-    description: "查看購物車內商品、選擇順豐到付或智能櫃配送、以 FPS 轉數快或 PayMe 完成付款。滿 HKD 500 免運費。",
+    description: "查看購物車內商品、選擇順豐到付或智能櫃配送、透過 Stripe 安全付款。滿 HKD 500 免運費。",
     canonical: "/cart",
   });
 
   // Shipping method
   const [shippingMethod, setShippingMethod] = useState<"home" | "sf-locker">("home");
-  
-  // Payment method
-  const [paymentMethod, setPaymentMethod] = useState<"fps" | "payme">("fps");
   
   // Shipping address form
   const [address, setAddress] = useState({
@@ -192,7 +188,7 @@ const Cart = () => {
       shippingFee,
       total,
       shippingMethod,
-      paymentMethod,
+      paymentMethod: "stripe",
       address: {
         name: address.name,
         phone: address.phone,
@@ -204,8 +200,34 @@ const Cart = () => {
     // Preserve the DB-side order number in the local order too
     order.orderNumber = orderNumber;
 
-    setSubmitting(false);
-    navigate("/checkout", { state: { order } });
+    // Create Stripe Checkout session and redirect
+    try {
+      const { data: sessionData, error: sessionError } = await supabase.functions.invoke(
+        "create-checkout-session",
+        {
+          body: {
+            order_id: inserted?.id,
+            order_number: orderNumber,
+            amount: total,
+            customer_email: address.email.trim(),
+            success_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=success`,
+            cancel_url: `${window.location.origin}/checkout?order=${encodeURIComponent(orderNumber)}&status=cancelled`,
+          },
+        },
+      );
+      if (sessionError || !sessionData?.url) {
+        console.error("Stripe checkout session failed:", sessionError, sessionData);
+        alert("建立付款連結失敗，請稍後再試或聯絡我們。");
+        setSubmitting(false);
+        return;
+      }
+      // Redirect to Stripe Checkout
+      window.location.href = sessionData.url;
+    } catch (err) {
+      console.error("Stripe checkout error:", err);
+      alert("建立付款連結失敗，請稍後再試或聯絡我們。");
+      setSubmitting(false);
+    }
   };
 
   if (items.length === 0) {
@@ -634,33 +656,17 @@ const Cart = () => {
                 </div>
               </div>
 
-              {/* Payment Methods */}
+              {/* Payment Method — Stripe only */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
                   <CreditCard className="w-4 h-4 text-primary" />
                   <span className="text-sm font-medium text-foreground">付款方式</span>
                 </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setPaymentMethod("fps")}
-                    className={`p-3 border rounded-sm text-center transition-colors ${
-                      paymentMethod === "fps"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-foreground">FPS 轉數快</span>
-                  </button>
-                  <button
-                    onClick={() => setPaymentMethod("payme")}
-                    className={`p-3 border rounded-sm text-center transition-colors ${
-                      paymentMethod === "payme"
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    <span className="text-sm font-medium text-foreground">PayMe</span>
-                  </button>
+                <div className="p-3 border border-primary/40 bg-primary/5 rounded-sm">
+                  <p className="text-sm font-medium text-foreground">Stripe 安全付款</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    支援 Visa / Mastercard / American Express 等信用卡，全程加密處理。
+                  </p>
                 </div>
               </div>
 
