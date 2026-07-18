@@ -164,22 +164,9 @@ const Cart = () => {
 
     if (dbError) {
       console.error("Failed to write order to CRM:", dbError);
-    } else {
-      // Fire-and-forget confirmation email
-      supabase.functions
-        .invoke("send-order-confirmation", {
-          body: {
-            to: address.email.trim(),
-            orderId: inserted?.id,
-            orderNumber,
-            customerName: address.name.trim(),
-            amount: total,
-            shippingAddress: shippingAddressText,
-            products: productsText,
-          },
-        })
-        .catch((err) => console.error("Email send failed:", err));
     }
+    // 註：下單確認電郵改由 Stripe webhook (marks-paid) 於付款成功時觸發，
+    // 避免前端無限制呼叫寄信 function 導致 Resend 額度被耗盡。
 
     // Local order (localStorage) for the checkout confirmation page
     const order = createOrder({
