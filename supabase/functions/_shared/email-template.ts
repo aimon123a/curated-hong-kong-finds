@@ -97,7 +97,7 @@ const shell = (bodyHtml: string) => `<!DOCTYPE html>
     <tr><td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background-color:#FFFFFF;border-radius:8px;overflow:hidden;">
         <tr><td style="padding:32px 32px 16px;text-align:center;border-bottom:1px solid #EEEEEE;">
-          <img src="${LOGO_URL}" alt="jaagSELECT" style="max-width:200px;height:auto;display:inline-block;" />
+          <img src="${LOGO_URL}" alt="jaagSELECT" style="max-width:120px;height:auto;display:inline-block;" />
         </td></tr>
         <tr><td style="padding:32px;color:#333;font-size:15px;line-height:1.7;">
           ${bodyHtml}
