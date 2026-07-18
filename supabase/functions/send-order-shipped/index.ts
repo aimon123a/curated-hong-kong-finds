@@ -3,8 +3,9 @@
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "*, authorization, x-client-info, apikey, content-type, prefer, x-supabase-api-version",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Max-Age": "86400",
 };
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
