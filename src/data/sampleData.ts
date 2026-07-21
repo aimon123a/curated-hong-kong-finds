@@ -737,6 +737,48 @@ export const productDetails: ProductDetail[] = [
       { size: "抗痘套裝", price: "320", jpy: "6,400", imageUrl: clearexWiAntiAcneSetImage }
     ],
     relatedArticleId: "anson-clearex-wi-v2"
+  },
+  {
+    id: "brandy-cake",
+    name: "日本白蘭地蛋糕 · 三選一",
+    brand: "jaagSELECT",
+    categorySlug: "lifestyle",
+    categoryName: "生活風格",
+    subcategory: "甜點",
+    imageUrl: "/assets/brandy/product-ronshan.jpg",
+    rating: 4.8,
+    reviewCount: 3,
+    addedCount: 12,
+    fullDescription: "編輯團隊親身試吃、熟成 16 天後的三款日本白蘭地蛋糕。每一款代表著不同的個性、場合與價位——由日常小酌、送禮致意，到隆重款待，皆有對應之選。",
+    functions: "適合佐茶、佐酒、餽贈。開盒後建議冷藏靜置 7–14 日以達到最佳熟成狀態。",
+    usage: "室溫回溫 15 分鐘後品嚐；搭配紅茶、Highball 或黑咖啡最能突顯酒香層次。",
+    features: [
+      { title: "Longchamp ロンシャン", description: "經典入門之選。糕體綿密、酒感直接明快，適合日常自享。" },
+      { title: "Esery いせり 300g", description: "熟成派代表。酒香內斂而綿長，糕體濕潤度極高，深受回購者喜愛。" },
+      { title: "THE OKURA TOKYO 香檳蛋糕", description: "隆重款待之選。以香檳取代白蘭地，氣泡感留在舌尖，適合正式送禮。" }
+    ],
+    pros: [
+      "三種個性、三種價位，總有一款合心水",
+      "編輯團隊親自試吃、熟成日記全程記錄",
+      "日本直送，附精緻禮盒包裝",
+      "熟成 7–16 日風味最佳"
+    ],
+    cons: [
+      "含酒精，兒童及孕婦不宜",
+      "開箱後需冷藏，賞味期限較短"
+    ],
+    specs: [
+      { label: "產地", value: "日本" },
+      { label: "熟成建議", value: "冷藏 7–16 日" },
+      { label: "包裝", value: "原廠禮盒" },
+      { label: "備貨時間", value: "7–14 日" }
+    ],
+    variants: [
+      { size: "Longchamp", price: "188", jpy: "3,800", imageUrl: "/assets/brandy/product-ronshan.jpg" },
+      { size: "Esery 300g", price: "288", jpy: "5,800", imageUrl: "/assets/brandy/product-esery.jpg" },
+      { size: "Hotel Okura", price: "588", jpy: "11,800", imageUrl: "/assets/brandy/product-okura.jpg" }
+    ],
+    relatedArticleId: "brandy-cake"
   }
 ];
 
