@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import Layout from "@/components/layout/Layout";
 import "./BrandyCake.css";
 
 const IMG = "/assets/brandy";
@@ -63,21 +64,10 @@ const BrandyCake = () => {
   }, []);
 
   return (
+    <Layout>
     <div className="bc-root">
       <div className="bc-progress" style={{ width: `${progress}%` }} />
 
-      <header className={`bc-masthead ${scrolled ? "scrolled" : ""}`}>
-        <a className="bc-brand" href="/">
-          jaag<em>SELECT</em>
-        </a>
-        <nav className="bc-nav-top">
-          <a href="/products">選物店</a>
-          <a href="/articles">生活品格</a>
-          <a href="/articles" style={{ color: "var(--bc-gold-soft)" }}>選物誌</a>
-          <a href="/about">品牌故事</a>
-          <a href="/selectors">會員專屬</a>
-        </nav>
-      </header>
 
       {/* HERO */}
       <section className="bc-hero">
