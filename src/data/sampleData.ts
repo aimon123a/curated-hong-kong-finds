@@ -96,7 +96,7 @@ export const articles = [
     title: "「大人」的甜點，屬於自己的贅沢時刻",
     excerpt: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。",
     imageUrl: "/assets/brandy/night.png",
-    date: "2026.07.21",
+    date: "2026.07.22",
     isPR: false,
     isFeatureReview: true,
     isShareArticle: false,
@@ -740,7 +740,7 @@ export const productDetails: ProductDetail[] = [
   },
   {
     id: "brandy-cake",
-    name: "日本白蘭地蛋糕 · 三選一",
+    name: "日本白蘭地蛋糕",
     brand: "jaagSELECT",
     categorySlug: "lifestyle",
     categoryName: "生活風格",

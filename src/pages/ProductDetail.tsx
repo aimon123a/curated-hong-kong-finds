@@ -123,11 +123,11 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
           {/* Left: Image Gallery */}
           <div className="space-y-4">
-            <div className="bg-white border border-border rounded-sm p-4 aspect-square flex items-center justify-center">
+            <div className="bg-white border border-border rounded-sm overflow-hidden aspect-square flex items-center justify-center">
               <img
                 src={product.variants[selectedSize]?.imageUrl || product.imageUrl}
                 alt={`${product.name} - ${product.variants[selectedSize]?.size}`}
-                className="max-w-full max-h-full object-contain"
+                className={product.id === "brandy-cake" ? "w-full h-full object-cover" : "max-w-full max-h-full object-contain p-4"}
                 fetchPriority="high"
                 decoding="async"
               />

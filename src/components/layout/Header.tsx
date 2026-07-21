@@ -8,12 +8,21 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { getItemCount } = useCart();
   const itemCount = getItemCount();
   const isBrandyCake = location.pathname === "/brandy-cake";
+
+  useEffect(() => {
+    if (!isBrandyCake) { setScrolled(false); return; }
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isBrandyCake]);
 
   // Focus input when search opens
   useEffect(() => {
@@ -57,7 +66,13 @@ const Header = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 border-b transition-colors ${isBrandyCake ? "bc-header bg-gradient-to-b from-[rgba(19,17,16,0.92)] to-[rgba(19,17,16,0.55)] backdrop-blur-md border-[rgba(201,162,103,0.22)]" : "bg-card/95 backdrop-blur-sm border-border"}`}>
+    <header className={
+      isBrandyCake
+        ? `header--overlay bc-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bc-header--scrolled backdrop-blur-md border-b border-[rgba(237,227,211,0.09)]" : "border-b border-transparent"}`
+        : "sticky top-0 z-50 border-b transition-colors bg-card/95 backdrop-blur-sm border-border"
+    }
+    style={isBrandyCake ? (scrolled ? { background: "rgba(19,17,16,0.94)" } : { background: "linear-gradient(180deg, rgba(19,17,16,0.92), rgba(19,17,16,0))" }) : undefined}
+    >
       <div className="container-editorial">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

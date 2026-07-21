@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap");
 
 /* Global header overrides when on /brandy-cake (class .bc-header applied) */
+.bc-header { box-shadow: none !important; }
 .bc-header a,
 .bc-header button,
 .bc-header span,
