@@ -87,6 +87,25 @@ export const selectors: Selector[] = [
 ];
 
 export const articles = [
+  // Brandy Cake feature article
+  {
+    id: "brandy-cake",
+    slug: "brandy-cake",
+    categorySlug: "lifestyle",
+    selectorId: "anson",
+    title: "「大人」的甜點，屬於自己的贅沢時刻",
+    excerpt: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。",
+    imageUrl: "/assets/brandy/night.png",
+    date: "2026.07.21",
+    isPR: false,
+    isFeatureReview: true,
+    isShareArticle: false,
+    author: {
+      name: "Anson",
+      title: "生活品格",
+      imageUrl: ansonImage,
+    },
+  },
   // Coming Soon placeholder article
   {
     id: "coming-soon-001",
