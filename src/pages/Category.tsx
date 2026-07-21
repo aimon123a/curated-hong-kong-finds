@@ -126,9 +126,22 @@ const Category = () => {
             description={`探索${category.chineseTitle}的最新評測和推薦`}
           />
 
-          {articles.length > 0 ? (
+          {(articles.length > 0 || slug === "lifestyle") ? (
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {slug === "lifestyle" && (
+                  <ArticleCard
+                    id="brandy-cake"
+                    slug="brandy-cake"
+                    categorySlug="lifestyle"
+                    title="「大人」的甜點，屬於自己的贅沢時刻"
+                    excerpt="一塊外表平凡的白蘭地蛋糕，吞下去之後才浮現的酒香——三種價位，三種選擇。"
+                    imageUrl="/assets/brandy/night.png"
+                    date="2026.07.22"
+                    isShareArticle
+                    tags={["白蘭地蛋糕", "日本手信", "熟成"]}
+                  />
+                )}
                 {articles.map((article) => (
                   <ArticleCard
                     key={article.id}
@@ -170,6 +183,32 @@ const Category = () => {
                         )}
                         <p className="text-sm font-medium text-foreground">{variant.size}</p>
                         <p className="text-xs text-primary font-bold mt-1">HKD {variant.price}</p>
+                        <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車</p>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {slug === "lifestyle" && (
+                <div className="bg-card border border-border rounded-sm p-6">
+                  <h3 className="text-base font-bold text-foreground mb-4 flex items-center gap-2">
+                    <ShoppingCart className="w-4 h-4 text-primary" />
+                    快速加入購物車
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {brandyItems.map((item, index) => (
+                      <button
+                        key={item.id}
+                        onClick={() => handleBrandyAdd(index)}
+                        className="relative border border-border rounded-sm p-3 hover:border-primary hover:bg-primary/5 transition-colors text-left group"
+                      >
+                        <span className={`absolute -top-2 right-2 px-1.5 py-0.5 text-[10px] font-bold rounded-sm ${item.badge === "熱門" ? "bg-orange-500 text-white" : "bg-primary text-primary-foreground"}`}>
+                          {item.badge}
+                        </span>
+                        <p className="text-sm font-medium text-foreground line-clamp-1">{item.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{item.brand}</p>
+                        <p className="text-xs text-primary font-bold mt-1">HKD {item.price}</p>
                         <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車</p>
                       </button>
                     ))}
