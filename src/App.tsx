@@ -25,6 +25,7 @@ import Privacy from "./pages/Privacy";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import BrandyCake from "./pages/BrandyCake";
 
 const queryClient = new QueryClient();
 
