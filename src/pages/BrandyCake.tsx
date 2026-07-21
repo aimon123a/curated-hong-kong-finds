@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import Layout from "@/components/layout/Layout";
 import "./BrandyCake.css";
 
 const IMG = "/assets/brandy";
@@ -63,21 +64,10 @@ const BrandyCake = () => {
   }, []);
 
   return (
+    <Layout>
     <div className="bc-root">
       <div className="bc-progress" style={{ width: `${progress}%` }} />
 
-      <header className={`bc-masthead ${scrolled ? "scrolled" : ""}`}>
-        <a className="bc-brand" href="/">
-          jaag<em>SELECT</em>
-        </a>
-        <nav className="bc-nav-top">
-          <a href="/products">選物店</a>
-          <a href="/articles">生活品格</a>
-          <a href="/articles" style={{ color: "var(--bc-gold-soft)" }}>選物誌</a>
-          <a href="/about">品牌故事</a>
-          <a href="/selectors">會員專屬</a>
-        </nav>
-      </header>
 
       {/* HERO */}
       <section className="bc-hero">
@@ -360,22 +350,6 @@ const BrandyCake = () => {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="bc-site-footer">
-        <div className="bc-f-grid">
-          <div className="bc-f-brand">
-            <div className="bc-brand">jaag<em>SELECT</em></div>
-            <p>評測 ・ 推薦 ・ 代購<br />沒有試過的，不會出現在這裡。<br />好的選擇，讓生活更美好。</p>
-          </div>
-          <p className="bc-f-note">本篇內容為作者自費購入後的個人記錄，口味因人而異。賞味期限、成分及過敏原資訊以包裝標示為準。含酒精食品，請勿提供予未成年人士。</p>
-        </div>
-        <div className="bc-f-bottom">
-          <span>© 2026 jaagSELECT HK</span>
-          <span>Instagram ・ @jaag_select</span>
-          <span>Vol.01 ・ ブランデーケーキ</span>
-        </div>
-      </footer>
-
       <button
         className={`bc-to-top ${showTop ? "show" : ""}`}
         aria-label="回到頂部"
@@ -384,6 +358,7 @@ const BrandyCake = () => {
         ↑
       </button>
     </div>
+    </Layout>
   );
 };
 
