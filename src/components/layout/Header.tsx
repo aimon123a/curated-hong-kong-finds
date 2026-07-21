@@ -57,7 +57,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 border-b transition-colors ${isBrandyCake ? "bg-gradient-to-b from-[rgba(19,17,16,0.92)] to-[rgba(19,17,16,0.55)] backdrop-blur-md border-[rgba(201,162,103,0.22)] text-[#ede3d3]" : "bg-card/95 backdrop-blur-sm border-border"}`}>
+    <header className={`sticky top-0 z-50 border-b transition-colors ${isBrandyCake ? "bc-header bg-gradient-to-b from-[rgba(19,17,16,0.92)] to-[rgba(19,17,16,0.55)] backdrop-blur-md border-[rgba(201,162,103,0.22)]" : "bg-card/95 backdrop-blur-sm border-border"}`}>
       <div className="container-editorial">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
