@@ -129,19 +129,7 @@ const Category = () => {
           {(articles.length > 0 || slug === "lifestyle") ? (
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {slug === "lifestyle" && (
-                  <ArticleCard
-                    id="brandy-cake"
-                    slug="brandy-cake"
-                    categorySlug="lifestyle"
-                    title="「大人」的甜點，屬於自己的贅沢時刻"
-                    excerpt="一塊外表平凡的白蘭地蛋糕，吞下去之後才浮現的酒香——三種價位，三種選擇。"
-                    imageUrl="/assets/brandy/night.png"
-                    date="2026.07.22"
-                    isShareArticle
-                    tags={["白蘭地蛋糕", "日本手信", "熟成"]}
-                  />
-                )}
+                {/* Brandy Cake article is rendered from articles array below */}
                 {articles.map((article) => (
                   <ArticleCard
                     key={article.id}

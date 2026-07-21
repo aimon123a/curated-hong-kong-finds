@@ -740,7 +740,7 @@ export const productDetails: ProductDetail[] = [
   },
   {
     id: "brandy-cake",
-    name: "日本白蘭地蛋糕 · 三選一",
+    name: "日本白蘭地蛋糕",
     brand: "jaagSELECT",
     categorySlug: "lifestyle",
     categoryName: "生活風格",
