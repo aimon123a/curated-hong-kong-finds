@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { articles, products } from "@/data/sampleData";
@@ -10,8 +10,10 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { getItemCount } = useCart();
   const itemCount = getItemCount();
+  const isBrandyCake = location.pathname === "/brandy-cake";
 
   // Focus input when search opens
   useEffect(() => {
@@ -55,7 +57,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border">
+    <header className={`sticky top-0 z-50 border-b transition-colors ${isBrandyCake ? "bc-header bg-gradient-to-b from-[rgba(19,17,16,0.92)] to-[rgba(19,17,16,0.55)] backdrop-blur-md border-[rgba(201,162,103,0.22)]" : "bg-card/95 backdrop-blur-sm border-border"}`}>
       <div className="container-editorial">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
