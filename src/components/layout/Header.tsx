@@ -8,12 +8,21 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { getItemCount } = useCart();
   const itemCount = getItemCount();
   const isBrandyCake = location.pathname === "/brandy-cake";
+
+  useEffect(() => {
+    if (!isBrandyCake) { setScrolled(false); return; }
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isBrandyCake]);
 
   // Focus input when search opens
   useEffect(() => {
