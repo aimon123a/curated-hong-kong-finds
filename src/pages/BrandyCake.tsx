@@ -308,7 +308,7 @@ const BrandyCake = () => {
               <div className="bc-p-card feat bc-reveal">
                 <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-esery.jpg`} alt="いせり ブランデーケーキ" /></div>
                 <div className="bc-p-scene">
-                  <h3>「拆開之後，還會更好。」</h3>
+                  <h3>「將時間與白蘭地封存，釀造一封最濃郁的手信。」</h3>
                 </div>
                 <div className="bc-p-name">いせり ブランデーケーキ 300g<br />しっとり濕潤・禮盒裝</div>
                 <p className="bc-p-note">日本人退職、異動時答謝同事的「お世話になりました」之選。夠體面但不誇張，收的人沒有壓力，送的人很有分寸。</p>
