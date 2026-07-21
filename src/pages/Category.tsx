@@ -44,6 +44,54 @@ const Category = () => {
     });
   };
 
+  const brandyItems = [
+    {
+      id: "brandy-ronshan",
+      name: "ロンシャン ブランデーケーキ",
+      brand: "Longchamp",
+      variant: "標準裝",
+      price: 188,
+      imageUrl: "/assets/brandy/product-ronshan.jpg",
+      badge: "推薦",
+    },
+    {
+      id: "brandy-esery",
+      name: "いせり ブランデーケーキ 300g",
+      brand: "Esery",
+      variant: "300g",
+      price: 288,
+      imageUrl: "/assets/brandy/product-esery.jpg",
+      badge: "熱門",
+    },
+    {
+      id: "brandy-okura",
+      name: "THE OKURA TOKYO シャンパンケーキ",
+      brand: "Hotel Okura",
+      variant: "標準裝",
+      price: 588,
+      imageUrl: "/assets/brandy/product-okura.jpg",
+      badge: "推薦",
+    },
+  ];
+
+  const handleBrandyAdd = (index: number) => {
+    const item = brandyItems[index];
+    addItem({
+      id: item.id,
+      name: item.name,
+      brand: item.brand,
+      variant: item.variant,
+      price: item.price,
+      quantity: 1,
+      imageUrl: item.imageUrl,
+      weight: 400,
+    });
+    toast({
+      title: "已加入購物車",
+      description: `${item.name}`,
+    });
+  };
+
   if (!category) {
     return (
       <Layout>
