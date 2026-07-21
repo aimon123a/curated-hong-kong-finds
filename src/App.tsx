@@ -25,6 +25,7 @@ import Privacy from "./pages/Privacy";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import BrandyCake from "./pages/BrandyCake";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/brandy-cake" element={<BrandyCake />} />
             {/* Flat article slug route - must be BEFORE catch-all */}
             <Route path="/:slug" element={<ArticleBySlug />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
