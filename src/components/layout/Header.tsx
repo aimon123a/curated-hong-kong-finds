@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Search, Menu, X, ShoppingCart } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { articles, products } from "@/data/sampleData";
@@ -10,8 +10,10 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const { getItemCount } = useCart();
   const itemCount = getItemCount();
+  const isBrandyCake = location.pathname === "/brandy-cake";
 
   // Focus input when search opens
   useEffect(() => {
