@@ -56,6 +56,7 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/brandy-cake" element={<BrandyCake />} />
             {/* Flat article slug route - must be BEFORE catch-all */}
             <Route path="/:slug" element={<ArticleBySlug />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
