@@ -261,7 +261,7 @@ const ProductDetail = () => {
               </p>
               <p className="flex items-start gap-2">
                 <CreditCard className="w-4 h-4 shrink-0 mt-0.5" />
-                <span>支付方式：FPS 轉數快 · PayMe</span>
+                <span>支付方式：Stripe 安全付款</span>
               </p>
             </div>
           </div>

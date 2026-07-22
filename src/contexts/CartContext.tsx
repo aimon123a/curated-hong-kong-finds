@@ -19,7 +19,7 @@ export interface Order {
   shippingFee: number;
   total: number;
   shippingMethod: "home" | "sf-locker";
-  paymentMethod: "stripe" | "fps" | "payme";
+  paymentMethod: "stripe";
   address: {
     name: string;
     phone: string;

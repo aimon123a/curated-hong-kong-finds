@@ -774,9 +774,12 @@ export const productDetails: ProductDetail[] = [
       { label: "備貨時間", value: "7–14 日" }
     ],
     variants: [
-      { size: "Longchamp", price: "188", jpy: "3,800", imageUrl: "/assets/brandy/product-ronshan.jpg" },
-      { size: "Esery 300g", price: "288", jpy: "5,800", imageUrl: "/assets/brandy/product-esery.jpg" },
-      { size: "Hotel Okura", price: "588", jpy: "11,800", imageUrl: "/assets/brandy/product-okura.jpg" }
+      { size: "Longchamp 1條", price: "200", jpy: "3,800", imageUrl: "/assets/brandy/product-ronshan.jpg" },
+      { size: "Longchamp 2條", price: "300", jpy: "7,200", imageUrl: "/assets/brandy/product-ronshan.jpg" },
+      { size: "Esery 1條", price: "300", jpy: "5,800", imageUrl: "/assets/brandy/product-esery.jpg" },
+      { size: "Esery 2條", price: "400", jpy: "11,600", imageUrl: "/assets/brandy/product-esery.jpg" },
+      { size: "Hotel Okura 1條", price: "500", jpy: "11,800", imageUrl: "/assets/brandy/product-okura.jpg" },
+      { size: "Hotel Okura 2條", price: "700", jpy: "23,600", imageUrl: "/assets/brandy/product-okura.jpg" }
     ],
     relatedArticleId: "brandy-cake"
   }

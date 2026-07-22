@@ -240,17 +240,23 @@
 .bc-t-label { display: block; font-size: 0.64rem; letter-spacing: 0.32em; color: var(--bc-gold); margin-bottom: 0.55em; }
 .bc-p-price {
   margin: 1.6em 2em 0; padding-top: 1.3em; border-top: 1px solid var(--bc-line-soft);
-  display: flex; align-items: baseline; justify-content: flex-end;
+  display: flex; align-items: baseline; justify-content: flex-end; flex-wrap: wrap;
 }
 .bc-hkd { font-family: var(--bc-serif); font-size: 1.3rem; color: var(--bc-gold-soft); }
 .bc-hkd small { font-size: 0.62em; letter-spacing: 0.1em; color: var(--bc-muted); }
+.bc-hkd-secondary { font-family: var(--bc-sans); font-size: 0.8rem; color: var(--bc-muted); margin-left: 0.8em; letter-spacing: 0.05em; }
 .bc-p-cta {
-  margin: 1.6em 2em 2em; display: block; text-align: center;
+  display: block; text-align: center;
   border: 1px solid var(--bc-gold); color: var(--bc-gold-soft);
-  font-size: 0.76rem; letter-spacing: 0.3em; padding: 1em 0;
+  font-size: 0.72rem; letter-spacing: 0.18em; padding: 1em 0.2em;
   transition: background 0.35s, color 0.35s;
 }
 .bc-p-cta:hover { background: var(--bc-gold); color: #171310; }
+.bc-p-cta-row {
+  margin: 1.6em 2em 2em;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em;
+}
+.bc-p-cta-row .bc-p-cta { margin: 0; }
 .bc-p-card.feat { border-color: var(--bc-line); }
 @media (max-width: 860px) { .bc-p-grid { grid-template-columns: 1fr; } }
 .bc-p-foot { margin-top: 2.4em; font-size: 0.74rem; color: var(--bc-muted); line-height: 2.1; letter-spacing: 0.05em; }
