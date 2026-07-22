@@ -58,22 +58,37 @@ const ProductDetail = () => {
     },
   } : null);
 
+  const currentVariant = product?.variants[selectedSize];
+  const hasBundle = !!(currentVariant?.singlePrice && currentVariant?.pairPrice);
+
+  const computeBundleTotal = (qty: number) => {
+    if (!hasBundle || !currentVariant?.singlePrice || !currentVariant?.pairPrice) return 0;
+    return Math.floor(qty / 2) * currentVariant.pairPrice + (qty % 2) * currentVariant.singlePrice;
+  };
+
+  const displayedTotal = hasBundle
+    ? computeBundleTotal(quantity)
+    : parseInt(currentVariant?.price || "0") * quantity;
+
   const handleAddToCart = () => {
-    if (!product) return;
-    const variant = product.variants[selectedSize];
+    if (!product || !currentVariant) return;
     addItem({
       id: `${product.id}-${selectedSize}`,
       name: product.name,
       brand: product.brand,
-      variant: variant.size,
-      price: parseInt(variant.price),
+      variant: currentVariant.size,
+      price: hasBundle ? currentVariant.singlePrice! : parseInt(currentVariant.price),
       quantity,
-      imageUrl: variant.imageUrl || product.imageUrl,
+      imageUrl: currentVariant.imageUrl || product.imageUrl,
       weight: 200,
+      ...(hasBundle && {
+        bundlePricing: { single: currentVariant.singlePrice!, pair: currentVariant.pairPrice! },
+        originalPrice: currentVariant.originalSingle,
+      }),
     });
     toast({
       title: "已加入購物車",
-      description: `${product.name} (${variant.size}) × ${quantity}`,
+      description: `${product.name} (${currentVariant.size}) × ${quantity}`,
     });
     setQuantity(1);
   };
