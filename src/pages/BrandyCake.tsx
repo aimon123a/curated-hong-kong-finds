@@ -27,8 +27,12 @@ const DIARY = [
 
 const BrandyCake = () => {
   useDocumentMeta({
-    title: "「大人」的甜點，屬於自己的贅沢時刻 — jaagSELECT",
-    description: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。",
+    title: "「大人」的甜點 · 日本白蘭地蛋糕深度評測｜jaagSELECT",
+    description: "編輯團隊親身試吃 16 日：Longchamp、いせり、THE OKURA TOKYO 三款日本白蘭地蛋糕熟成日記，附送禮場合建議與香港代購價格。",
+    ogTitle: "「大人」的甜點，屬於自己的贅沢時刻 — jaagSELECT",
+    ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。三款日本手信深度評測。",
+    ogImage: "https://jaagselect.com/assets/brandy/night.png",
+    ogType: "article",
     canonical: "/brandy-cake",
   });
 
