@@ -368,6 +368,20 @@ const BrandyCake = () => {
       >
         ↑
       </button>
+
+      <div className={`bc-sticky-cta ${showCta ? "show" : ""}`} aria-hidden={!showCta}>
+        <span className="bc-sticky-label">ブランデーケーキ</span>
+        <a
+          className="bc-sticky-btn"
+          href="#products"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          查看三種預訂方案
+        </a>
+      </div>
     </div>
     </Layout>
   );
