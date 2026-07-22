@@ -745,7 +745,7 @@ export const productDetails: ProductDetail[] = [
     categorySlug: "lifestyle",
     categoryName: "生活風格",
     subcategory: "甜點",
-    imageUrl: "/assets/brandy/product-ronshan.jpg",
+    imageUrl: "/assets/brandy/night.png",
     rating: 4.8,
     reviewCount: 3,
     addedCount: 12,
