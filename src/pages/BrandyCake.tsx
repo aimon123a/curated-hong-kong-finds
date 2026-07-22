@@ -33,6 +33,7 @@ const BrandyCake = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [diaryIdx, setDiaryIdx] = useState(0);
+  const [showCta, setShowCta] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,6 +42,10 @@ const BrandyCake = () => {
       setProgress(max > 0 ? (h.scrollTop / max) * 100 : 0);
       setScrolled(h.scrollTop > 40);
       setShowTop(h.scrollTop > 900);
+      const products = document.getElementById("products");
+      const pastHero = h.scrollTop > window.innerHeight * 0.8;
+      const productsTop = products ? products.getBoundingClientRect().top : Infinity;
+      setShowCta(pastHero && productsTop > window.innerHeight * 0.6);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -72,7 +77,7 @@ const BrandyCake = () => {
       {/* HERO */}
       <section className="bc-hero">
         <div className="bc-hero-bg">
-          <img src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" />
+          <img className="bc-tinted" src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" />
         </div>
         <div className="bc-hero-veil" />
         <div className="bc-hero-inner">
@@ -113,6 +118,7 @@ const BrandyCake = () => {
               <li><a href="#ch3"><span className="bc-num">03</span>熟成<span className="bc-jp">育てる</span></a></li>
               <li><a href="#ch4"><span className="bc-num">04</span>我會推薦給誰<span className="bc-jp">誰に</span></a></li>
               <li><a href="#products"><span className="bc-num">05</span>三種場合的選擇<span className="bc-jp">贈り物</span></a></li>
+              <li><a href="#note"><span className="bc-num">06</span>今夜、という名の場面<span className="bc-jp">エピローグ</span></a></li>
             </ol>
           </nav>
         </div>
@@ -125,7 +131,7 @@ const BrandyCake = () => {
               <h2>一切，由一盒沒有人期待的手信開始。</h2>
             </div>
             <figure className="bc-reveal" style={{ marginTop: 0 }}>
-              <img src={`${IMG}/story-gift.jpg`} alt="餐桌上，雙手把包裝好的禮盒遞給另一雙手" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG}/story-gift.jpg`} alt="餐桌上，雙手把包裝好的禮盒遞給另一雙手" loading="lazy" />
             </figure>
             <div className="bc-prose bc-reveal">
               <p className="bc-dropcap">有位長輩，長年住在日本。</p>
@@ -147,7 +153,7 @@ const BrandyCake = () => {
               <h2>我們甚至沒有看盒上的名字，<br />就隨便拿來吃了。</h2>
             </div>
             <figure className="bc-reveal" style={{ marginTop: 0 }}>
-              <img src={`${IMG}/story-cut.jpg`} alt="切開的白蘭地蛋糕，露出濕潤金黃的糕體" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG}/story-cut.jpg`} alt="切開的白蘭地蛋糕，露出濕潤金黃的糕體" loading="lazy" />
             </figure>
             <div className="bc-prose bc-reveal">
               <p>那天晚上，只當它是普通的日本蛋糕手信。切開，入口——嗯，合格的瑪德蓮式蛋糕：該甜的甜，該濕潤的濕潤。沒有失望，也沒有驚喜。</p>
@@ -170,7 +176,7 @@ const BrandyCake = () => {
         {/* THE PHOTO IS THE TEXT */}
         <div className="bc-breath bc-breath-photo">
           <figure className="bc-frame bc-reveal" style={{ margin: 0 }}>
-            <img loading="lazy" src={`${IMG}/real-photo.jpg`} alt="書桌上的白蘭地蛋糕實拍照" />
+            <img loading="lazy" src={`${IMG}/real-photo-v2.jpg`} alt="書桌上的白蘭地蛋糕實拍照" />
           </figure>
           <div className="bc-b-caption bc-reveal">那天，我們沒有打算拍照。所以它只有這張。</div>
         </div>
@@ -179,7 +185,7 @@ const BrandyCake = () => {
         <section className="bc-chapter">
           <div className="bc-col">
             <div className="bc-prose bc-reveal">
-              <p><strong>實物，其實不如照片吸引。</strong>它外表平凡到，我們一開始以為只是普通蛋糕——這正是它被低估的原因。那層不起眼的表皮，塗的是白蘭地酒液。誰會想到，平凡的外表底下，藏著這樣的玄機。</p>
+              <p className="bc-pull"><strong>實物，其實不如照片吸引。</strong>它外表平凡到，我們一開始以為只是普通蛋糕——這正是它被低估的原因。那層不起眼的表皮，塗的是白蘭地酒液。誰會想到，平凡的外表底下，藏著這樣的玄機。</p>
               <p>所以如果你收到之後，第一眼看下去心想「就這樣？」——是的，就這樣。切一片，吃下去，等一等。</p>
             </div>
           </div>
@@ -193,7 +199,7 @@ const BrandyCake = () => {
               <h2>熟成。</h2>
             </div>
             <figure className="bc-full bc-reveal" style={{ marginTop: 0 }}>
-              <img src={`${IMG}/craft.jpg`} alt="職人以錫紙包裹蛋糕，黑白照片" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG}/craft.jpg`} alt="職人以錫紙包裹蛋糕，黑白照片" loading="lazy" />
             </figure>
             <div className="bc-prose bc-reveal">
               <p>我一直不知道，蛋糕，原來也會變。</p>
@@ -244,7 +250,7 @@ const BrandyCake = () => {
             </div>
             <div className="bc-who">
               <div className="bc-who-item bc-reveal">
-                <figure className="bc-w-img"><img loading="lazy" src={`${IMG}/persona-wine.jpg`} alt="晚上的聚會，一位穿晚禮服的女士拿著蛋糕與酒杯" /></figure>
+                <figure className="bc-w-img"><img className="bc-tinted" loading="lazy" src={`${IMG}/persona-wine.jpg`} alt="晚上的聚會，一位穿晚禮服的女士拿著蛋糕與酒杯" /></figure>
                 <div>
                   <div className="bc-w-no">一</div>
                   <h3>愛酒的人</h3>
@@ -252,7 +258,7 @@ const BrandyCake = () => {
                 </div>
               </div>
               <div className="bc-who-item bc-reveal">
-                <figure className="bc-w-img"><img loading="lazy" src={`${IMG}/persona-sweet.jpg`} alt="深夜的餐桌，一小件蛋糕與一杯黑咖啡" /></figure>
+                <figure className="bc-w-img"><img className="bc-tinted" loading="lazy" src={`${IMG}/persona-sweet.jpg`} alt="深夜的餐桌，一小件蛋糕與一杯黑咖啡" /></figure>
                 <div>
                   <div className="bc-w-no">二</div>
                   <h3>對甜品又愛又恨的人</h3>
@@ -260,7 +266,7 @@ const BrandyCake = () => {
                 </div>
               </div>
               <div className="bc-who-item bc-reveal">
-                <figure className="bc-w-img"><img loading="lazy" src={`${IMG}/persona-gift.jpg`} alt="餐桌前，一人把禮盒遞給另一人" /></figure>
+                <figure className="bc-w-img"><img className="bc-tinted" loading="lazy" src={`${IMG}/persona-gift.jpg`} alt="餐桌前，一人把禮盒遞給另一人" /></figure>
                 <div>
                   <div className="bc-w-no">三</div>
                   <h3>想送一份特別禮物的人</h3>
@@ -298,7 +304,7 @@ const BrandyCake = () => {
               <div className="bc-p-card feat bc-reveal">
                 <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-esery.jpg`} alt="いせり ブランデーケーキ" /></div>
                 <div className="bc-p-scene">
-                  <h3>「將時間與白蘭地封存，釀造一封最濃郁的手信。」</h3>
+                  <h3>「將時間與白蘭地封存，釀造一封最濃郁的心意。」</h3>
                 </div>
                 <div className="bc-p-name">いせり ブランデーケーキ 300g<br />しっとり濕潤・禮盒裝</div>
                 <p className="bc-p-note">日本人退職、異動時答謝同事的「お世話になりました」之選。夠體面但不誇張，收的人沒有壓力，送的人很有分寸。</p>
@@ -335,7 +341,7 @@ const BrandyCake = () => {
               <p>「最好吃」三個字，我不敢用——世界那麼大，總有更驚艷的。但如果有一天有人問我：「去日本只能帶一樣甜點回來，你會選什麼？」現在，我大概會把這塊白蘭地蛋糕，放進答案裡。</p>
             </div>
             <figure className="bc-reveal">
-              <img src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" loading="lazy" />
             </figure>
             <div className="bc-cta-row bc-reveal">
               <a className="bc-btn-solid" href={CART_URL}>由一條開始 →</a>
@@ -343,8 +349,13 @@ const BrandyCake = () => {
             </div>
             <div className="bc-sign bc-reveal">
               <span className="bc-line" />
-              <span className="bc-who-name">Anson</span>
-              <span className="bc-what">jaagSELECT</span>
+              <div className="bc-sign-row">
+                <img className="bc-sign-avatar" src={`${IMG}/anson-avatar-bw.png`} alt="Anson" />
+                <div className="bc-sign-text">
+                  <span className="bc-who-name">Anson</span>
+                  <span className="bc-what">jaagSELECT</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -357,6 +368,20 @@ const BrandyCake = () => {
       >
         ↑
       </button>
+
+      <div className={`bc-sticky-cta ${showCta ? "show" : ""}`} aria-hidden={!showCta}>
+        <span className="bc-sticky-label">ブランデーケーキ</span>
+        <a
+          className="bc-sticky-btn"
+          href="#products"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          查看三種預訂方案
+        </a>
+      </div>
     </div>
     </Layout>
   );

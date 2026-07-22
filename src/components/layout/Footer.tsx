@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background mt-20">
+    <footer className="bg-foreground text-background">
       <div className="container-editorial py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -91,7 +91,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-background/20 mt-10 pt-6">
           <p className="text-xs text-background/50 text-center">
-            © 2024 jaagSELECT HK. All rights reserved.
+            © {new Date().getFullYear()} jaagSELECT HK. All rights reserved.
           </p>
         </div>
       </div>
