@@ -101,7 +101,7 @@ export const articles = [
     isFeatureReview: true,
     isShareArticle: false,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "生活品格",
       imageUrl: ansonImage,
     },
