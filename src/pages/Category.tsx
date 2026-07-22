@@ -144,7 +144,13 @@ const Category = () => {
                     isFeatureReview={(article as any).isFeatureReview}
                     isShareArticle={(article as any).isShareArticle}
                     isComingSoon={(article as any).isComingSoon}
-                    tags={article.categorySlug === "beauty" && !(article as any).isComingSoon ? ["抗背痘", "抗臭", "低刺激", "藥用沐浴露"] : []}
+                    tags={
+                      article.id === "brandy-cake"
+                        ? ["白蘭地蛋糕", "日本手信", "熟成甜點", "送禮之選"]
+                        : article.categorySlug === "beauty" && !(article as any).isComingSoon
+                          ? ["抗背痘", "抗臭", "低刺激", "藥用沐浴露"]
+                          : []
+                    }
                   />
                 ))}
               </div>
