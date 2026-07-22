@@ -5,7 +5,7 @@ import { ChevronRight, Minus, Plus, Package, Truck, MapPin, CreditCard, AlertCir
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useCart } from "@/contexts/CartContext";
+import { useCart, getLineTotal } from "@/contexts/CartContext";
 import senakyuSprayImage from "@/assets/products/senakyu-spray.webp";
 import clearexWi380mlRefillImage from "@/assets/products/clearex-wi-380ml-refill.jpg";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
