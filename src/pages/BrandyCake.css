@@ -129,12 +129,12 @@
 .bc-breath-photo { background: var(--bc-bg); }
 .bc-breath-photo .bc-frame {
   width: min(560px, 86vw);
-  background: #211d1a; padding: 14px 14px 0;
+  background: transparent; padding: 0;
   border: 1px solid var(--bc-line-soft);
   transform: rotate(-1.2deg);
   box-shadow: 0 30px 80px rgba(0,0,0,0.5);
 }
-.bc-breath-photo .bc-frame img { width: 100%; }
+.bc-breath-photo .bc-frame img { width: 100%; display: block; }
 
 .bc-about { margin: 10vh auto 0; padding: 0.4em 0 0.4em 1.8em; border-left: 1px solid var(--bc-gold); }
 .bc-a-head { font-size: 0.7rem; letter-spacing: 0.32em; color: var(--bc-muted); margin-bottom: 1.3em; }
