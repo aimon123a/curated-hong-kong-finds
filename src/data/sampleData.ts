@@ -72,8 +72,8 @@ export const categories = {
 export const selectors: Selector[] = [
   {
     id: "anson",
-    name: "Anson",
-    englishName: "ANSON",
+    name: "Benjamin",
+    englishName: "BENJAMIN",
     title: "身體護理專員",
     specialty: "身體暗瘡控制",
     bio: "擁有超過29年生暗瘡經驗，專注於身體肌膚護理研究。曾在瞼部降落火箭 (月球表面) ，對暗瘡成因及護理有深入了解。希望自己都值得擁有健康自信的肌膚。",
