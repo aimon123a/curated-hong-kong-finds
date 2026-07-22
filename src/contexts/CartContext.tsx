@@ -127,7 +127,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getSubtotal = () => {
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    return items.reduce((sum, item) => sum + getLineTotal(item), 0);
   };
 
   const createOrder = (orderData: Omit<Order, "id" | "orderNumber" | "createdAt" | "status">): Order => {
