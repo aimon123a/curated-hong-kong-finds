@@ -350,9 +350,9 @@ const BrandyCake = () => {
             <div className="bc-sign bc-reveal">
               <span className="bc-line" />
               <div className="bc-sign-row">
-                <img className="bc-sign-avatar" src={`${IMG}/anson-avatar-bw.png`} alt="Anson" />
+                <img className="bc-sign-avatar" src={`${IMG}/anson-avatar-bw.png`} alt="Benjamin" />
                 <div className="bc-sign-text">
-                  <span className="bc-who-name">Anson</span>
+                  <span className="bc-who-name">Benjamin</span>
                   <span className="bc-what">jaagSELECT</span>
                 </div>
               </div>
