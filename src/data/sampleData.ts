@@ -72,8 +72,8 @@ export const categories = {
 export const selectors: Selector[] = [
   {
     id: "anson",
-    name: "Anson",
-    englishName: "ANSON",
+    name: "Benjamin",
+    englishName: "BENJAMIN",
     title: "身體護理專員",
     specialty: "身體暗瘡控制",
     bio: "擁有超過29年生暗瘡經驗，專注於身體肌膚護理研究。曾在瞼部降落火箭 (月球表面) ，對暗瘡成因及護理有深入了解。希望自己都值得擁有健康自信的肌膚。",
@@ -101,7 +101,7 @@ export const articles = [
     isFeatureReview: true,
     isShareArticle: false,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "生活品格",
       imageUrl: ansonImage,
     },
@@ -121,12 +121,12 @@ export const articles = [
     isShareArticle: true,
     isComingSoon: true,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "身體護理專家",
       imageUrl: ansonImage,
     },
   },
-  // Anson's Feature Article 2 - Back Acne Solution (from Word doc)
+  // Benjamin's Feature Article 2 - Back Acne Solution (from Word doc)
   {
     id: "anson-clearex-wi-v2",
     slug: "clearex-wi",
@@ -140,7 +140,7 @@ export const articles = [
     isFeatureReview: true,
     isShareArticle: true,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "身體護理專家",
       imageUrl: ansonImage,
     },
@@ -348,7 +348,7 @@ export const articles = [
         tips: "雙管齊下效果更佳！配合背粒消使用，就算有新痘都好快消炎。"
       },
       verdict: {
-        title: "Anson 的真實感受",
+        title: "Benjamin 的真實感受",
         content: "個人感受背部明顯平滑了，發炎情況也減少了。使用了30日，真的看到了改變。對於香港這種濕熱天氣以及經常加班的打工一族，這款產品真的是救星！推薦給同樣受背痘困擾的你。"
       }
     },
