@@ -289,9 +289,14 @@ const Cart = () => {
 
                   {/* Price & Actions */}
                   <div className="text-right shrink-0">
-                    <p className="font-bold text-foreground mb-2">
-                      HKD {item.price}
+                    <p className="font-bold text-foreground mb-0.5">
+                      HKD {getLineTotal(item)}
                     </p>
+                    {item.bundlePricing && (
+                      <p className="text-[10px] text-muted-foreground mb-2 leading-tight">
+                        1條 HKD {item.bundlePricing.single}／2條 HKD {item.bundlePricing.pair}
+                      </p>
+                    )}
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => removeItem(item.id)}
