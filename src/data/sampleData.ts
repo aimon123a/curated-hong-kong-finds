@@ -121,12 +121,12 @@ export const articles = [
     isShareArticle: true,
     isComingSoon: true,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "身體護理專家",
       imageUrl: ansonImage,
     },
   },
-  // Anson's Feature Article 2 - Back Acne Solution (from Word doc)
+  // Benjamin's Feature Article 2 - Back Acne Solution (from Word doc)
   {
     id: "anson-clearex-wi-v2",
     slug: "clearex-wi",
@@ -140,7 +140,7 @@ export const articles = [
     isFeatureReview: true,
     isShareArticle: true,
     author: {
-      name: "Anson",
+      name: "Benjamin",
       title: "身體護理專家",
       imageUrl: ansonImage,
     },
