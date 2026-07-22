@@ -210,8 +210,12 @@ const Category = () => {
                         </span>
                         <p className="text-sm font-medium text-foreground line-clamp-1">{item.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{item.brand}</p>
-                        <p className="text-xs text-primary font-bold mt-1">HKD {item.price}</p>
-                        <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車</p>
+                        <p className="text-xs mt-1">
+                          <span className="text-primary font-bold">HKD {item.price}</span>
+                          <span className="text-muted-foreground line-through ml-1.5">HKD {item.originalPrice}</span>
+                        </p>
+                        <p className="text-[10px] text-muted-foreground mt-0.5">2 條組合 HKD {item.pairPrice}</p>
+                        <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車（購物車可加減）</p>
                       </button>
                     ))}
                   </div>
