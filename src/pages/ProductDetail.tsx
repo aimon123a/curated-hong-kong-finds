@@ -201,13 +201,30 @@ const ProductDetail = () => {
             {/* Price */}
             <div className="mb-6">
               <p className="text-sm text-muted-foreground mb-1">價格：</p>
-              <p className="text-3xl font-bold text-primary">
-                <span className="text-sm font-medium text-accent-foreground bg-accent px-1.5 py-0.5 rounded mr-2 align-middle">試業價</span>
-                HKD {product.variants[selectedSize].price}
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">
-                ≈ {product.variants[selectedSize].jpy} 日元 (JPY) 匯率僅供參考
-              </p>
+              {hasBundle ? (
+                <>
+                  <p className="text-3xl font-bold text-primary">
+                    <span className="text-xs font-medium text-white bg-orange-500 px-1.5 py-0.5 rounded mr-2 align-middle">首次試食價 -30%</span>
+                    HKD {displayedTotal}
+                    <span className="text-sm text-muted-foreground line-through ml-2 font-normal">
+                      HKD {Math.floor(quantity / 2) * (currentVariant!.originalPair || 0) + (quantity % 2) * (currentVariant!.originalSingle || 0)}
+                    </span>
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    1條 HKD {currentVariant!.singlePrice}／2條 HKD {currentVariant!.pairPrice}（每 2 條享組合價，可自由加減數量）
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="text-3xl font-bold text-primary">
+                    <span className="text-sm font-medium text-accent-foreground bg-accent px-1.5 py-0.5 rounded mr-2 align-middle">試業價</span>
+                    HKD {currentVariant!.price}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    ≈ {currentVariant!.jpy} 日元 (JPY) 匯率僅供參考
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Size Selection */}
