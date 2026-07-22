@@ -33,6 +33,7 @@ const BrandyCake = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [diaryIdx, setDiaryIdx] = useState(0);
+  const [showCta, setShowCta] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,6 +42,10 @@ const BrandyCake = () => {
       setProgress(max > 0 ? (h.scrollTop / max) * 100 : 0);
       setScrolled(h.scrollTop > 40);
       setShowTop(h.scrollTop > 900);
+      const products = document.getElementById("products");
+      const pastHero = h.scrollTop > window.innerHeight * 0.8;
+      const productsTop = products ? products.getBoundingClientRect().top : Infinity;
+      setShowCta(pastHero && productsTop > window.innerHeight * 0.6);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
