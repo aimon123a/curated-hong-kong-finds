@@ -675,7 +675,20 @@ export interface ProductDetail {
   pros: string[];
   cons: string[];
   specs: { label: string; value: string }[];
-  variants: { size: string; price: string; jpy: string; imageUrl?: string }[];
+  variants: {
+    size: string;
+    price: string;
+    jpy: string;
+    imageUrl?: string;
+    /** Discounted single-piece price (HKD) when bundle pricing applies. */
+    singlePrice?: number;
+    /** Discounted 2-piece bundle price (HKD). */
+    pairPrice?: number;
+    /** Original single-piece price (pre-discount, for strikethrough). */
+    originalSingle?: number;
+    /** Original 2-piece bundle price (pre-discount). */
+    originalPair?: number;
+  }[];
   relatedArticleId?: string;
 }
 
