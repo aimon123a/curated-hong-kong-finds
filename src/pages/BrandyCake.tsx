@@ -47,17 +47,22 @@ const BrandyCake = () => {
     const product = getProductDetailById("brandy-cake");
     if (!product) return;
     const v = product.variants[variantIndex];
+    const hasBundle = !!(v.singlePrice && v.pairPrice);
     addItem({
       id: `${product.id}-${variantIndex}`,
       name: product.name,
       brand: product.brand,
       variant: v.size,
-      price: parseInt(v.price),
+      price: hasBundle ? v.singlePrice! : parseInt(v.price),
       quantity: 1,
       imageUrl: v.imageUrl || product.imageUrl,
-      weight: v.size.includes("2條") ? 600 : 300,
+      weight: 300,
+      ...(hasBundle && {
+        bundlePricing: { single: v.singlePrice!, pair: v.pairPrice! },
+        originalPrice: v.originalSingle,
+      }),
     });
-    toast({ title: "已加入購物車", description: `${product.name} (${v.size}) × 1` });
+    toast({ title: "已加入購物車", description: `${product.name} (${v.size}) × 1 條（可於購物車調整數量）` });
   };
 
   useEffect(() => {
