@@ -55,7 +55,7 @@ const BrandyCake = () => {
       price: parseInt(v.price),
       quantity: 1,
       imageUrl: v.imageUrl || product.imageUrl,
-      weight: 300,
+      weight: v.size.includes("2條") ? 600 : 300,
     });
     toast({ title: "已加入購物車", description: `${product.name} (${v.size}) × 1` });
   };
