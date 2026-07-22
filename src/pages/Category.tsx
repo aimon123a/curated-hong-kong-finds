@@ -46,56 +46,35 @@ const Category = () => {
 
   const brandyItems = [
     {
-      id: "brandy-ronshan-1",
+      id: "brandy-cake-0",
       name: "ロンシャン ブランデーケーキ",
       brand: "Longchamp",
-      variant: "1條",
-      price: 200,
+      variant: "Longchamp ロンシャン",
+      price: 140,
+      originalPrice: 200,
+      pairPrice: 210,
       imageUrl: "/assets/brandy/product-ronshan.jpg",
-      badge: "推薦",
+      badge: "首次試食",
     },
     {
-      id: "brandy-ronshan-2",
-      name: "ロンシャン ブランデーケーキ",
-      brand: "Longchamp",
-      variant: "2條",
-      price: 300,
-      imageUrl: "/assets/brandy/product-ronshan.jpg",
-      badge: "推薦",
-    },
-    {
-      id: "brandy-esery-1",
+      id: "brandy-cake-1",
       name: "いせり ブランデーケーキ 300g",
       brand: "Esery",
-      variant: "1條",
-      price: 300,
+      variant: "Esery いせり 300g",
+      price: 210,
+      originalPrice: 300,
+      pairPrice: 280,
       imageUrl: "/assets/brandy/product-esery.jpg",
       badge: "熱門",
     },
     {
-      id: "brandy-esery-2",
-      name: "いせり ブランデーケーキ 300g",
-      brand: "Esery",
-      variant: "2條",
-      price: 400,
-      imageUrl: "/assets/brandy/product-esery.jpg",
-      badge: "熱門",
-    },
-    {
-      id: "brandy-okura-1",
+      id: "brandy-cake-2",
       name: "THE OKURA TOKYO シャンパンケーキ",
       brand: "Hotel Okura",
-      variant: "1條",
-      price: 500,
-      imageUrl: "/assets/brandy/product-okura.jpg",
-      badge: "推薦",
-    },
-    {
-      id: "brandy-okura-2",
-      name: "THE OKURA TOKYO シャンパンケーキ",
-      brand: "Hotel Okura",
-      variant: "2條",
-      price: 700,
+      variant: "THE OKURA TOKYO 香檳蛋糕",
+      price: 350,
+      originalPrice: 500,
+      pairPrice: 490,
       imageUrl: "/assets/brandy/product-okura.jpg",
       badge: "推薦",
     },
@@ -111,11 +90,13 @@ const Category = () => {
       price: item.price,
       quantity: 1,
       imageUrl: item.imageUrl,
-      weight: item.variant === "2條" ? 600 : 300,
+      weight: 300,
+      bundlePricing: { single: item.price, pair: item.pairPrice },
+      originalPrice: item.originalPrice,
     });
     toast({
       title: "已加入購物車",
-      description: `${item.name} (${item.variant})`,
+      description: `${item.name} × 1 條（可於購物車調整數量）`,
     });
   };
 
@@ -229,8 +210,12 @@ const Category = () => {
                         </span>
                         <p className="text-sm font-medium text-foreground line-clamp-1">{item.name}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{item.brand}</p>
-                        <p className="text-xs text-primary font-bold mt-1">HKD {item.price}</p>
-                        <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車</p>
+                        <p className="text-xs mt-1">
+                          <span className="text-primary font-bold">HKD {item.price}</span>
+                          <span className="text-muted-foreground line-through ml-1.5">HKD {item.originalPrice}</span>
+                        </p>
+                        <p className="text-[10px] text-muted-foreground mt-0.5">2 條組合 HKD {item.pairPrice}</p>
+                        <p className="text-[10px] text-muted-foreground mt-1 group-hover:text-primary transition-colors">+ 加入購物車（購物車可加減）</p>
                       </button>
                     ))}
                   </div>

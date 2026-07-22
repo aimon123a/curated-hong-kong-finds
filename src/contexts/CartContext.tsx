@@ -9,7 +9,22 @@ export interface CartItem {
   quantity: number;
   imageUrl: string;
   weight: number;
+  /** Optional pair-bundle pricing (already discount-applied). If set, line total uses the pair formula: floor(qty/2)*pair + (qty%2)*single. */
+  bundlePricing?: { single: number; pair: number };
+  /** Optional original (pre-discount) unit price, for strikethrough display. */
+  originalPrice?: number;
 }
+
+/** Compute the effective line total for a cart item, honoring bundlePricing when present. */
+export const getLineTotal = (item: CartItem): number => {
+  if (item.bundlePricing) {
+    const { single, pair } = item.bundlePricing;
+    const pairs = Math.floor(item.quantity / 2);
+    const singles = item.quantity % 2;
+    return pairs * pair + singles * single;
+  }
+  return item.price * item.quantity;
+};
 
 export interface Order {
   id: string;
@@ -112,7 +127,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getSubtotal = () => {
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    return items.reduce((sum, item) => sum + getLineTotal(item), 0);
   };
 
   const createOrder = (orderData: Omit<Order, "id" | "orderNumber" | "createdAt" | "status">): Order => {

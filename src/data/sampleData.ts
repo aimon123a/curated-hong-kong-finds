@@ -675,7 +675,20 @@ export interface ProductDetail {
   pros: string[];
   cons: string[];
   specs: { label: string; value: string }[];
-  variants: { size: string; price: string; jpy: string; imageUrl?: string }[];
+  variants: {
+    size: string;
+    price: string;
+    jpy: string;
+    imageUrl?: string;
+    /** Discounted single-piece price (HKD) when bundle pricing applies. */
+    singlePrice?: number;
+    /** Discounted 2-piece bundle price (HKD). */
+    pairPrice?: number;
+    /** Original single-piece price (pre-discount, for strikethrough). */
+    originalSingle?: number;
+    /** Original 2-piece bundle price (pre-discount). */
+    originalPair?: number;
+  }[];
   relatedArticleId?: string;
 }
 
@@ -774,12 +787,9 @@ export const productDetails: ProductDetail[] = [
       { label: "備貨時間", value: "7–14 日" }
     ],
     variants: [
-      { size: "Longchamp 1條", price: "200", jpy: "3,800", imageUrl: "/assets/brandy/product-ronshan.jpg" },
-      { size: "Longchamp 2條", price: "300", jpy: "7,200", imageUrl: "/assets/brandy/product-ronshan.jpg" },
-      { size: "Esery 1條", price: "300", jpy: "5,800", imageUrl: "/assets/brandy/product-esery.jpg" },
-      { size: "Esery 2條", price: "400", jpy: "11,600", imageUrl: "/assets/brandy/product-esery.jpg" },
-      { size: "Hotel Okura 1條", price: "500", jpy: "11,800", imageUrl: "/assets/brandy/product-okura.jpg" },
-      { size: "Hotel Okura 2條", price: "700", jpy: "23,600", imageUrl: "/assets/brandy/product-okura.jpg" }
+      { size: "Longchamp ロンシャン", price: "140", jpy: "2,660", imageUrl: "/assets/brandy/product-ronshan.jpg", singlePrice: 140, pairPrice: 210, originalSingle: 200, originalPair: 300 },
+      { size: "Esery いせり 300g", price: "210", jpy: "4,060", imageUrl: "/assets/brandy/product-esery.jpg", singlePrice: 210, pairPrice: 280, originalSingle: 300, originalPair: 400 },
+      { size: "THE OKURA TOKYO 香檳蛋糕", price: "350", jpy: "8,260", imageUrl: "/assets/brandy/product-okura.jpg", singlePrice: 350, pairPrice: 490, originalSingle: 500, originalPair: 700 }
     ],
     relatedArticleId: "brandy-cake"
   }
