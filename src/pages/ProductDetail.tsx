@@ -127,7 +127,7 @@ const ProductDetail = () => {
               <img
                 src={product.variants[selectedSize]?.imageUrl || product.imageUrl}
                 alt={`${product.name} - ${product.variants[selectedSize]?.size}`}
-                className={product.id === "brandy-cake" ? "w-full h-full object-cover" : "max-w-full max-h-full object-contain p-4"}
+                className="max-w-full max-h-full object-contain p-4"
                 fetchPriority="high"
                 decoding="async"
               />
