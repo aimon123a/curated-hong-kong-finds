@@ -42,6 +42,7 @@
 }
 .bc-root * { box-sizing: border-box; }
 .bc-root ::selection { background: var(--bc-gold); color: #161310; }
+.bc-root { overflow-x: clip; }
 .bc-root img { display: block; max-width: 100%; height: auto; }
 .bc-root a { color: inherit; text-decoration: none; }
 .bc-root h1, .bc-root h2, .bc-root h3 { margin: 0; }
@@ -124,7 +125,10 @@
 .bc-b-caption {
   position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%);
   font-family: var(--bc-sans); font-size: 0.72rem; letter-spacing: 0.3em; color: var(--bc-muted);
-  white-space: nowrap;
+  white-space: nowrap; max-width: 88vw;
+}
+@media (max-width: 640px) {
+  .bc-b-caption { white-space: normal; letter-spacing: 0.18em; line-height: 2; text-align: center; }
 }
 .bc-breath-photo { background: var(--bc-bg); }
 .bc-breath-photo .bc-frame {
@@ -177,6 +181,7 @@
 }
 .bc-root figcaption::before { content: "—"; color: var(--bc-gold); flex: 0 0 auto; }
 .bc-full { width: min(980px, 94vw); margin-left: auto; margin-right: auto; }
+@media (max-width: 1100px) { .bc-full { width: 100%; } }
 
 .bc-who { margin: 2.6em 0; }
 .bc-who-item {

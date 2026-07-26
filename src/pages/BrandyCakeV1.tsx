@@ -35,7 +35,7 @@ const BrandyCakeV1 = () => {
     ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。Longchamp ロンシャン 深度評測與香港代購價。",
     ogImage: "https://jaagselect.com/assets/brandy/og-brandy-cake.jpg",
     ogType: "article",
-    canonical: "/brandy-cake-v1",
+    canonical: "/brandy-cake",
   });
 
   useJsonLd({
@@ -54,7 +54,7 @@ const BrandyCakeV1 = () => {
       name: "jaagSELECT",
       logo: { "@type": "ImageObject", url: "https://jaagselect.com/favicon.png" },
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://jaagselect.com/brandy-cake-v1" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://jaagselect.com/brandy-cake" },
   });
 
 
