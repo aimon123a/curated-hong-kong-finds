@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
+import benjaminPhoto from "@/assets/selectors/kei.jpg";
 import Layout from "@/components/layout/Layout";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
@@ -30,11 +32,31 @@ const BrandyCake = () => {
     title: "「大人」的甜點 · 日本白蘭地蛋糕深度評測｜jaagSELECT",
     description: "編輯團隊親身試吃 16 日：Longchamp、いせり、THE OKURA TOKYO 三款日本白蘭地蛋糕熟成日記，附送禮場合建議與香港代購價格。",
     ogTitle: "「大人」的甜點，屬於自己的贅沢時刻 — jaagSELECT",
-    ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。三款日本手信深度評測。",
-    ogImage: "https://jaagselect.com/assets/brandy/night.png",
+    ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。Longchamp、いせり、THE OKURA TOKYO 三款日本手信深度評測與香港代購價。",
+    ogImage: "https://jaagselect.com/assets/brandy/og-brandy-cake.jpg",
     ogType: "article",
     canonical: "/brandy-cake",
   });
+
+  useJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "「大人」的甜點，屬於自己的贅沢時刻",
+    description:
+      "編輯團隊親身試吃 16 日：Longchamp、いせり、THE OKURA TOKYO 三款日本白蘭地蛋糕熟成日記。",
+    image: ["https://jaagselect.com/assets/brandy/og-brandy-cake.jpg"],
+    inLanguage: "zh-HK",
+    datePublished: "2026-07-22",
+    dateModified: "2026-07-22",
+    author: { "@type": "Person", name: "Benjamin", url: "https://jaagselect.com/selector/anson" },
+    publisher: {
+      "@type": "Organization",
+      name: "jaagSELECT",
+      logo: { "@type": "ImageObject", url: "https://jaagselect.com/favicon.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://jaagselect.com/brandy-cake" },
+  });
+
 
   const [progress, setProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
@@ -393,7 +415,7 @@ const BrandyCake = () => {
             <div className="bc-sign bc-reveal">
               <span className="bc-line" />
               <div className="bc-sign-row">
-                <img className="bc-sign-avatar" src={`${IMG}/anson-avatar-bw.png`} alt="Benjamin" />
+                <img className="bc-sign-avatar" src={benjaminPhoto} alt="Benjamin" />
                 <div className="bc-sign-text">
                   <span className="bc-who-name">Benjamin</span>
                   <span className="bc-what">jaagSELECT</span>

@@ -52,16 +52,27 @@ export function useDocumentMeta({ title, description, ogTitle, ogDescription, og
       ogTypeEl.setAttribute("content", ogType || DEFAULT_OG_TYPE);
     }
 
+    // Twitter title / description
+    const twTitleEl = document.querySelector('meta[name="twitter:title"]');
+    if (twTitleEl) twTitleEl.setAttribute("content", ogTitle || title || DEFAULT_TITLE);
+    const twDescEl = document.querySelector('meta[name="twitter:description"]');
+    if (twDescEl) twDescEl.setAttribute("content", ogDescription || description || DEFAULT_DESCRIPTION);
+
     // OG image
     if (ogImage) {
+      const fullImage = ogImage.startsWith("http") ? ogImage : BASE_URL + ogImage;
       const ogImageEl = document.querySelector('meta[property="og:image"]');
       if (ogImageEl) {
-        ogImageEl.setAttribute("content", ogImage);
+        ogImageEl.setAttribute("content", fullImage);
       }
+      document.querySelector('meta[property="og:image:width"]')?.setAttribute("content", "1200");
+      document.querySelector('meta[property="og:image:height"]')?.setAttribute("content", "630");
       const twitterImageEl = document.querySelector('meta[name="twitter:image"]');
       if (twitterImageEl) {
-        twitterImageEl.setAttribute("content", ogImage);
+        twitterImageEl.setAttribute("content", fullImage);
       }
+      const twCardEl = document.querySelector('meta[name="twitter:card"]');
+      if (twCardEl) twCardEl.setAttribute("content", "summary_large_image");
     }
 
     // Canonical URL + og:url
