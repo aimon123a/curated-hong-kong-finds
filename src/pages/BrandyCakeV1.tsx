@@ -27,15 +27,15 @@ const DIARY = [
   },
 ];
 
-const BrandyCake = () => {
+const BrandyCakeV1 = () => {
   useDocumentMeta({
-    title: "「大人」的甜點 · 日本白蘭地蛋糕深度評測｜jaagSELECT",
-    description: "編輯團隊親身試吃 16 日：Longchamp、いせり、THE OKURA TOKYO 三款日本白蘭地蛋糕熟成日記，附送禮場合建議與香港代購價格。",
+    title: "「大人」的甜點 · Longchamp 白蘭地蛋糕深度評測｜jaagSELECT",
+    description: "編輯團隊親身試吃 16 日：Longchamp ロンシャン 白蘭地蛋糕熟成日記，一款既能犒賞自己的夜晚、亦體面得可作手信的日本甜點，附香港代購價格。",
     ogTitle: "「大人」的甜點，屬於自己的贅沢時刻 — jaagSELECT",
-    ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。Longchamp、いせり、THE OKURA TOKYO 三款日本手信深度評測與香港代購價。",
+    ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。Longchamp ロンシャン 深度評測與香港代購價。",
     ogImage: "https://jaagselect.com/assets/brandy/og-brandy-cake.jpg",
     ogType: "article",
-    canonical: "/brandy-cake",
+    canonical: "/brandy-cake-v1",
   });
 
   useJsonLd({
@@ -43,19 +43,20 @@ const BrandyCake = () => {
     "@type": "Article",
     headline: "「大人」的甜點，屬於自己的贅沢時刻",
     description:
-      "編輯團隊親身試吃 16 日：Longchamp、いせり、THE OKURA TOKYO 三款日本白蘭地蛋糕熟成日記。",
+      "編輯團隊親身試吃 16 日：Longchamp ロンシャン 白蘭地蛋糕熟成日記。",
     image: ["https://jaagselect.com/assets/brandy/og-brandy-cake.jpg"],
     inLanguage: "zh-HK",
     datePublished: "2026-07-22",
-    dateModified: "2026-07-22",
+    dateModified: "2026-07-26",
     author: { "@type": "Person", name: "Benjamin", url: "https://jaagselect.com/selector/anson" },
     publisher: {
       "@type": "Organization",
       name: "jaagSELECT",
       logo: { "@type": "ImageObject", url: "https://jaagselect.com/favicon.png" },
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": "https://jaagselect.com/brandy-cake" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": "https://jaagselect.com/brandy-cake-v1" },
   });
+
 
 
   const [progress, setProgress] = useState(0);
