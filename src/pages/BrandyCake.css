@@ -228,6 +228,8 @@
   border: none;
 }
 .bc-p-card:hover .bc-p-img img { transform: scale(1.03); }
+.bc-p-img-contain img { object-fit: contain; background: #0f0d0c; padding: 6% 8%; }
+
 .bc-p-scene { padding: 2em 2em 0; }
 .bc-p-scene .scene { font-size: 0.68rem; letter-spacing: 0.28em; color: var(--bc-gold); margin-bottom: 1em; }
 .bc-p-scene h3 { font-family: var(--bc-cjk-serif); font-size: 1.16rem; font-weight: 600; line-height: 1.7; letter-spacing: 0.03em; }
