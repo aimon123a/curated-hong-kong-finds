@@ -124,7 +124,10 @@
 .bc-b-caption {
   position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%);
   font-family: var(--bc-sans); font-size: 0.72rem; letter-spacing: 0.3em; color: var(--bc-muted);
-  white-space: nowrap;
+  white-space: nowrap; max-width: 88vw;
+}
+@media (max-width: 640px) {
+  .bc-b-caption { white-space: normal; letter-spacing: 0.18em; line-height: 2; text-align: center; }
 }
 .bc-breath-photo { background: var(--bc-bg); }
 .bc-breath-photo .bc-frame {
