@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
+import { useJsonLd } from "@/hooks/useJsonLd";
+import benjaminPhoto from "@/assets/selectors/kei.jpg";
 import Layout from "@/components/layout/Layout";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
@@ -413,7 +415,7 @@ const BrandyCake = () => {
             <div className="bc-sign bc-reveal">
               <span className="bc-line" />
               <div className="bc-sign-row">
-                <img className="bc-sign-avatar" src={`${IMG}/anson-avatar-bw.png`} alt="Benjamin" />
+                <img className="bc-sign-avatar" src={benjaminPhoto} alt="Benjamin" />
                 <div className="bc-sign-text">
                   <span className="bc-who-name">Benjamin</span>
                   <span className="bc-what">jaagSELECT</span>
