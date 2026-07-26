@@ -160,17 +160,18 @@ const BrandyCakeV1 = () => {
                 <h2>一款，兩種場合。</h2>
               </div>
               <div className="bc-prose bc-reveal">
-                <p>我們只推薦自己吃過的。所以這一次，只有一款：<strong>ロンシャン ブランデーケーキ</strong>。它既能打動自己講究的晚上，也體面得可以作為手信——把最濃郁的心意，送出去。</p>
+                <p><strong>ロンシャン ブランデーケーキ（Longchamp Brandy Cake）</strong>。它既能打動自己講究的晚上，也可以作為手信——把最濃郁的心意，送出去。</p>
               </div>
             </div>
             <div className="bc-p-grid bc-p-grid-single">
               <div className="bc-p-card feat bc-reveal">
-                <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-ronshan.jpg`} alt="ロンシャン ブランデーケーキ" /></div>
+                <div className="bc-p-img bc-p-img-contain"><img loading="lazy" src={`${IMG}/product-ronshan-v2.jpg`} alt="ロンシャン ブランデーケーキ（Longchamp Brandy Cake）與禮盒" /></div>
                 <div className="bc-p-scene">
                   <h3>「將時間與白蘭地封存，釀造一封最濃郁的心意。」</h3>
                 </div>
-                <div className="bc-p-name">ロンシャン ブランデーケーキ<br />自用・送禮兩相宜</div>
+                <div className="bc-p-name">ロンシャン ブランデーケーキ（Longchamp Brandy Cake）<br />自用・送禮兩相宜</div>
                 <p className="bc-p-note">故事的開始，長輩帶回來的，就是這一塊。夜晚一個人切一片，是屬於自己的犒賞；整條連盒送出去，又夠體面而不誇張——收的人沒有壓力，送的人很有分寸。而且它放得住，還會越放越好：這份心意，不急。</p>
+
                 <div className="bc-p-taste"><span className="bc-t-label">味道</span>牛油、雞蛋、砂糖的老式蛋糕底，浸足白蘭地利口酒。牛油香先出來，甜味老實，酒感直白；吞下之後兩三秒，酒香才從喉底浮上來，收得乾淨。放幾天，糕體更「しっとり」，味道還會變深——那晚打動我們的，就是它。</div>
                 <div className="bc-p-price">
                   <span className="bc-hkd">HK$140<small> / 條</small></span>
