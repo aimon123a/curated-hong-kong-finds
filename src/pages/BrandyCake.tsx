@@ -370,7 +370,7 @@ const BrandyCake = () => {
                   <span className="bc-hkd-strike">HK$300</span>
                 </div>
                 <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$280（購物車自訂數量）</div>
-                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(1)}>加入購物車</button>
+                <span className="bc-p-cta" style={{ opacity: 0.45, cursor: "default" }}>暫未推薦</span>
               </div>
               <div className="bc-p-card bc-reveal">
                 <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-okura.jpg`} alt="THE OKURA TOKYO シャンパンケーキ" /></div>
@@ -385,7 +385,7 @@ const BrandyCake = () => {
                   <span className="bc-hkd-strike">HK$500</span>
                 </div>
                 <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$490（購物車自訂數量）</div>
-                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(2)}>加入購物車</button>
+                <span className="bc-p-cta" style={{ opacity: 0.45, cursor: "default" }}>暫未推薦</span>
               </div>
             </div>
             <div className="bc-col">
