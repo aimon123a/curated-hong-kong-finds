@@ -144,13 +144,48 @@ const BrandyCakeV1 = () => {
               慢慢讀 <span>↓</span>
             </a>
             <a className="bc-quiet" href="#products">
-              趕時間？直接看三種選擇
+              趕時間？直接看這一款
             </a>
           </div>
         </div>
       </section>
 
       <main className="bc-main">
+        {/* 商品資訊（置於前言之前） */}
+        <section className="bc-chapter bc-products" id="products">
+          <div className="bc-col-wide">
+            <div className="bc-col">
+              <div className="bc-ch-head bc-reveal">
+                <div className="bc-ch-kicker"><span className="bc-num">00</span><span className="bc-jp">贈り物 ・ THE ONE</span></div>
+                <h2>一款，兩種場合。</h2>
+              </div>
+              <div className="bc-prose bc-reveal">
+                <p>我們只推薦自己吃過的。所以這一次，只有一款：<strong>ロンシャン ブランデーケーキ</strong>。它既能打動自己講究的晚上，也體面得可以作為手信——把最濃郁的心意，送出去。</p>
+              </div>
+            </div>
+            <div className="bc-p-grid bc-p-grid-single">
+              <div className="bc-p-card feat bc-reveal">
+                <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-ronshan.jpg`} alt="ロンシャン ブランデーケーキ" /></div>
+                <div className="bc-p-scene">
+                  <h3>「將時間與白蘭地封存，釀造一封最濃郁的心意。」</h3>
+                </div>
+                <div className="bc-p-name">ロンシャン ブランデーケーキ<br />自用・送禮兩相宜</div>
+                <p className="bc-p-note">故事的開始，長輩帶回來的，就是這一塊。夜晚一個人切一片，是屬於自己的犒賞；整條連盒送出去，又夠體面而不誇張——收的人沒有壓力，送的人很有分寸。而且它放得住，還會越放越好：這份心意，不急。</p>
+                <div className="bc-p-taste"><span className="bc-t-label">味道</span>牛油、雞蛋、砂糖的老式蛋糕底，浸足白蘭地利口酒。牛油香先出來，甜味老實，酒感直白；吞下之後兩三秒，酒香才從喉底浮上來，收得乾淨。放幾天，糕體更「しっとり」，味道還會變深——那晚打動我們的，就是它。</div>
+                <div className="bc-p-price">
+                  <span className="bc-hkd">HK$140<small> / 條</small></span>
+                  <span className="bc-hkd-strike">HK$200</span>
+                </div>
+                <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$210（購物車自訂數量）</div>
+                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(0)}>加入購物車</button>
+              </div>
+            </div>
+            <div className="bc-col">
+              <p className="bc-p-foot bc-reveal">※ 首次試食價：自動 7 折，於購物車內結算時顯示。<br />※ 預訂制，約 2–3 週到港。產品含酒精成分。</p>
+            </div>
+          </div>
+        </section>
+
         {/* 前言 */}
         <div className="bc-col bc-reveal">
           <div className="bc-about">
@@ -170,7 +205,7 @@ const BrandyCakeV1 = () => {
               <li><a href="#ch2"><span className="bc-num">02</span>第一次吃的印象<span className="bc-jp">一口目</span></a></li>
               <li><a href="#ch3"><span className="bc-num">03</span>熟成<span className="bc-jp">育てる</span></a></li>
               <li><a href="#ch4"><span className="bc-num">04</span>我會推薦給誰<span className="bc-jp">誰に</span></a></li>
-              <li><a href="#products"><span className="bc-num">05</span>三種場合的選擇<span className="bc-jp">贈り物</span></a></li>
+              <li><a href="#products"><span className="bc-num">05</span>這一款，我為什麼選它<span className="bc-jp">贈り物</span></a></li>
               <li><a href="#note"><span className="bc-num">06</span>今夜、という名の場面<span className="bc-jp">エピローグ</span></a></li>
             </ol>
           </nav>
@@ -277,9 +312,6 @@ const BrandyCakeV1 = () => {
               </div>
             </div>
             <div className="bc-prose bc-reveal">
-              <p>我沒有做實驗。只是一直忘記吃。</p>
-              <p>結果，它越來越好。</p>
-              <p>為了確認那一晚不是巧合，後來我又買了一條。味道一樣。</p>
               <p>日本人有一個說法，叫「育てるブランデーケーキ」——會長大的白蘭地蛋糕。意思是，它買回家之後才開始熟成：酒會繼續往糕體深處走，一天一個味道。放，也是吃法的一部分。</p>
               <p>第一次看到這個說法，我笑了一下。蛋糕，還可以養？</p>
               <p>後來才知道，它的做法，本來就是為「放」而設的：蛋糕焗好之後趁熱掃上白蘭地，再用錫紙緊緊包好，讓酒慢慢滲進去。日本做它的老舖，幾十年都是這樣——人手一條一條浸酒、錫紙包好、入盒慢熟。最有名的一間，1956 年已經這樣做；一瓶 720ml 的白蘭地，只夠浸十幾條。</p>
@@ -298,8 +330,6 @@ const BrandyCakeV1 = () => {
               <h2>我會推薦給誰。</h2>
             </div>
             <div className="bc-prose bc-reveal">
-              <p>先講我自己的食法，很簡單：夜晚，屋企，一個人，什麼都不配。切一片，慢慢吃，讓那三秒鐘在安靜裡完成。這是屬於我的犒賞時間。</p>
-              <p>會喜歡它的人，我大概想得出三種。</p>
             </div>
             <div className="bc-who">
               <div className="bc-who-item bc-reveal">
@@ -329,72 +359,6 @@ const BrandyCakeV1 = () => {
             </div>
           </div>
         </section>
-
-        {/* CH.5 */}
-        <section className="bc-chapter bc-products" id="products">
-          <div className="bc-col-wide">
-            <div className="bc-col">
-              <div className="bc-ch-head bc-reveal">
-                <div className="bc-ch-kicker"><span className="bc-num">05</span><span className="bc-jp">贈り物 ・ THREE OCCASIONS</span></div>
-                <h2>三種場合，三種選擇。</h2>
-              </div>
-              <div className="bc-prose bc-reveal">
-                <p>三款的共同點：都放得住，都會隨時間變好。分別在於場合——和你想說的話，有多重。</p>
-              </div>
-            </div>
-            <div className="bc-p-grid">
-              <div className="bc-p-card bc-reveal">
-                <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-ronshan.jpg`} alt="ロンシャン ブランデーケーキ" /></div>
-                <div className="bc-p-scene">
-                  <h3>「只是想知道，為什麼大家一直買它。」</h3>
-                </div>
-                <div className="bc-p-name">ロンシャン ブランデーケーキ<br />日常之選</div>
-                <p className="bc-p-note">故事的開始，長輩帶回來的，就是這一塊。價錢親民，風味猶存——那晚那一塊，故事的開始。</p>
-                <div className="bc-p-taste"><span className="bc-t-label">味道</span>牛油、雞蛋、砂糖的老式蛋糕底，浸足白蘭地利口酒。牛油香先出來，甜味老實，酒感直白——那晚打動我們的，就是它。</div>
-                <div className="bc-p-price">
-                  <span className="bc-hkd">HK$140<small> / 條</small></span>
-                  <span className="bc-hkd-strike">HK$200</span>
-                </div>
-                <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$210（購物車自訂數量）</div>
-                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(0)}>加入購物車</button>
-              </div>
-              <div className="bc-p-card feat bc-reveal">
-                <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-esery.jpg`} alt="いせり ブランデーケーキ" /></div>
-                <div className="bc-p-scene">
-                  <h3>「將時間與白蘭地封存，釀造一封最濃郁的心意。」</h3>
-                </div>
-                <div className="bc-p-name">いせり ブランデーケーキ 300g<br />しっとり濕潤・禮盒裝</div>
-                <p className="bc-p-note">日本人退職、異動時答謝同事的「お世話になりました」之選。夠體面但不誇張，收的人沒有壓力，送的人很有分寸。</p>
-                <div className="bc-p-taste"><span className="bc-t-label">味道</span>國產牛油之外，加了杏仁粉和蜂蜜，糕體更細更潤，日本人叫「しっとり」。酒香圓，收得乾淨。放幾天，味道還會變深。</div>
-                <div className="bc-p-price">
-                  <span className="bc-hkd">HK$210<small> / 條</small></span>
-                  <span className="bc-hkd-strike">HK$300</span>
-                </div>
-                <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$280（購物車自訂數量）</div>
-                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(1)}>加入購物車</button>
-              </div>
-              <div className="bc-p-card bc-reveal">
-                <div className="bc-p-img"><img loading="lazy" src={`${IMG}/product-okura.jpg`} alt="THE OKURA TOKYO シャンパンケーキ" /></div>
-                <div className="bc-p-scene">
-                  <h3>「有些禮物，送的不只是蛋糕。」</h3>
-                </div>
-                <div className="bc-p-name">THE OKURA TOKYO<br />オークラ東京のシャンパンケーキ</div>
-                <p className="bc-p-note">長輩、合作很久的人、老師、婚禮——這種場合才輪到它出場。老牌飯店的招牌洋菓子，連包裝都帶著老派的體面。</p>
-                <div className="bc-p-taste"><span className="bc-t-label">味道</span>用的不是白蘭地，是 Pommery 香檳：原瓶在酒店專用酒窖熟成三年，才成為這塊蛋糕的酒。酒感換成香檳的清雅，收尾最乾淨。</div>
-                <div className="bc-p-price">
-                  <span className="bc-hkd">HK$350<small> / 條</small></span>
-                  <span className="bc-hkd-strike">HK$500</span>
-                </div>
-                <div className="bc-p-hint">首次試食價 -30%．2 條組合 HK$490（購物車自訂數量）</div>
-                <button type="button" className="bc-p-cta" onClick={() => addBrandyToCart(2)}>加入購物車</button>
-              </div>
-            </div>
-            <div className="bc-col">
-              <p className="bc-p-foot bc-reveal">※ 首次試食價：全部品項自動 7 折，於購物車內結算時顯示。<br />※ 全部預訂制，約 2–3 週到港。產品含酒精成分。</p>
-            </div>
-          </div>
-        </section>
-
 
         {/* ENDING */}
         <section className="bc-s-note" id="note">
@@ -445,7 +409,7 @@ const BrandyCakeV1 = () => {
             document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
           }}
         >
-          查看三種預訂方案
+          查看預訂方案
         </a>
       </div>
     </div>
@@ -453,4 +417,4 @@ const BrandyCakeV1 = () => {
   );
 };
 
-export default BrandyCake;
+export default BrandyCakeV1;
