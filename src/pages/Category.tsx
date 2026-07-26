@@ -56,28 +56,6 @@ const Category = () => {
       imageUrl: "/assets/brandy/product-ronshan.jpg",
       badge: "首次試食",
     },
-    {
-      id: "brandy-cake-1",
-      name: "いせり ブランデーケーキ 300g",
-      brand: "Esery",
-      variant: "Esery いせり 300g",
-      price: 210,
-      originalPrice: 300,
-      pairPrice: 280,
-      imageUrl: "/assets/brandy/product-esery.jpg",
-      badge: "熱門",
-    },
-    {
-      id: "brandy-cake-2",
-      name: "THE OKURA TOKYO シャンパンケーキ",
-      brand: "Hotel Okura",
-      variant: "THE OKURA TOKYO 香檳蛋糕",
-      price: 350,
-      originalPrice: 500,
-      pairPrice: 490,
-      imageUrl: "/assets/brandy/product-okura.jpg",
-      badge: "推薦",
-    },
   ];
 
   const handleBrandyAdd = (index: number) => {
@@ -198,7 +176,7 @@ const Category = () => {
                     <ShoppingCart className="w-4 h-4 text-primary" />
                     快速加入購物車
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3">
                     {brandyItems.map((item, index) => (
                       <button
                         key={item.id}
