@@ -361,7 +361,11 @@ const BrandyCakeV1 = () => {
         {/* ENDING */}
         <section className="bc-s-note" id="note">
           <div className="bc-col">
+            <div className="bc-ch-head bc-reveal">
+              <div className="bc-ch-kicker"><span className="bc-num">06</span><span className="bc-jp">今夜、という名の場面 ・ EPILOGUE</span></div>
+            </div>
             <h2 className="bc-reveal">
+
               這不是我吃過最好吃的蛋糕。<br />
               但它是目前，<span className="bc-accent">我最想讓別人品嚐的一塊。</span>
             </h2>
