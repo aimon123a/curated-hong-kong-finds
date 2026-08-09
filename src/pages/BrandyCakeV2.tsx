@@ -148,7 +148,7 @@ const BrandyCakeV2 = () => {
           {/* Section 1 */}
           <section className="mb-12">
             <HighlightedHeading variant="primary">一款，兩種場合：犒賞自己，或體面送禮</HighlightedHeading>
-            <img src={`${V2IMG}/brandy-cake-package-1.jpg`} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full object-cover rounded-xl mb-6" loading="lazy" />
+            <img src={`${V2IMG}/brandy-cake-package-1.jpg`} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full h-[300px] md:h-[440px] object-cover object-center rounded-xl mb-6" loading="lazy" />
             <p className="text-foreground leading-relaxed text-lg">
               復古優雅的日式包裝紙配上緞帶，內層為極具厚重感的深棕色硬盒。
               <Mark>整條送禮體面而不誇張</Mark>，收的人沒有壓力，送的人很有分寸。
