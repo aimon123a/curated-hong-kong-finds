@@ -170,3 +170,24 @@ All colors MUST be HSL.
   color: inherit;
   padding: 0 0.05em;
 }
+
+/* Hand-drawn style annotation badges (手書き風注釈) */
+.jp-annotation {
+  font-family: "Yu Gothic", "Hiragino Maru Gothic ProN", "PingFang HK", "Noto Sans TC", sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: rgba(30, 28, 26, 0.42);
+  backdrop-filter: blur(2px);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border-radius: 999px 999px 999px 999px / 60% 60% 60% 60%;
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transform: rotate(-1.5deg);
+}
+
+.jp-annotation--alt {
+  transform: rotate(1.5deg);
+}

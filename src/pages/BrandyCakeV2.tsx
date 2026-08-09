@@ -111,104 +111,125 @@ const BrandyCakeV2 = () => {
 
           {/* Hero photo */}
           <figure className="bg-white border border-border rounded-xl overflow-hidden mb-8">
-            <img src={`${V2IMG}/brandy-cake-package-2.jpg`} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full h-[280px] md:h-[420px] object-cover object-center" fetchPriority="high" />
+            <img src={`${V2IMG}/brandy-cake-package-2.jpg`} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full aspect-[16/9] object-cover object-center" fetchPriority="high" />
           </figure>
 
           {/* 30-second summary card */}
           <section className="bg-white border border-border rounded-xl p-6 md:p-8 mb-12 shadow-sm">
-            <div className="text-xs font-medium tracking-widest text-muted-foreground mb-3">30 秒單品速覽 ・ SUMMARY</div>
-            <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-              ロンシャン 熟成白蘭地蛋糕（Longchamp Brandy Cake）
-            </h2>
-            <p className="text-foreground leading-relaxed mb-5">
-              「將時間與白蘭地封存，越放越香濃的成熟系甜點。」
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {["適合送禮體面", "大人感微醺", "可常溫／冷藏長期保存"].map((t) => (
-                <span key={t} className="px-3 py-1 text-xs font-medium bg-muted text-foreground border border-border rounded-full">
-                  {t}
-                </span>
-              ))}
+            <div className="text-xs font-medium tracking-widest text-muted-foreground mb-5">30 秒單品速覽 ・ SUMMARY</div>
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] gap-6 md:gap-8 items-start">
+              <img
+                src={`${V2IMG}/brandy-cake-package-1.jpg`}
+                alt="ロンシャン 白蘭地蛋糕 日式包裝紙與緞帶"
+                className="w-full aspect-square object-cover rounded-lg border border-border"
+                loading="lazy"
+              />
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  ロンシャン 熟成白蘭地蛋糕（Longchamp Brandy Cake）
+                </h2>
+                <p className="text-foreground leading-relaxed mb-5">
+                  「將時間與白蘭地封存，越放越香濃的成熟系甜點。」
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {["適合送禮體面", "大人感微醺", "可常溫／冷藏保存"].map((t) => (
+                    <span key={t} className="px-3 py-1 text-xs font-medium bg-muted text-foreground border border-border rounded-full">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex items-end gap-3 mb-1">
+                  <span className="text-sm text-muted-foreground line-through">HK$200</span>
+                  <span className="text-3xl font-bold text-foreground">HK$140<span className="text-base font-normal text-muted-foreground"> / 條</span></span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-6">2 條組合價 HK$210（購物車內自訂數量，系統自動計算）</p>
+                <button
+                  type="button"
+                  onClick={addToCart}
+                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-primary text-primary-foreground px-8 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  加入購物車
+                </button>
+              </div>
             </div>
-            <div className="flex items-end gap-3 mb-1">
-              <span className="text-sm text-muted-foreground line-through">HK$200</span>
-              <span className="text-3xl font-bold text-foreground">HK$140<span className="text-base font-normal text-muted-foreground"> / 條</span></span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-6">2 條組合價 HK$210（購物車內自訂數量，系統自動計算）</p>
-            <button
-              type="button"
-              onClick={addToCart}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto bg-primary text-primary-foreground px-8 py-3 rounded-sm font-medium text-sm hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
-            >
-              <ShoppingCart className="w-4 h-4" />
-              加入購物車
-            </button>
           </section>
 
           {/* Section 1 */}
           <section className="mb-12">
             <HighlightedHeading variant="primary">一款，兩種場合：犒賞自己，或體面送禮</HighlightedHeading>
-            <img src={`${V2IMG}/brandy-cake-package-1.jpg`} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full h-[300px] md:h-[440px] object-cover object-center rounded-xl mb-6" loading="lazy" />
+            <img src={`${V2IMG}/brandy-cake-package-1.jpg`} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full aspect-[4/3] md:aspect-[16/9] object-cover object-center rounded-xl mb-6" loading="lazy" />
             <p className="text-foreground leading-relaxed text-lg">
-              復古優雅的日式包裝紙配上緞帶，內層為極具厚重感的深棕色硬盒。
-              <Mark>整條送禮體面而不誇張</Mark>，收的人沒有壓力，送的人很有分寸。
+              復古優雅的日式包裝紙配上緞帶，內層為極具厚重感的深棕色硬盒。包裝精緻，無論是獨享的夜晚，或是作為心意手信送給講究的朋友，
+              <Mark>都顯得成熟而體面</Mark>。
             </p>
           </section>
 
           {/* Section 2 */}
           <section className="mb-12">
             <HighlightedHeading variant="secondary">日本官方說明書翻譯</HighlightedHeading>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <figure className="rounded-xl overflow-hidden border border-border bg-white">
-                <img src={`${V2IMG}/brandy-cake-card-translation-1.jpg`} alt="ギフトブランデーケーキ 日文官方說明卡" className="w-full object-cover" loading="lazy" />
-              </figure>
-              <figure className="rounded-xl overflow-hidden border border-border bg-white">
-                <img src={`${V2IMG}/brandy-cake-card-translation-2.jpg`} alt="ブランデーケーキのおいしいお召し上がり方 日文說明卡" className="w-full object-cover" loading="lazy" />
-              </figure>
-            </div>
-
-            <div className="mt-6 space-y-4">
-              <blockquote className="bg-white border-l-4 border-primary border border-border rounded-xl p-5 md:p-6">
-                <div className="text-sm font-bold text-primary mb-2">【官方建議吃法】</div>
-                <p className="text-foreground leading-relaxed">
-                  嚴選優質新鮮奶油與蛋黃烘焙，並讓糕體充分吸收芳醇的白蘭地糖漿。直接食用固然美味，但
-                  <Mark>強烈建議放入冰箱充分冰鎮後再品嚐</Mark>，風味會更上一層樓。
-                </p>
-              </blockquote>
-              <blockquote className="bg-white border-l-4 border-secondary border border-border rounded-xl p-5 md:p-6">
-                <div className="text-sm font-bold text-foreground mb-2">【熟成時間的秘密】</div>
-                <p className="text-foreground leading-relaxed">
-                  與普通鮮奶油蛋糕不同，這款蛋糕會隨時間慢慢熟成。出廠時雖已經過 1 個月的初步熟成，但若
-                  <Mark>放在冰箱冷藏靜置 2 至 3 個月</Mark>，酒香與糕體的<Mark>融合度會更深邃</Mark>。
-                </p>
-              </blockquote>
+            <div className="space-y-6">
+              {/* Row 1 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <figure className="rounded-xl overflow-hidden border border-border bg-white">
+                  <img src={`${V2IMG}/brandy-cake-card-translation-1.jpg`} alt="ギフトブランデーケーキ 日文官方說明卡" className="w-full h-full aspect-[4/3] object-cover" loading="lazy" />
+                </figure>
+                <blockquote className="bg-primary-light/60 border-2 border-primary/40 rounded-xl p-5 md:p-6 flex flex-col justify-center">
+                  <div className="text-sm font-bold text-primary mb-2">【官方建議吃法】</div>
+                  <p className="text-foreground leading-relaxed">
+                    嚴選優質新鮮奶油與蛋黃烘焙，並讓糕體充分吸收芳醇的白蘭地糖漿。直接食用固然美味，但
+                    <Mark>強烈建議放入冰箱充分冰鎮後再品嚐</Mark>，風味會更上一層樓。
+                  </p>
+                </blockquote>
+              </div>
+              {/* Row 2 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <figure className="rounded-xl overflow-hidden border border-border bg-white">
+                  <img src={`${V2IMG}/brandy-cake-card-translation-2.jpg`} alt="ブランデーケーキのおいしいお召し上がり方 日文說明卡" className="w-full h-full aspect-[4/3] object-cover" loading="lazy" />
+                </figure>
+                <blockquote className="bg-accent-light/70 border-2 border-accent/40 rounded-xl p-5 md:p-6 flex flex-col justify-center">
+                  <div className="text-sm font-bold text-foreground mb-2">【熟成時間的秘密】</div>
+                  <p className="text-foreground leading-relaxed">
+                    與普通鮮奶油蛋糕不同，這款蛋糕會隨時間慢慢熟成。出廠時雖已經過 1 個月的初步熟成，但若
+                    <Mark>放在冰箱冷藏靜置 2 至 3 個月</Mark>，酒香與糕體的<Mark>融合度會更深邃</Mark>。
+                  </p>
+                </blockquote>
+              </div>
             </div>
           </section>
 
           {/* Section 3 */}
           <section className="mb-12">
             <HighlightedHeading variant="secondary">口感與風味實測</HighlightedHeading>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
-              <div className="space-y-4">
-                <img src={`${V2IMG}/brandy-cake-cross-section-1.jpg`} alt="白蘭地蛋糕橫切面：吸滿酒液的密實糕體" className="w-full object-cover rounded-xl" loading="lazy" />
-                <img src={`${V2IMG}/brandy-cake-cross-section-2.jpg`} alt="切片後的白蘭地蛋糕與整條蛋糕" className="w-full object-cover rounded-xl" loading="lazy" />
+
+            {/* Merged cross-section collage with hand-drawn annotations */}
+            <div className="relative rounded-xl overflow-hidden border border-border mb-6">
+              <div className="grid grid-cols-2 gap-px bg-border">
+                <img src={`${V2IMG}/brandy-cake-cross-section-1.jpg`} alt="白蘭地蛋糕橫切面：吸滿酒液的密實糕體" className="w-full aspect-[3/4] md:aspect-[4/5] object-cover" loading="lazy" />
+                <img src={`${V2IMG}/brandy-cake-cross-section-2.jpg`} alt="切片後的白蘭地蛋糕與整條蛋糕" className="w-full aspect-[3/4] md:aspect-[4/5] object-cover" loading="lazy" />
               </div>
-              <ul className="space-y-5">
-                <li>
-                  <h3 className="text-base md:text-lg font-bold text-foreground mb-2">扎實濕潤的糕體（しっとり）</h3>
-                  <p className="text-foreground leading-relaxed">
-                    傳統的老式蛋糕底，剛切開就能看到吸滿白蘭地酒液的密實橫切面，<Mark>入口完全不乾澀</Mark>。
-                  </p>
-                </li>
-                <li>
-                  <h3 className="text-base md:text-lg font-bold text-foreground mb-2">層次豐富的酒香餘韻</h3>
-                  <p className="text-foreground leading-relaxed">
-                    入口先是濃郁的牛油與蛋香，<Mark>吞下後兩三秒，白蘭地的橡木桶香氣才從喉底慢慢浮上來</Mark>。甜度適中，尾韻乾淨，非常適合搭配黑咖啡或無糖濃茶。
-                  </p>
-                </li>
-              </ul>
+              {/* Annotations */}
+              <span className="jp-annotation absolute top-[8%] left-[4%]">連表皮都刷滿白蘭地 🥃</span>
+              <span className="jp-annotation jp-annotation--alt absolute top-[46%] left-[26%]">しっとり 濕潤扎實感</span>
+              <span className="jp-annotation absolute bottom-[6%] right-[4%]">搭黑咖啡極致犒賞 ☕</span>
             </div>
+
+            <ul className="space-y-5">
+              <li>
+                <h3 className="text-base md:text-lg font-bold text-foreground mb-2">扎實濕潤的糕體（しっとり）</h3>
+                <p className="text-foreground leading-relaxed">
+                  傳統的老式蛋糕底，剛切開就能看到吸滿白蘭地酒液的密實橫切面，<Mark>入口完全不乾澀</Mark>。
+                </p>
+              </li>
+              <li>
+                <h3 className="text-base md:text-lg font-bold text-foreground mb-2">層次豐富的酒香餘韻</h3>
+                <p className="text-foreground leading-relaxed">
+                  入口先是濃郁的牛油與蛋香，<Mark>吞下後兩三秒，白蘭地的橡木桶香氣才從喉底慢慢浮上來</Mark>。甜度適中，尾韻乾淨，非常適合搭配黑咖啡或無糖濃茶。
+                </p>
+              </li>
+            </ul>
           </section>
+
 
           {/* Spec table */}
           <section className="mb-12">
