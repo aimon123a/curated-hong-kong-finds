@@ -111,7 +111,7 @@ const BrandyCakeV2 = () => {
 
           {/* Hero photo */}
           <figure className="bg-white border border-border rounded-xl overflow-hidden mb-8">
-            <img src={`${V2IMG}/brandy-cake-package-2.jpg`} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full object-cover" fetchPriority="high" />
+            <img src={`${V2IMG}/brandy-cake-package-2.jpg`} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full h-[280px] md:h-[420px] object-cover object-center" fetchPriority="high" />
           </figure>
 
           {/* 30-second summary card */}
