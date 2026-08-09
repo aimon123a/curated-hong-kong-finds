@@ -6,7 +6,7 @@ import { useJsonLd } from "@/hooks/useJsonLd";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
 import { getProductDetailById } from "@/data/sampleData";
-import { ChevronRight, Clock, ShoppingCart, BookOpen, Sparkles } from "lucide-react";
+import { ChevronRight, Clock, ShoppingCart, BookOpen, Sparkles, Package, Snowflake, Timer, Coffee, Droplets, Wine } from "lucide-react";
 import benjaminPhoto from "@/assets/selectors/kei.jpg";
 
 const V2IMG = "/assets/brandy/v2";
@@ -275,12 +275,12 @@ const BrandyCakeV2 = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                 {[
-                  { t: "未開封", d: "常溫陰涼處保存", e: "📦" },
-                  { t: "開封後", d: "冷藏保存並密封", e: "🧊" },
-                  { t: "建議", d: "盡早享用完畢", e: "🕰" },
+                  { t: "未開封", d: "常溫陰涼處保存", Icon: Package },
+                  { t: "開封後", d: "冷藏保存並密封", Icon: Snowflake },
+                  { t: "建議", d: "盡早享用完畢", Icon: Timer },
                 ].map((s) => (
                   <div key={s.t} className="bg-white border border-border rounded-xl p-4">
-                    <div className="text-2xl mb-2">{s.e}</div>
+                    <s.Icon className="w-6 h-6 mx-auto mb-2 text-primary" strokeWidth={1.5} />
                     <div className="text-sm font-bold text-foreground mb-1">{s.t}</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{s.d}</p>
                   </div>
@@ -305,15 +305,15 @@ const BrandyCakeV2 = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                 {[
-                  { s: "STAGE 01", m: "1ST MONTH（出廠時）", e: "🥃", tag: "酒香外放直白", d: "甜味與白蘭地各自站好位置，酒感像剛開瓶般鮮明，適合喜歡直白酒感的人。" },
-                  { s: "STAGE 02", m: "2ND MONTH（靜置冷藏）", e: "🥃🥃", tag: "香氣開始交融", d: "酒液慢慢滲透進糕體核心，濕潤感顯著提升，吞下後 2–3 秒酒香才慢慢浮現。" },
-                  { s: "STAGE 03", m: "3RD MONTH（極致熟成）", e: "🥃🥃🥃", tag: "圓潤深邃「しっとり」", d: "牛油、蛋香與白蘭地完美融為一體，烈酒感轉化為溫潤尾韻，綿密感達到頂峰。" },
+                  { s: "STAGE 01", m: "1ST MONTH（出廠時）", n: 1, tag: "酒香外放直白", d: "甜味與白蘭地各自站好位置，酒感像剛開瓶般鮮明，適合喜歡直白酒感的人。" },
+                  { s: "STAGE 02", m: "2ND MONTH（靜置冷藏）", n: 2, tag: "香氣開始交融", d: "酒液慢慢滲透進糕體核心，濕潤感顯著提升，吞下後 2–3 秒酒香才慢慢浮現。" },
+                  { s: "STAGE 03", m: "3RD MONTH（極致熟成）", n: 3, tag: "圓潤深邃「しっとり」", d: "牛油、蛋香與白蘭地完美融為一體，烈酒感轉化為溫潤尾韻，綿密感達到頂峰。" },
                 ].map((st) => (
                   <div key={st.s} className="bg-white p-4 rounded-xl border border-border flex flex-col justify-between">
                     <div>
                       <div className="text-xs font-bold text-muted-foreground mb-1">{st.s}</div>
                       <div className="text-sm font-bold text-foreground mb-2">{st.m}</div>
-                      <div className="text-2xl mb-2">{st.e}</div>
+                      <div className="flex justify-center gap-1 mb-2">{Array.from({ length: st.n }).map((_, i) => (<Wine key={i} className="w-5 h-5 text-primary" strokeWidth={1.5} />))}</div>
                       <div className="text-xs font-semibold text-primary bg-primary/5 py-1 rounded mb-2">{st.tag}</div>
                     </div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{st.d}</p>
@@ -337,15 +337,15 @@ const BrandyCakeV2 = () => {
               </div>
 
               <div className="absolute top-3 left-3 bg-background/90 backdrop-blur-md border border-border rounded-lg p-2 shadow-lg">
-                <div className="text-xs font-bold text-foreground">🥃 表皮刷滿白蘭地</div>
+                <div className="text-xs font-bold text-foreground flex items-center gap-1"><Wine className="w-3.5 h-3.5" />表皮刷滿白蘭地</div>
                 <span className="text-[10px] text-muted-foreground">外層吸滿芳醇酒液</span>
               </div>
               <div className="absolute bottom-3 left-3 bg-background/90 backdrop-blur-md border border-border rounded-lg p-2 shadow-lg">
-                <div className="text-xs font-bold text-foreground">✨ しっとり 濕潤密實</div>
+                <div className="text-xs font-bold text-foreground flex items-center gap-1"><Droplets className="w-3.5 h-3.5" />しっとり 濕潤密實</div>
                 <span className="text-[10px] text-muted-foreground">入口完全不乾澀</span>
               </div>
               <div className="absolute bottom-3 right-3 bg-background/90 backdrop-blur-md border border-border rounded-lg p-2 shadow-lg">
-                <div className="text-xs font-bold text-foreground">☕ 配黑咖啡極致犒賞</div>
+                <div className="text-xs font-bold text-foreground flex items-center gap-1"><Coffee className="w-3.5 h-3.5" />配黑咖啡極致犒賞</div>
                 <span className="text-[10px] text-muted-foreground">解膩且提昇酒香</span>
               </div>
             </div>
