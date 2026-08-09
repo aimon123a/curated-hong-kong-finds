@@ -60,6 +60,7 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/brandy-cake" element={<BrandyCakeV1 />} />
             <Route path="/brandy-cake-v1" element={<BrandyCakeV1 />} />
+            <Route path="/brandy-cake-v2" element={<BrandyCakeV2 />} />
             <Route path="/brandy-cake-legacy" element={<BrandyCake />} />
             {/* Flat article slug route - must be BEFORE catch-all */}
             <Route path="/:slug" element={<ArticleBySlug />} />
