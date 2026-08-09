@@ -162,3 +162,11 @@ All colors MUST be HSL.
   }
 }
 
+
+/* Japanese editorial marker highlight */
+.jp-marker {
+  background: linear-gradient(transparent 50%, rgba(253, 224, 71, 0.4) 50%);
+  font-weight: 700;
+  color: inherit;
+  padding: 0 0.05em;
+}

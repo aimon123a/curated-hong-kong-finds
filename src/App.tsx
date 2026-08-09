@@ -27,6 +27,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import BrandyCake from "./pages/BrandyCake";
 import BrandyCakeV1 from "./pages/BrandyCakeV1";
+import BrandyCakeV2 from "./pages/BrandyCakeV2";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/brandy-cake" element={<BrandyCakeV1 />} />
             <Route path="/brandy-cake-v1" element={<BrandyCakeV1 />} />
+            <Route path="/brandy-cake-v2" element={<BrandyCakeV2 />} />
             <Route path="/brandy-cake-legacy" element={<BrandyCake />} />
             {/* Flat article slug route - must be BEFORE catch-all */}
             <Route path="/:slug" element={<ArticleBySlug />} />
