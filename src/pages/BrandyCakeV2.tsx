@@ -8,12 +8,8 @@ import { toast } from "@/hooks/use-toast";
 import { getProductDetailById } from "@/data/sampleData";
 import { ChevronRight, Clock, ShoppingCart } from "lucide-react";
 import benjaminPhoto from "@/assets/selectors/kei.jpg";
-import pkg1 from "@/assets/brandy-v2/brandy-cake-package-1.jpg.asset.json";
-import pkg2 from "@/assets/brandy-v2/brandy-cake-package-2.jpg.asset.json";
-import card1 from "@/assets/brandy-v2/brandy-cake-card-translation-1.jpg.asset.json";
-import card2 from "@/assets/brandy-v2/brandy-cake-card-translation-2.jpg.asset.json";
-import cross1 from "@/assets/brandy-v2/brandy-cake-cross-section-1.jpg.asset.json";
-import cross2 from "@/assets/brandy-v2/brandy-cake-cross-section-2.jpg.asset.json";
+
+const V2IMG = "/assets/brandy/v2";
 
 const Mark = ({ children }: { children: React.ReactNode }) => (
   <mark className="jp-marker">{children}</mark>
@@ -115,7 +111,7 @@ const BrandyCakeV2 = () => {
 
           {/* Hero photo */}
           <figure className="bg-white border border-border rounded-xl overflow-hidden mb-8">
-            <img src={pkg2.url} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full object-cover" fetchPriority="high" />
+            <img src={`${V2IMG}/brandy-cake-package-2.jpg`} alt="ロンシャン 白蘭地蛋糕 深棕色禮盒開盒實拍" className="w-full object-cover" fetchPriority="high" />
           </figure>
 
           {/* 30-second summary card */}
@@ -152,7 +148,7 @@ const BrandyCakeV2 = () => {
           {/* Section 1 */}
           <section className="mb-12">
             <HighlightedHeading variant="primary">一款，兩種場合：犒賞自己，或體面送禮</HighlightedHeading>
-            <img src={pkg1.url} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full object-cover rounded-xl mb-6" loading="lazy" />
+            <img src={`${V2IMG}/brandy-cake-package-1.jpg`} alt="復古優雅的日式包裝紙與緞帶包裹的白蘭地蛋糕禮盒" className="w-full object-cover rounded-xl mb-6" loading="lazy" />
             <p className="text-foreground leading-relaxed text-lg">
               復古優雅的日式包裝紙配上緞帶，內層為極具厚重感的深棕色硬盒。
               <Mark>整條送禮體面而不誇張</Mark>，收的人沒有壓力，送的人很有分寸。
@@ -164,10 +160,10 @@ const BrandyCakeV2 = () => {
             <HighlightedHeading variant="secondary">日本官方說明書翻譯</HighlightedHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <figure className="rounded-xl overflow-hidden border border-border bg-white">
-                <img src={card1.url} alt="ギフトブランデーケーキ 日文官方說明卡" className="w-full object-cover" loading="lazy" />
+                <img src={`${V2IMG}/brandy-cake-card-translation-1.jpg`} alt="ギフトブランデーケーキ 日文官方說明卡" className="w-full object-cover" loading="lazy" />
               </figure>
               <figure className="rounded-xl overflow-hidden border border-border bg-white">
-                <img src={card2.url} alt="ブランデーケーキのおいしいお召し上がり方 日文說明卡" className="w-full object-cover" loading="lazy" />
+                <img src={`${V2IMG}/brandy-cake-card-translation-2.jpg`} alt="ブランデーケーキのおいしいお召し上がり方 日文說明卡" className="w-full object-cover" loading="lazy" />
               </figure>
             </div>
 
@@ -194,8 +190,8 @@ const BrandyCakeV2 = () => {
             <HighlightedHeading variant="secondary">口感與風味實測</HighlightedHeading>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
               <div className="space-y-4">
-                <img src={cross1.url} alt="白蘭地蛋糕橫切面：吸滿酒液的密實糕體" className="w-full object-cover rounded-xl" loading="lazy" />
-                <img src={cross2.url} alt="切片後的白蘭地蛋糕與整條蛋糕" className="w-full object-cover rounded-xl" loading="lazy" />
+                <img src={`${V2IMG}/brandy-cake-cross-section-1.jpg`} alt="白蘭地蛋糕橫切面：吸滿酒液的密實糕體" className="w-full object-cover rounded-xl" loading="lazy" />
+                <img src={`${V2IMG}/brandy-cake-cross-section-2.jpg`} alt="切片後的白蘭地蛋糕與整條蛋糕" className="w-full object-cover rounded-xl" loading="lazy" />
               </div>
               <ul className="space-y-5">
                 <li>
