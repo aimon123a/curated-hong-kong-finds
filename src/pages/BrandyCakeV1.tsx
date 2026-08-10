@@ -307,13 +307,8 @@ const BrandyCakeV1 = () => {
           </div>
         </section>
 
-        {/* THE PHOTO IS THE TEXT */}
-        <div className="bc-breath bc-breath-photo">
-          <figure className="bc-frame bc-reveal" style={{ margin: 0 }}>
-            <img loading="lazy" src={`${IMG}/real-photo-v2.jpg`} alt="書桌上的白蘭地蛋糕實拍照" />
-          </figure>
-          <div className="bc-b-caption bc-reveal">那天，我們沒有打算拍照。所以它只有這張。</div>
-        </div>
+
+
 
         {/* after the photo */}
         <section className="bc-chapter">
