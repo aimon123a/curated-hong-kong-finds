@@ -328,7 +328,8 @@ const BrandyCakeV1 = () => {
               <h2>熟成。</h2>
             </div>
             <figure className="bc-full bc-reveal" style={{ marginTop: 0 }}>
-              <img className="bc-tinted" src={`${IMG}/craft.jpg`} alt="職人以錫紙包裹蛋糕，黑白照片" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG3}/aging.png`} alt="白蘭地蛋糕熟成三階段圖解：第一個月、第二個月、第三個月" loading="lazy" />
+
             </figure>
             <div className="bc-prose bc-reveal">
               <p>我一直不知道，蛋糕，原來也會變。</p>
