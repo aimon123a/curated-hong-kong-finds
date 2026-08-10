@@ -9,23 +9,25 @@ import { getProductDetailById } from "@/data/sampleData";
 import "./BrandyCake.css";
 
 const IMG = "/assets/brandy";
+const IMG3 = "/assets/brandy/v3";
 const CART_URL = "https://jaagselect.com/cart";
 const IG_URL = "https://instagram.com/jaag_select";
 
 const DIARY = [
   {
-    date: "DAY 1 ・ 開箱即食",
+    date: "第一個月 ・ 開箱即食",
     body: "酒感最外放。吞下去之後，白蘭地的香氣浮得快、走得也快，像剛開瓶。糕體濕潤，甜和酒各自站好自己的位置——這一晚的它，最「囂張」。",
   },
   {
-    date: "DAY 7 ・ 熟成進行中",
-    body: "酒慢慢滲進糕體。濕潤感比第一天更明顯，酒香不再浮在表面，要咬開才釋放出來。甜和酒開始交融，不再打架——我開始明白「熟成」兩個字的意思。",
+    date: "第二個月 ・ 熟成進行中",
+    body: "酒慢慢滲進糕體。濕潤感比第一個月更明顯，酒香不再浮在表面，要咬開才釋放出來。甜和酒開始交融，不再打架——我開始明白「熟成」兩個字的意思。",
   },
   {
-    date: "DAY 16 ・ 我最喜歡的狀態",
-    body: "濕潤度是最高峰，糕體綿密。酒香沉了下來，甜與烈完全交融，每一口都圓潤完整。如果沒有人告訴你，你可能以為它剛焗好——但香氣的層次，完全是另一回事。",
+    date: "第三個月 ・ 我最喜歡的狀態",
+    body: "濕潤度是最高峰，糕體綿密。酒香沉了下來，甜與烈完全交融，每一口都圓潤完整。香氣的層次獲得了昇華。",
   },
 ];
+
 
 const BrandyCakeV1 = () => {
   useDocumentMeta({
@@ -170,9 +172,12 @@ const BrandyCakeV1 = () => {
                   <h3>「將時間與白蘭地封存，釀造一封最濃郁的心意。」</h3>
                 </div>
                 <div className="bc-p-name">ロンシャン ブランデーケーキ（Longchamp Brandy Cake）<br />自用・送禮兩相宜</div>
-                <p className="bc-p-note">故事的開始，長輩帶回來的，就是這一塊。夜晚一個人切一片，是屬於自己的犒賞；整條連盒送出去，又夠體面而不誇張——收的人沒有壓力，送的人很有分寸。而且它放得住，還會越放越好：這份心意，不急。</p>
+                <div className="bc-p-scroll">
+                  <p className="bc-p-note">故事的開始，長輩帶回來的，就是這一塊。夜晚一個人切一片，是屬於自己的犒賞；整條連盒送出去，又夠體面而不誇張——收的人沒有壓力，送的人很有分寸。而且它放得住，還會越放越好。</p>
+                  <div className="bc-p-taste"><span className="bc-t-label">味道</span>老式牛油雞蛋糕底，浸足白蘭地利口酒。牛油香先出來，甜味老實；吞下之後兩三秒，酒香才從喉底浮上來，收得乾淨。放幾天，糕體更「しっとり」，味道還會變深。</div>
+                </div>
+                <div className="bc-scroll-hint">↕ 可上下捲動</div>
 
-                <div className="bc-p-taste"><span className="bc-t-label">味道</span>牛油、雞蛋、砂糖的老式蛋糕底，浸足白蘭地利口酒。牛油香先出來，甜味老實，酒感直白；吞下之後兩三秒，酒香才從喉底浮上來，收得乾淨。放幾天，糕體更「しっとり」，味道還會變深——那晚打動我們的，就是它。</div>
                 <div className="bc-p-price">
                   <span className="bc-hkd">HK$140<small> / 條</small></span>
                   <span className="bc-hkd-strike">HK$200</span>
@@ -187,7 +192,15 @@ const BrandyCakeV1 = () => {
           </div>
         </section>
 
+        {/* 禮盒實拍 */}
+        <div className="bc-col bc-reveal">
+          <figure>
+            <img src={`${IMG3}/package-3.jpg`} alt="ロンシャン 白蘭地蛋糕 禮盒外觀" loading="lazy" />
+          </figure>
+        </div>
+
         {/* 前言 */}
+
         <div className="bc-col bc-reveal">
           <div className="bc-about">
             <div className="bc-a-head">前言</div>
@@ -228,7 +241,20 @@ const BrandyCakeV1 = () => {
               <p>這款白蘭地蛋糕，就是他私藏多年的心頭好。早幾年，他甚至認真研究過怎樣把它帶來香港。</p>
               <p>一個在日本住了那麼多年、什麼好東西沒見過的大人，願意為一塊蛋糕動這個念頭——</p>
               <p>直到最近他回港，行李裡帶了一盒。</p>
+            </div>
+            <div className="bc-pair bc-reveal">
+              <figure>
+                <img src={`${IMG3}/package-1.jpg`} alt="ロンシャン 白蘭地蛋糕的紙包裝與絲帶" loading="lazy" />
+                <figcaption>原裝紙包裝</figcaption>
+              </figure>
+              <figure>
+                <img src={`${IMG3}/package-2.jpg`} alt="打開禮盒，錫紙包裹的蛋糕與日文說明卡" loading="lazy" />
+                <figcaption>開盒・附日文說明卡</figcaption>
+              </figure>
+            </div>
+            <div className="bc-prose bc-reveal">
               <p>說真的，我當時沒有任何期待。日本手信甜點我吃得多了：太甜的，吃一口要配一大杯濃茶解膩；標榜「甘さ控えめ」的，又往往淡得像有誠意的海綿。</p>
+
               <p><strong>我對這一類東西的標準，早被訓練得很低。</strong></p>
             </div>
           </div>
@@ -242,7 +268,7 @@ const BrandyCakeV1 = () => {
               <h2>我們甚至沒有看盒上的名字，<br />就隨便拿來吃了。</h2>
             </div>
             <figure className="bc-reveal" style={{ marginTop: 0 }}>
-              <img className="bc-tinted" src={`${IMG}/story-cut.jpg`} alt="切開的白蘭地蛋糕，露出濕潤金黃的糕體" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG3}/cross-section-1.jpg`} alt="切開的白蘭地蛋糕實拍，露出濕潤金黃的糕體" loading="lazy" />
             </figure>
             <div className="bc-prose bc-reveal">
               <p>那天晚上，只當它是普通的日本蛋糕手信。切開，入口——嗯，合格的瑪德蓮式蛋糕：該甜的甜，該濕潤的濕潤。沒有失望，也沒有驚喜。</p>
@@ -252,23 +278,37 @@ const BrandyCakeV1 = () => {
               <p>我稱之為「大人味」甜點。</p>
               <p>酒香是濃郁醇厚的：糕體吸足了白蘭地，散發出優雅的橡木桶香氣與水果的甘甜。入喉時有烈酒的微醺感，尾韻則轉為溫潤的香醇——濃，而不烈。</p>
               <p>口感也有別於一般海綿蛋糕。白蘭地糖漿賦予糕體濕潤的質地，咬落紮實，卻不乾澀。</p>
-              <p>做得講究的，糕體會以上好的牛油與杏仁粉烘焙——酒香之中，便融著濃郁的奶香與堅果香，整體風味更圓潤飽滿。</p>
               <p>我跟哥哥對望了一眼，沒有說話。</p>
               <p>隔了幾秒，他又切了一片。</p>
               <p>我也是。</p>
-              <p>那一刻我已經想好：這個味道，要寫出來，讓更多人吃到。</p>
+            </div>
+            <div className="bc-notecards bc-reveal">
+              <div className="bc-notecard">
+                <img src={`${IMG3}/card-1.jpg`} alt="ロンシャン洋菓子店 白蘭地蛋糕日文說明卡（一）" loading="lazy" />
+                <div className="bc-nc-body">
+                  <div className="bc-nc-label">店家說明 ・ 其一</div>
+                  <p>「本產品使用大量新鮮奶油與蛋黃烘焙，是<strong>充分發揮白蘭地芳醇香氣的現代風格蛋糕</strong>。直接食用固然美味，但若放入冰箱充分冷藏後再品嚐，風味會更上一層樓。」</p>
+                  <p>「無論是作為贈禮或手信，相信都能讓您十分滿意。我們已盡最大注意製作，萬一有任何不便或瑕疵，請攜帶本品至購買門市，我們將立即為您更換。」</p>
+                </div>
+              </div>
+              <div className="bc-notecard">
+                <img src={`${IMG3}/card-2.jpg`} alt="ロンシャン洋菓子店 白蘭地蛋糕日文說明卡（二）" loading="lazy" />
+                <div className="bc-nc-body">
+                  <div className="bc-nc-label">店家說明 ・ 其二</div>
+                  <p>「本店的白蘭地蛋糕，是在優質海綿蛋糕中注入滿滿白蘭地糖漿所製成。與一般的鮮奶油蛋糕不同，透過花時間讓其慢慢熟成，能品嚐到更加圓潤、芳醇的美味。」</p>
+                  <p>「通常我們提供製造日起熟成約 1 個月的產品，但<strong>若您將其放在冰箱冷藏靜置 2 個月、3 個月，風味會變得更加深邃。</strong>（保存時請注意避免乾燥。請參照製造日期後慢慢享用。製造日：26. 6. -9／門市：ロンシャン洋菓子店）」</p>
+                </div>
+              </div>
+            </div>
+            <div className="bc-prose bc-reveal">
               <p>但我必須先老實說一件事——</p>
+
             </div>
           </div>
         </section>
 
-        {/* THE PHOTO IS THE TEXT */}
-        <div className="bc-breath bc-breath-photo">
-          <figure className="bc-frame bc-reveal" style={{ margin: 0 }}>
-            <img loading="lazy" src={`${IMG}/real-photo-v2.jpg`} alt="書桌上的白蘭地蛋糕實拍照" />
-          </figure>
-          <div className="bc-b-caption bc-reveal">那天，我們沒有打算拍照。所以它只有這張。</div>
-        </div>
+
+
 
         {/* after the photo */}
         <section className="bc-chapter">
@@ -288,7 +328,8 @@ const BrandyCakeV1 = () => {
               <h2>熟成。</h2>
             </div>
             <figure className="bc-full bc-reveal" style={{ marginTop: 0 }}>
-              <img className="bc-tinted" src={`${IMG}/craft.jpg`} alt="職人以錫紙包裹蛋糕，黑白照片" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG3}/aging.png`} alt="白蘭地蛋糕熟成三階段圖解：第一個月、第二個月、第三個月" loading="lazy" />
+
             </figure>
             <div className="bc-prose bc-reveal">
               <p>我一直不知道，蛋糕，原來也會變。</p>
@@ -303,7 +344,7 @@ const BrandyCakeV1 = () => {
                     role="tab"
                     onClick={() => setDiaryIdx(i)}
                   >
-                    {i === 0 ? "DAY 1" : i === 1 ? "DAY 7" : "DAY 16"}
+                    {i === 0 ? "第一個月" : i === 1 ? "第二個月" : "第三個月"}
                   </button>
                 ))}
               </div>
@@ -316,9 +357,17 @@ const BrandyCakeV1 = () => {
               <p>日本人有一個說法，叫「育てるブランデーケーキ」——會長大的白蘭地蛋糕。意思是，它買回家之後才開始熟成：酒會繼續往糕體深處走，一天一個味道。放，也是吃法的一部分。</p>
               <p>後來才知道，它的做法，本來就是為「放」而設的：蛋糕焗好之後趁熱掃上白蘭地，再用錫紙緊緊包好，讓酒慢慢滲進去。</p>
             </div>
+          </div>
 
+          {/* THE PHOTO IS THE TEXT */}
+          <div className="bc-breath bc-breath-photo">
+            <figure className="bc-frame bc-reveal" style={{ margin: 0 }}>
+              <img loading="lazy" src={`${IMG3}/cross-section-4.png`} alt="白蘭地蛋糕切面實拍，標註濕潤糕體與酒香層次" />
+            </figure>
+            <div className="bc-b-caption bc-reveal">經過時間的沉澱，酒液慢慢浸透糕體；隨著酒香的完美融合，帶來了味覺層次的昇華。</div>
           </div>
         </section>
+
 
         {/* CH.4 */}
         <section className="bc-chapter" id="ch4">
