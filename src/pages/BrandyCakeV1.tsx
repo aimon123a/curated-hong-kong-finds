@@ -241,7 +241,20 @@ const BrandyCakeV1 = () => {
               <p>這款白蘭地蛋糕，就是他私藏多年的心頭好。早幾年，他甚至認真研究過怎樣把它帶來香港。</p>
               <p>一個在日本住了那麼多年、什麼好東西沒見過的大人，願意為一塊蛋糕動這個念頭——</p>
               <p>直到最近他回港，行李裡帶了一盒。</p>
+            </div>
+            <div className="bc-pair bc-reveal">
+              <figure>
+                <img src={`${IMG3}/package-1.jpg`} alt="ロンシャン 白蘭地蛋糕的紙包裝與絲帶" loading="lazy" />
+                <figcaption>原裝紙包裝</figcaption>
+              </figure>
+              <figure>
+                <img src={`${IMG3}/package-2.jpg`} alt="打開禮盒，錫紙包裹的蛋糕與日文說明卡" loading="lazy" />
+                <figcaption>開盒・附日文說明卡</figcaption>
+              </figure>
+            </div>
+            <div className="bc-prose bc-reveal">
               <p>說真的，我當時沒有任何期待。日本手信甜點我吃得多了：太甜的，吃一口要配一大杯濃茶解膩；標榜「甘さ控えめ」的，又往往淡得像有誠意的海綿。</p>
+
               <p><strong>我對這一類東西的標準，早被訓練得很低。</strong></p>
             </div>
           </div>
