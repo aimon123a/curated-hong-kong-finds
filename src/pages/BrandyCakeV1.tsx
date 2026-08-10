@@ -9,23 +9,25 @@ import { getProductDetailById } from "@/data/sampleData";
 import "./BrandyCake.css";
 
 const IMG = "/assets/brandy";
+const IMG3 = "/assets/brandy/v3";
 const CART_URL = "https://jaagselect.com/cart";
 const IG_URL = "https://instagram.com/jaag_select";
 
 const DIARY = [
   {
-    date: "DAY 1 ・ 開箱即食",
+    date: "第一個月 ・ 開箱即食",
     body: "酒感最外放。吞下去之後，白蘭地的香氣浮得快、走得也快，像剛開瓶。糕體濕潤，甜和酒各自站好自己的位置——這一晚的它，最「囂張」。",
   },
   {
-    date: "DAY 7 ・ 熟成進行中",
-    body: "酒慢慢滲進糕體。濕潤感比第一天更明顯，酒香不再浮在表面，要咬開才釋放出來。甜和酒開始交融，不再打架——我開始明白「熟成」兩個字的意思。",
+    date: "第二個月 ・ 熟成進行中",
+    body: "酒慢慢滲進糕體。濕潤感比第一個月更明顯，酒香不再浮在表面，要咬開才釋放出來。甜和酒開始交融，不再打架——我開始明白「熟成」兩個字的意思。",
   },
   {
-    date: "DAY 16 ・ 我最喜歡的狀態",
-    body: "濕潤度是最高峰，糕體綿密。酒香沉了下來，甜與烈完全交融，每一口都圓潤完整。如果沒有人告訴你，你可能以為它剛焗好——但香氣的層次，完全是另一回事。",
+    date: "第三個月 ・ 我最喜歡的狀態",
+    body: "濕潤度是最高峰，糕體綿密。酒香沉了下來，甜與烈完全交融，每一口都圓潤完整。香氣的層次獲得了昇華。",
   },
 ];
+
 
 const BrandyCakeV1 = () => {
   useDocumentMeta({
