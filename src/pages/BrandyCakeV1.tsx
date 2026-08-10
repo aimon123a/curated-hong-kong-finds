@@ -344,7 +344,7 @@ const BrandyCakeV1 = () => {
                     role="tab"
                     onClick={() => setDiaryIdx(i)}
                   >
-                    {i === 0 ? "DAY 1" : i === 1 ? "DAY 7" : "DAY 16"}
+                    {i === 0 ? "第一個月" : i === 1 ? "第二個月" : "第三個月"}
                   </button>
                 ))}
               </div>
