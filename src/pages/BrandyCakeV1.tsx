@@ -357,9 +357,17 @@ const BrandyCakeV1 = () => {
               <p>日本人有一個說法，叫「育てるブランデーケーキ」——會長大的白蘭地蛋糕。意思是，它買回家之後才開始熟成：酒會繼續往糕體深處走，一天一個味道。放，也是吃法的一部分。</p>
               <p>後來才知道，它的做法，本來就是為「放」而設的：蛋糕焗好之後趁熱掃上白蘭地，再用錫紙緊緊包好，讓酒慢慢滲進去。</p>
             </div>
+          </div>
 
+          {/* THE PHOTO IS THE TEXT */}
+          <div className="bc-breath bc-breath-photo">
+            <figure className="bc-frame bc-reveal" style={{ margin: 0 }}>
+              <img loading="lazy" src={`${IMG3}/cross-section-4.png`} alt="白蘭地蛋糕切面實拍，標註濕潤糕體與酒香層次" />
+            </figure>
+            <div className="bc-b-caption bc-reveal">經過時間的沉澱，酒液慢慢浸透糕體；隨著酒香的完美融合，帶來了味覺層次的昇華。</div>
           </div>
         </section>
+
 
         {/* CH.4 */}
         <section className="bc-chapter" id="ch4">
