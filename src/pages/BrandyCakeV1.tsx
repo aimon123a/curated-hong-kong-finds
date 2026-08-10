@@ -268,7 +268,7 @@ const BrandyCakeV1 = () => {
               <h2>我們甚至沒有看盒上的名字，<br />就隨便拿來吃了。</h2>
             </div>
             <figure className="bc-reveal" style={{ marginTop: 0 }}>
-              <img className="bc-tinted" src={`${IMG}/story-cut.jpg`} alt="切開的白蘭地蛋糕，露出濕潤金黃的糕體" loading="lazy" />
+              <img className="bc-tinted" src={`${IMG3}/cross-section-1.jpg`} alt="切開的白蘭地蛋糕實拍，露出濕潤金黃的糕體" loading="lazy" />
             </figure>
             <div className="bc-prose bc-reveal">
               <p>那天晚上，只當它是普通的日本蛋糕手信。切開，入口——嗯，合格的瑪德蓮式蛋糕：該甜的甜，該濕潤的濕潤。沒有失望，也沒有驚喜。</p>
