@@ -192,7 +192,15 @@ const BrandyCakeV1 = () => {
           </div>
         </section>
 
+        {/* 禮盒實拍 */}
+        <div className="bc-col bc-reveal">
+          <figure>
+            <img src={`${IMG3}/package-3.jpg`} alt="ロンシャン 白蘭地蛋糕 禮盒外觀" loading="lazy" />
+          </figure>
+        </div>
+
         {/* 前言 */}
+
         <div className="bc-col bc-reveal">
           <div className="bc-about">
             <div className="bc-a-head">前言</div>
