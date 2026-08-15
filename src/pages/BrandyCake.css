@@ -308,14 +308,23 @@
 }
 .bc-reveal.in { opacity: 1; transform: none; }
 
-.bc-to-top {
-  position: fixed; right: 26px; bottom: 26px; z-index: 80;
-  width: 46px; height: 46px; border: 1px solid var(--bc-line);
-  background: rgba(19,17,16,0.8); color: var(--bc-gold-soft);
-  cursor: pointer; font-size: 1rem;
-  opacity: 0; pointer-events: none; transition: opacity 0.4s;
+/* Floating order CTA — sits above the global Instagram button (56px + 24px) */
+.bc-order-fab {
+  position: fixed; right: 24px; bottom: 94px; z-index: 80;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.85em 1.4em; border-radius: 999px;
+  background: var(--bc-gold); color: #171310;
+  font-size: 0.8rem; letter-spacing: 0.12em; font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  opacity: 0; pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.4s, transform 0.4s, background 0.3s;
 }
-.bc-to-top.show { opacity: 1; pointer-events: auto; }
+.bc-order-fab.show { opacity: 1; pointer-events: auto; transform: none; }
+.bc-order-fab:hover { background: var(--bc-gold-soft); }
+@media (max-width: 640px) {
+  .bc-order-fab { right: 16px; bottom: 88px; font-size: 0.76rem; padding: 0.8em 1.2em; }
+}
 
 /* Signature avatar */
 .bc-sign-row { display: flex; align-items: center; gap: 1.1em; }

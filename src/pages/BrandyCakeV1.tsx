@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDocumentMeta } from "@/hooks/useDocumentMeta";
 import { useJsonLd } from "@/hooks/useJsonLd";
 import benjaminPhoto from "@/assets/selectors/kei.jpg";
@@ -63,6 +64,7 @@ const BrandyCakeV1 = () => {
 
   const [progress, setProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
   const [showTop, setShowTop] = useState(false);
   const [diaryIdx, setDiaryIdx] = useState(0);
   const [showCta, setShowCta] = useState(false);
@@ -143,10 +145,10 @@ const BrandyCakeV1 = () => {
           </h1>
           <div className="bc-hero-cta">
             <a className="bc-btn-ghost" href="#ch1">
-              慢慢讀 <span>↓</span>
+              閱讀全文 <span>↓</span>
             </a>
             <a className="bc-quiet" href="#products">
-              趕時間？直接看這一款
+              立即訂購白蘭地蛋糕
             </a>
           </div>
         </div>
@@ -242,16 +244,10 @@ const BrandyCakeV1 = () => {
               <p>一個在日本住了那麼多年、什麼好東西沒見過的大人，願意為一塊蛋糕動這個念頭——</p>
               <p>直到最近他回港，行李裡帶了一盒。</p>
             </div>
-            <div className="bc-pair bc-reveal">
-              <figure>
-                <img src={`${IMG3}/package-1.jpg`} alt="ロンシャン 白蘭地蛋糕的紙包裝與絲帶" loading="lazy" />
-                <figcaption>原裝紙包裝</figcaption>
-              </figure>
-              <figure>
-                <img src={`${IMG3}/package-2.jpg`} alt="打開禮盒，錫紙包裹的蛋糕與日文說明卡" loading="lazy" />
-                <figcaption>開盒・附日文說明卡</figcaption>
-              </figure>
-            </div>
+            <figure className="bc-reveal">
+              <img src={`${IMG3}/package-combined.png`} alt="ロンシャン 白蘭地蛋糕的紙包裝與開盒實拍" loading="lazy" />
+              <figcaption>原裝紙包裝與開盒・附日文說明卡</figcaption>
+            </figure>
             <div className="bc-prose bc-reveal">
               <p>說真的，我當時沒有任何期待。日本手信甜點我吃得多了：太甜的，吃一口要配一大杯濃茶解膩；標榜「甘さ控えめ」的，又往往淡得像有誠意的海綿。</p>
 
@@ -276,29 +272,17 @@ const BrandyCakeV1 = () => {
               <p>酒味不是第一時間出來的。是吞下去之後，才從喉嚨深處慢慢浮上來。我本來已經準備去沖茶——按照經驗，吃完日本甜點，總要配點茶解膩。</p>
               <p><strong>結果發現，不用。甜味自己退了。</strong>酒意也不嗆，只餘一點溫，從喉底慢慢落到胸口。餘韻乾淨得像什麼都沒發生過。</p>
               <p>我稱之為「大人味」甜點。</p>
+            </div>
+            <figure className="bc-reveal">
+              <img src={`${IMG3}/card-translation.png`} alt="ロンシャン洋菓子店 白蘭地蛋糕日文說明卡中文重點翻譯" loading="lazy" />
+              <figcaption>店家說明卡・中文重點整理</figcaption>
+            </figure>
+            <div className="bc-prose bc-reveal">
               <p>酒香是濃郁醇厚的：糕體吸足了白蘭地，散發出優雅的橡木桶香氣與水果的甘甜。入喉時有烈酒的微醺感，尾韻則轉為溫潤的香醇——濃，而不烈。</p>
               <p>口感也有別於一般海綿蛋糕。白蘭地糖漿賦予糕體濕潤的質地，咬落紮實，卻不乾澀。</p>
               <p>我跟哥哥對望了一眼，沒有說話。</p>
               <p>隔了幾秒，他又切了一片。</p>
               <p>我也是。</p>
-            </div>
-            <div className="bc-notecards bc-reveal">
-              <div className="bc-notecard">
-                <img src={`${IMG3}/card-1.jpg`} alt="ロンシャン洋菓子店 白蘭地蛋糕日文說明卡（一）" loading="lazy" />
-                <div className="bc-nc-body">
-                  <div className="bc-nc-label">店家說明 ・ 其一</div>
-                  <p>「本產品使用大量新鮮奶油與蛋黃烘焙，是<strong>充分發揮白蘭地芳醇香氣的現代風格蛋糕</strong>。直接食用固然美味，但若放入冰箱充分冷藏後再品嚐，風味會更上一層樓。」</p>
-                  <p>「無論是作為贈禮或手信，相信都能讓您十分滿意。我們已盡最大注意製作，萬一有任何不便或瑕疵，請攜帶本品至購買門市，我們將立即為您更換。」</p>
-                </div>
-              </div>
-              <div className="bc-notecard">
-                <img src={`${IMG3}/card-2.jpg`} alt="ロンシャン洋菓子店 白蘭地蛋糕日文說明卡（二）" loading="lazy" />
-                <div className="bc-nc-body">
-                  <div className="bc-nc-label">店家說明 ・ 其二</div>
-                  <p>「本店的白蘭地蛋糕，是在優質海綿蛋糕中注入滿滿白蘭地糖漿所製成。與一般的鮮奶油蛋糕不同，透過花時間讓其慢慢熟成，能品嚐到更加圓潤、芳醇的美味。」</p>
-                  <p>「通常我們提供製造日起熟成約 1 個月的產品，但<strong>若您將其放在冰箱冷藏靜置 2 個月、3 個月，風味會變得更加深邃。</strong>（保存時請注意避免乾燥。請參照製造日期後慢慢享用。製造日：26. 6. -9／門市：ロンシャン洋菓子店）」</p>
-                </div>
-              </div>
             </div>
             <div className="bc-prose bc-reveal">
               <p>但我必須先老實說一件事——</p>
@@ -425,8 +409,8 @@ const BrandyCakeV1 = () => {
               <img className="bc-tinted" src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" loading="lazy" />
             </figure>
             <div className="bc-cta-row bc-reveal">
-              <a className="bc-btn-solid" href={CART_URL}>由一條開始 →</a>
-              <a className="bc-btn-line" href={IG_URL} target="_blank" rel="noreferrer">有疑問？IG @jaag_select 找我聊</a>
+              <a className="bc-btn-solid" href={CART_URL}>立即訂購白蘭地蛋糕 →</a>
+              <a className="bc-btn-line" href={IG_URL} target="_blank" rel="noreferrer">歡迎向 IG @jaag_select 查詢現貨</a>
             </div>
             <div className="bc-sign bc-reveal">
               <span className="bc-line" />
@@ -442,27 +426,17 @@ const BrandyCakeV1 = () => {
         </section>
       </main>
 
-      <button
-        className={`bc-to-top ${showTop ? "show" : ""}`}
-        aria-label="回到頂部"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      <a
+        className={`bc-order-fab ${showTop ? "show" : ""}`}
+        href="/products/brandy-cake"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/products/brandy-cake");
+        }}
+        aria-label="立即訂購白蘭地蛋糕"
       >
-        ↑
-      </button>
-
-      <div className={`bc-sticky-cta ${showCta ? "show" : ""}`} aria-hidden={!showCta}>
-        <span className="bc-sticky-label">ブランデーケーキ</span>
-        <a
-          className="bc-sticky-btn"
-          href="#products"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
-          }}
-        >
-          查看預訂方案
-        </a>
-      </div>
+        立即訂購蛋糕
+      </a>
     </div>
     </Layout>
   );
