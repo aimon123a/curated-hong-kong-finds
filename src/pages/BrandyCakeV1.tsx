@@ -69,6 +69,7 @@ const BrandyCakeV1 = () => {
   const [diaryIdx, setDiaryIdx] = useState(0);
   const [showCta, setShowCta] = useState(false);
   const { addItem } = useCart();
+  const [zoomSrc, setZoomSrc] = useState<string | null>(null);
 
   const addBrandyToCart = (variantIndex: number) => {
     const product = getProductDetailById("brandy-cake");
@@ -124,6 +125,34 @@ const BrandyCakeV1 = () => {
     document.querySelectorAll(".bc-reveal").forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    const root = document.querySelector(".bc-root");
+    if (!root) return;
+    const imgs = Array.from(root.querySelectorAll<HTMLImageElement>("img"));
+    const handlers: Array<{ img: HTMLImageElement; fn: (e: Event) => void }> = [];
+    imgs.forEach((img) => {
+      img.classList.add("bc-zoomable");
+      const fn = () => setZoomSrc(img.src);
+      img.addEventListener("click", fn);
+      handlers.push({ img, fn });
+    });
+    return () =>
+      handlers.forEach(({ img, fn }) => img.removeEventListener("click", fn));
+  }, []);
+
+  useEffect(() => {
+    if (!zoomSrc) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoomSrc(null);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [zoomSrc]);
 
   return (
     <Layout>
@@ -428,6 +457,27 @@ const BrandyCakeV1 = () => {
       >
         立即訂購蛋糕
       </a>
+      {zoomSrc && (
+        <div
+          className="bc-zoom-overlay"
+          onClick={() => setZoomSrc(null)}
+          role="button"
+          aria-label="關閉放大圖片"
+        >
+          <img src={zoomSrc} alt="" className="bc-zoom-img" />
+          <button
+            type="button"
+            className="bc-zoom-close"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomSrc(null);
+            }}
+            aria-label="關閉"
+          >
+            ×
+          </button>
+        </div>
+      )}
     </div>
     </Layout>
   );
