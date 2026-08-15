@@ -442,27 +442,17 @@ const BrandyCakeV1 = () => {
         </section>
       </main>
 
-      <button
-        className={`bc-to-top ${showTop ? "show" : ""}`}
-        aria-label="回到頂部"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      <a
+        className={`bc-order-fab ${showTop ? "show" : ""}`}
+        href="/products/brandy-cake"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate("/products/brandy-cake");
+        }}
+        aria-label="立即訂購白蘭地蛋糕"
       >
-        ↑
-      </button>
-
-      <div className={`bc-sticky-cta ${showCta ? "show" : ""}`} aria-hidden={!showCta}>
-        <span className="bc-sticky-label">ブランデーケーキ</span>
-        <a
-          className="bc-sticky-btn"
-          href="#products"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("products")?.scrollIntoView({ behavior: "smooth" });
-          }}
-        >
-          查看預訂方案
-        </a>
-      </div>
+        立即訂購蛋糕
+      </a>
     </div>
     </Layout>
   );
