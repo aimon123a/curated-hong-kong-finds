@@ -278,15 +278,15 @@ const BrandyCakeV1 = () => {
               <figcaption>店家說明卡・中文重點整理</figcaption>
             </figure>
             <div className="bc-prose bc-reveal">
-              <p>酒香是濃郁醇厚的：糕體吸足了白蘭地，散發出優雅的橡木桶香氣與水果的甘甜。入喉時有烈酒的微醺感，尾韻則轉為溫潤的香醇——濃，而不烈。</p>
+              <p>原來店家使用大量新鮮奶油與蛋黃烘焙，為了能充分發揮白蘭地芳醇香氣的現代風格蛋糕。難怪入喉時有烈酒的微醺感，尾韻則轉為溫潤的香醇——濃，而不烈。</p>
               <p>口感也有別於一般海綿蛋糕。白蘭地糖漿賦予糕體濕潤的質地，咬落紮實，卻不乾澀。</p>
+              <p>店家亦表示：無論是作為贈禮或手信，相信這份心意定能讓您十分滿意。</p>
               <p>我跟哥哥對望了一眼，沒有說話。</p>
               <p>隔了幾秒，他又切了一片。</p>
               <p>我也是。</p>
             </div>
-            <div className="bc-prose bc-reveal">
-              <p>但我必須先老實說一件事——</p>
-
+            <div className="bc-cta-row bc-reveal">
+              <a className="bc-btn-solid" href="/products/brandy-cake" onClick={(e) => { e.preventDefault(); navigate("/products/brandy-cake"); }}>立即訂購白蘭地蛋糕 →</a>
             </div>
           </div>
         </section>
@@ -294,15 +294,6 @@ const BrandyCakeV1 = () => {
 
 
 
-        {/* after the photo */}
-        <section className="bc-chapter">
-          <div className="bc-col">
-            <div className="bc-prose bc-reveal">
-              <p className="bc-pull"><strong>實物，其實不如照片吸引。</strong>它外表平凡到，我們一開始以為只是普通蛋糕——這正是它被低估的原因。那層不起眼的表皮，塗的是白蘭地酒液。誰會想到，平凡的外表底下，藏著這樣的玄機。</p>
-              <p>所以如果你收到之後，第一眼看下去心想「就這樣？」——是的，就這樣。切一片，吃下去，等一等。</p>
-            </div>
-          </div>
-        </section>
 
         {/* CH.3 */}
         <section className="bc-chapter" id="ch3">
@@ -409,7 +400,7 @@ const BrandyCakeV1 = () => {
               <img className="bc-tinted" src={`${IMG}/night.png`} alt="夜深的窗邊，一碟蛋糕與一杯茶" loading="lazy" />
             </figure>
             <div className="bc-cta-row bc-reveal">
-              <a className="bc-btn-solid" href={CART_URL}>立即訂購白蘭地蛋糕 →</a>
+              <a className="bc-btn-solid" href="/products/brandy-cake" onClick={(e) => { e.preventDefault(); navigate("/products/brandy-cake"); }}>立即訂購白蘭地蛋糕 →</a>
               <a className="bc-btn-line" href={IG_URL} target="_blank" rel="noreferrer">歡迎向 IG @jaag_select 查詢現貨</a>
             </div>
             <div className="bc-sign bc-reveal">
