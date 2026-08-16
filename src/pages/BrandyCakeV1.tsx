@@ -45,7 +45,7 @@ const BrandyCakeV1 = () => {
   useJsonLd({
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "「大人」的甜點，屬於自己的贅沢時刻",
+    headline: "「大人」的甜點，屬於自己的贅沢時刻｜Longchamp 白蘭地蛋糕",
     description:
       "編輯團隊親身試吃 16 日：Longchamp ロンシャン 白蘭地蛋糕熟成日記。",
     image: ["https://jaagselect.com/assets/brandy/og-brandy-cake.jpg"],
