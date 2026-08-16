@@ -172,6 +172,7 @@ const BrandyCakeV1 = () => {
           <h1>
             「大人」的甜點，<br />
             <span className="bc-accent">屬於自己的贅沢時刻。</span>
+            <span className="bc-accent">｜Longchamp 白蘭地蛋糕</span>
           </h1>
           <div className="bc-hero-cta">
             <a className="bc-btn-ghost" href="#ch1">
