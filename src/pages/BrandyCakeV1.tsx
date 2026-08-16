@@ -32,9 +32,10 @@ const DIARY = [
 
 const BrandyCakeV1 = () => {
   useDocumentMeta({
-    title: "「大人」的甜點 · Longchamp 白蘭地蛋糕深度評測｜jaagSELECT",
+    title: "「大人」的甜點，屬於自己的贅沢時刻｜Longchamp 白蘭地蛋糕",
     description: "編輯團隊親身試吃 16 日：Longchamp ロンシャン 白蘭地蛋糕熟成日記，一款既能犒賞自己的夜晚、亦體面得可作手信的日本甜點，附香港代購價格。",
-    ogTitle: "「大人」的甜點，屬於自己的贅沢時刻 — jaagSELECT",
+    ogTitle: "「大人」的甜點，屬於自己的贅沢時刻｜Longchamp 白蘭地蛋糕",
+
     ogDescription: "一塊外表平凡的白蘭地蛋糕，和它吞下去之後才浮現的酒香。Longchamp ロンシャン 深度評測與香港代購價。",
     ogImage: "https://jaagselect.com/assets/brandy/og-brandy-cake.jpg",
     ogType: "article",
